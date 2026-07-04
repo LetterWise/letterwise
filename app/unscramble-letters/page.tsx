@@ -12,6 +12,8 @@ export default function UnscrambleLettersPage() {
     return unscrambleWords(letters, words, minLength);
   }, [letters, minLength]);
 
+  const visibleResults = results.slice(0, 100);
+
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <section className="mx-auto max-w-5xl px-6 py-16">
@@ -84,7 +86,9 @@ export default function UnscrambleLettersPage() {
               <h2 className="text-2xl font-semibold">Results</h2>
               <p className="mt-1 text-sm text-slate-400">
                 {letters.trim()
-                  ? `${results.length} words found`
+                  ? `${results.length} words found${
+                      results.length > 100 ? " — showing first 100" : ""
+                    }`
                   : "Enter letters to see results"}
               </p>
             </div>
@@ -100,9 +104,9 @@ export default function UnscrambleLettersPage() {
           </div>
 
           <div className="mt-5 rounded-3xl border border-slate-800 bg-slate-900 p-6">
-            {results.length > 0 ? (
+            {visibleResults.length > 0 ? (
               <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-                {results.map((word) => (
+                {visibleResults.map((word) => (
                   <div
                     key={word}
                     className="rounded-xl border border-slate-800 bg-slate-950 px-4 py-3"

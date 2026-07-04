@@ -1,4 +1,17 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import { words } from "@/data/words";
+import { unscrambleWords } from "@/lib/unscramble";
+
 export default function UnscrambleLettersPage() {
+  const [letters, setLetters] = useState("");
+  const [minLength, setMinLength] = useState(2);
+
+  const results = useMemo(() => {
+    return unscrambleWords(letters, words, minLength);
+  }, [letters, minLength]);
+
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <section className="mx-auto max-w-5xl px-6 py-16">
@@ -7,7 +20,7 @@ export default function UnscrambleLettersPage() {
         </a>
 
         <div className="mt-10">
-          <p className="mb-4 rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300 inline-block">
+          <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">
             Letter unscrambler
           </p>
 
@@ -29,24 +42,87 @@ export default function UnscrambleLettersPage() {
             Your letters
           </label>
 
-          <div className="mt-3 flex flex-col gap-3 sm:flex-row">
-            <input
-              id="letters"
-              type="text"
-              placeholder="Example: tcahe"
-              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400"
-            />
+          <input
+            id="letters"
+            type="text"
+            value={letters}
+            onChange={(event) => setLetters(event.target.value)}
+            placeholder="Example: tcahe"
+            className="mt-3 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400"
+          />
 
-            <button className="rounded-xl bg-sky-500 px-6 py-3 font-semibold text-white hover:bg-sky-400">
-              Find Words
-            </button>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <label
+              htmlFor="minLength"
+              className="text-sm font-medium text-slate-300"
+            >
+              Minimum word length
+            </label>
+
+            <select
+              id="minLength"
+              value={minLength}
+              onChange={(event) => setMinLength(Number(event.target.value))}
+              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-400 sm:w-40"
+            >
+              <option value={2}>2 letters</option>
+              <option value={3}>3 letters</option>
+              <option value={4}>4 letters</option>
+              <option value={5}>5 letters</option>
+            </select>
           </div>
 
-          <p className="mt-3 text-sm text-slate-500">
-            Soon this tool will show all words that can be made from your
-            letters.
+          <p className="mt-4 text-sm text-slate-500">
+            Try typing <span className="text-slate-300">tcahe</span> or{" "}
+            <span className="text-slate-300">aerst</span>.
           </p>
         </div>
+
+        <section className="mt-10">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-semibold">Results</h2>
+              <p className="mt-1 text-sm text-slate-400">
+                {letters.trim()
+                  ? `${results.length} words found`
+                  : "Enter letters to see results"}
+              </p>
+            </div>
+
+            {letters && (
+              <button
+                onClick={() => setLetters("")}
+                className="rounded-xl border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-900"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+
+          <div className="mt-5 rounded-3xl border border-slate-800 bg-slate-900 p-6">
+            {results.length > 0 ? (
+              <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+                {results.map((word) => (
+                  <div
+                    key={word}
+                    className="rounded-xl border border-slate-800 bg-slate-950 px-4 py-3"
+                  >
+                    <p className="text-lg font-semibold">{word}</p>
+                    <p className="text-xs text-slate-500">
+                      {word.length} letters
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-slate-400">
+                {letters.trim()
+                  ? "No words found yet. Try more letters or lower the minimum word length."
+                  : "Your results will appear here."}
+              </p>
+            )}
+          </div>
+        </section>
 
         <section className="mt-12 grid gap-4 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
@@ -66,7 +142,7 @@ export default function UnscrambleLettersPage() {
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
             <h2 className="font-semibold">Fast filters</h2>
             <p className="mt-2 text-sm text-slate-400">
-              We will add length, starts-with, ends-with, and contains filters.
+              Length filters are live. More filters are coming soon.
             </p>
           </div>
         </section>

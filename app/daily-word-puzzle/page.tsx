@@ -10,11 +10,39 @@ const levelLabels: Record<PuzzleLevel, string> = {
   hard: "Hard",
 };
 
+const keyboardRows = [
+  ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+  ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+  ["Enter", "z", "x", "c", "v", "b", "n", "m", "Back"],
+];
+
 function getTileClass(status: LetterStatus) {
   if (status === "correct") return "border-emerald-500 bg-emerald-600";
   if (status === "present") return "border-yellow-500 bg-yellow-600";
   if (status === "absent") return "border-slate-700 bg-slate-800";
   return "border-slate-700 bg-slate-950";
+}
+
+function getKeyClass(status: LetterStatus | undefined) {
+  if (status === "correct") return "bg-emerald-600 text-white";
+  if (status === "present") return "bg-yellow-600 text-white";
+  if (status === "absent") return "bg-slate-800 text-slate-300";
+  return "bg-slate-600 text-white hover:bg-slate-500";
+}
+
+function getBestStatus(
+  current: LetterStatus | undefined,
+  next: LetterStatus
+): LetterStatus {
+  const rank: Record<LetterStatus, number> = {
+    empty: 0,
+    absent: 1,
+    present: 2,
+    correct: 3,
+  };
+
+  if (!current) return next;
+  return rank[next] > rank[current] ? next : current;
 }
 
 export default function DailyWordPuzzlePage() {
@@ -28,6 +56,16 @@ export default function DailyWordPuzzlePage() {
   const won = guesses.includes(answer);
   const lost = guesses.length >= 6 && !won;
   const gameOver = won || lost;
+
+  const keyStatuses: Record<string, LetterStatus> = {};
+
+  for (const guess of guesses) {
+    const statuses = scoreGuess(guess, answer);
+
+    guess.split("").forEach((letter, index) => {
+      keyStatuses[letter] = getBestStatus(keyStatuses[letter], statuses[index]);
+    });
+  }
 
   function submitGuess() {
     const cleaned = cleanGuess(currentGuess);
@@ -50,6 +88,33 @@ export default function DailyWordPuzzlePage() {
     } else {
       setMessage("");
     }
+  }
+
+  function addLetter(letter: string) {
+    if (gameOver) return;
+    if (currentGuess.length >= 5) return;
+
+    setCurrentGuess((current) => cleanGuess(current + letter));
+  }
+
+  function deleteLetter() {
+    if (gameOver) return;
+
+    setCurrentGuess((current) => current.slice(0, -1));
+  }
+
+  function handleKeyPress(key: string) {
+    if (key === "Enter") {
+      submitGuess();
+      return;
+    }
+
+    if (key === "Back") {
+      deleteLetter();
+      return;
+    }
+
+    addLetter(key);
   }
 
   function resetLevel(newLevel: PuzzleLevel) {
@@ -92,7 +157,9 @@ export default function DailyWordPuzzlePage() {
             and try to solve it in six guesses.
           </p>
 
-          <p className="mt-3 text-sm text-slate-500">Puzzle date: {puzzle.date}</p>
+          <p className="mt-3 text-sm text-slate-500">
+            Puzzle date: {puzzle.date}
+          </p>
         </div>
 
         <div className="mt-8 flex justify-center gap-3">
@@ -134,41 +201,45 @@ export default function DailyWordPuzzlePage() {
             ))}
           </div>
 
-          <div className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-5">
-            <label
-              htmlFor="guess"
-              className="block text-sm font-medium text-slate-300"
-            >
-              Your guess
-            </label>
+          <div className="mt-6 rounded-3xl border border-slate-800 bg-slate-900 p-4">
+            <p className="mb-3 text-center text-sm text-slate-400">
+              Current guess:{" "}
+              <span className="font-semibold uppercase text-white">
+                {currentGuess || "_____"}
+              </span>
+            </p>
 
-            <div className="mt-3 flex gap-3">
-              <input
-                id="guess"
-                type="text"
-                maxLength={5}
-                value={currentGuess}
-                disabled={gameOver}
-                onChange={(event) => setCurrentGuess(cleanGuess(event.target.value))}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") {
-                    submitGuess();
-                  }
-                }}
-                placeholder="Type 5 letters"
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400 disabled:opacity-50"
-              />
+            <div className="space-y-2">
+              {keyboardRows.map((row, rowIndex) => (
+                <div key={rowIndex} className="flex justify-center gap-1.5">
+                  {row.map((key) => {
+                    const isSpecialKey = key === "Enter" || key === "Back";
+                    const status = !isSpecialKey ? keyStatuses[key] : undefined;
 
-              <button
-                onClick={submitGuess}
-                disabled={gameOver}
-                className="rounded-xl bg-sky-500 px-5 py-3 font-semibold text-white hover:bg-sky-400 disabled:opacity-50"
-              >
-                Enter
-              </button>
+                    return (
+                      <button
+                        key={key}
+                        onClick={() => handleKeyPress(key)}
+                        disabled={gameOver}
+                        className={`h-12 rounded-md px-3 text-sm font-bold uppercase disabled:opacity-50 ${
+                          isSpecialKey
+                            ? "bg-slate-500 text-white hover:bg-slate-400"
+                            : getKeyClass(status)
+                        } ${isSpecialKey ? "min-w-16" : "min-w-9"}`}
+                      >
+                        {key === "Back" ? "⌫" : key}
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
             </div>
 
-            {message && <p className="mt-4 text-sm text-slate-300">{message}</p>}
+            {message && (
+              <p className="mt-4 text-center text-sm text-slate-300">
+                {message}
+              </p>
+            )}
           </div>
 
           <div className="mt-6 grid gap-3 text-sm text-slate-400 sm:grid-cols-3">

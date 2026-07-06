@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getTodayPuzzle, PuzzleLevel } from "@/data/dailyPuzzles";
 import { cleanGuess, scoreGuess, LetterStatus } from "@/lib/wordGame";
 
@@ -117,6 +117,35 @@ export default function DailyWordPuzzlePage() {
     addLetter(key);
   }
 
+  useEffect(() => {
+    function handlePhysicalKeyboard(event: KeyboardEvent) {
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+
+      if (event.key === "Enter") {
+        event.preventDefault();
+        submitGuess();
+        return;
+      }
+
+      if (event.key === "Backspace") {
+        event.preventDefault();
+        deleteLetter();
+        return;
+      }
+
+      if (/^[a-zA-Z]$/.test(event.key)) {
+        event.preventDefault();
+        addLetter(event.key.toLowerCase());
+      }
+    }
+
+    window.addEventListener("keydown", handlePhysicalKeyboard);
+
+    return () => {
+      window.removeEventListener("keydown", handlePhysicalKeyboard);
+    };
+  });
+
   function resetLevel(newLevel: PuzzleLevel) {
     setLevel(newLevel);
     setCurrentGuess("");
@@ -203,10 +232,7 @@ export default function DailyWordPuzzlePage() {
 
           <div className="mt-6 rounded-3xl border border-slate-800 bg-slate-900 p-4">
             <p className="mb-3 text-center text-sm text-slate-400">
-              Current guess:{" "}
-              <span className="font-semibold uppercase text-white">
-                {currentGuess || "_____"}
-              </span>
+              Type on your keyboard or use the buttons below.
             </p>
 
             <div className="space-y-2">

@@ -12,10 +12,11 @@ export default function Home() {
 
         <p className="mt-6 max-w-2xl text-lg text-slate-300">
           LetterWise helps you solve word games, unscramble letters, find
-          five-letter words, and build smarter word lists for learning.
+          five-letter words, play daily word puzzles, and build smarter word
+          lists for learning.
         </p>
 
-        <div className="mt-10 grid w-full max-w-4xl gap-4 sm:grid-cols-3">
+        <div className="mt-10 grid w-full max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <a
             href="/word-finder"
             className="rounded-2xl border border-slate-700 bg-slate-900 p-6 text-left hover:bg-slate-800"
@@ -43,6 +44,16 @@ export default function Home() {
             <h2 className="text-xl font-semibold">Wordle Solver</h2>
             <p className="mt-2 text-sm text-slate-400">
               Use green, yellow, and gray letters to find the answer.
+            </p>
+          </a>
+
+          <a
+            href="/daily-word-puzzle"
+            className="rounded-2xl border border-sky-700 bg-slate-900 p-6 text-left hover:bg-slate-800"
+          >
+            <h2 className="text-xl font-semibold">Daily Word Puzzle</h2>
+            <p className="mt-2 text-sm text-slate-400">
+              Play today&apos;s easy, medium, or hard word challenge.
             </p>
           </a>
         </div>

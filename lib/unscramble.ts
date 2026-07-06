@@ -25,12 +25,25 @@ export function canMakeWord(word: string, letters: string) {
   return true;
 }
 
+type UnscrambleOptions = {
+  minLength?: number;
+  exactLength?: number;
+  startsWith?: string;
+  endsWith?: string;
+  contains?: string;
+};
+
 export function unscrambleWords(
   lettersInput: string,
   wordList: string[],
-  minLength = 2
+  options: UnscrambleOptions = {}
 ) {
   const letters = cleanLetters(lettersInput);
+  const startsWith = cleanLetters(options.startsWith || "");
+  const endsWith = cleanLetters(options.endsWith || "");
+  const contains = cleanLetters(options.contains || "");
+  const minLength = options.minLength ?? 2;
+  const exactLength = options.exactLength ?? 0;
 
   if (!letters) {
     return [];
@@ -39,6 +52,10 @@ export function unscrambleWords(
   const results = wordList
     .filter((word) => word.length >= minLength)
     .filter((word) => word.length <= letters.length)
+    .filter((word) => (exactLength ? word.length === exactLength : true))
+    .filter((word) => (startsWith ? word.startsWith(startsWith) : true))
+    .filter((word) => (endsWith ? word.endsWith(endsWith) : true))
+    .filter((word) => (contains ? word.includes(contains) : true))
     .filter((word) => canMakeWord(word, letters))
     .sort((a, b) => {
       if (b.length !== a.length) {

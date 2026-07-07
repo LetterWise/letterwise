@@ -19,6 +19,9 @@ const endingPages = [
 const containingPages = [
   { href: "/5-letter-words-containing-a", label: "5 Letter Words Containing A" },
   { href: "/5-letter-words-containing-e", label: "5 Letter Words Containing E" },
+  { href: "/5-letter-words-containing-i", label: "5 Letter Words Containing I" },
+  { href: "/5-letter-words-containing-o", label: "5 Letter Words Containing O" },
+  { href: "/5-letter-words-containing-u", label: "5 Letter Words Containing U" },
 ];
 
 export const metadata = {

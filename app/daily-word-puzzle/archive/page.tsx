@@ -31,8 +31,8 @@ export default function DailyWordPuzzleArchivePage() {
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg text-slate-300">
-            Browse previous LetterWise Daily puzzles. Soon, each date will have
-            a playable archive version for easy, medium, and hard levels.
+            Replay previous LetterWise Daily puzzles. Choose a date and level,
+            then try to solve the word without seeing the answer.
           </p>
         </div>
 
@@ -47,39 +47,48 @@ export default function DailyWordPuzzleArchivePage() {
                   <div>
                     <h2 className="text-2xl font-semibold">{puzzle.date}</h2>
                     <p className="mt-1 text-sm text-slate-400">
-                      Easy, medium, and hard daily word challenges.
+                      Replay the easy, medium, or hard challenge from this date.
                     </p>
                   </div>
 
-                  <a
-                    href="/daily-word-puzzle"
-                    className="rounded-xl bg-sky-500 px-5 py-3 text-center text-sm font-semibold text-white hover:bg-sky-400"
-                  >
-                    Play today
-                  </a>
+                  <span className="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-400">
+                    Answers hidden
+                  </span>
                 </div>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-2xl border border-slate-800 bg-slate-950 p-4">
+                  <a
+                    href={`/daily-word-puzzle?date=${puzzle.date}&level=easy`}
+                    className="rounded-2xl border border-slate-800 bg-slate-950 p-4 hover:bg-slate-800"
+                  >
                     <p className="text-sm text-slate-500">Easy</p>
-                    <p className="mt-1 text-xl font-bold uppercase">
-                      {puzzle.easy}
+                    <p className="mt-1 text-xl font-bold">Play Easy</p>
+                    <p className="mt-2 text-sm text-slate-400">
+                      A simpler five-letter word.
                     </p>
-                  </div>
+                  </a>
 
-                  <div className="rounded-2xl border border-slate-800 bg-slate-950 p-4">
+                  <a
+                    href={`/daily-word-puzzle?date=${puzzle.date}&level=medium`}
+                    className="rounded-2xl border border-slate-800 bg-slate-950 p-4 hover:bg-slate-800"
+                  >
                     <p className="text-sm text-slate-500">Medium</p>
-                    <p className="mt-1 text-xl font-bold uppercase">
-                      {puzzle.medium}
+                    <p className="mt-1 text-xl font-bold">Play Medium</p>
+                    <p className="mt-2 text-sm text-slate-400">
+                      A balanced daily challenge.
                     </p>
-                  </div>
+                  </a>
 
-                  <div className="rounded-2xl border border-slate-800 bg-slate-950 p-4">
+                  <a
+                    href={`/daily-word-puzzle?date=${puzzle.date}&level=hard`}
+                    className="rounded-2xl border border-slate-800 bg-slate-950 p-4 hover:bg-slate-800"
+                  >
                     <p className="text-sm text-slate-500">Hard</p>
-                    <p className="mt-1 text-xl font-bold uppercase">
-                      {puzzle.hard}
+                    <p className="mt-1 text-xl font-bold">Play Hard</p>
+                    <p className="mt-2 text-sm text-slate-400">
+                      A more difficult word.
                     </p>
-                  </div>
+                  </a>
                 </div>
               </div>
             ))}

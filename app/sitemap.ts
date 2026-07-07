@@ -5,6 +5,7 @@ const baseUrl = "https://letterwise-site.vercel.app";
 const staticPages = [
   "",
   "/about",
+  "/contact",
   "/privacy",
   "/terms",
   "/word-finder",

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/tools", label: "Tools" },
   { href: "/word-finder", label: "Word Finder" },
   { href: "/unscramble-letters", label: "Unscramble" },
   { href: "/wordle-solver", label: "Wordle Solver" },

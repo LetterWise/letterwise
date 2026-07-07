@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const footerLinks = [
+  { href: "/tools", label: "Tools" },
   { href: "/word-finder", label: "Word Finder" },
   { href: "/unscramble-letters", label: "Unscramble Letters" },
   { href: "/wordle-solver", label: "Wordle Solver" },

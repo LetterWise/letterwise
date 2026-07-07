@@ -9,6 +9,7 @@ const staticPages = [
   "/contact",
   "/privacy",
   "/terms",
+  "/tools",
   "/word-finder",
   "/unscramble-letters",
   "/wordle-solver",

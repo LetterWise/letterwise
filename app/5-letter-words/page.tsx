@@ -18,6 +18,18 @@ const startingLetterPages = [
   { href: "/5-letter-words-starting-with-l", label: "5 Letter Words Starting With L" },
   { href: "/5-letter-words-starting-with-m", label: "5 Letter Words Starting With M" },
   { href: "/5-letter-words-starting-with-n", label: "5 Letter Words Starting With N" },
+  { href: "/5-letter-words-starting-with-o", label: "5 Letter Words Starting With O" },
+  { href: "/5-letter-words-starting-with-p", label: "5 Letter Words Starting With P" },
+  { href: "/5-letter-words-starting-with-q", label: "5 Letter Words Starting With Q" },
+  { href: "/5-letter-words-starting-with-r", label: "5 Letter Words Starting With R" },
+  { href: "/5-letter-words-starting-with-s", label: "5 Letter Words Starting With S" },
+  { href: "/5-letter-words-starting-with-t", label: "5 Letter Words Starting With T" },
+  { href: "/5-letter-words-starting-with-u", label: "5 Letter Words Starting With U" },
+  { href: "/5-letter-words-starting-with-v", label: "5 Letter Words Starting With V" },
+  { href: "/5-letter-words-starting-with-w", label: "5 Letter Words Starting With W" },
+  { href: "/5-letter-words-starting-with-x", label: "5 Letter Words Starting With X" },
+  { href: "/5-letter-words-starting-with-y", label: "5 Letter Words Starting With Y" },
+  { href: "/5-letter-words-starting-with-z", label: "5 Letter Words Starting With Z" },
 ];
 
 export const metadata = {

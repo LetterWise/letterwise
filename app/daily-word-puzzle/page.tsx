@@ -292,6 +292,13 @@ Play: ${window.location.origin}/daily-word-puzzle`;
     }
   }
 
+  function resetStats() {
+    setStats(defaultStats);
+    window.localStorage.removeItem("letterwise-daily-stats");
+    setMessage("Stats reset.");
+    setShareMessage("");
+  }
+
   const rows = Array.from({ length: 6 }, (_, rowIndex) => {
     const guess = guesses[rowIndex];
     const isCurrentRow = rowIndex === guesses.length && !gameOver;
@@ -381,6 +388,17 @@ Play: ${window.location.origin}/daily-word-puzzle`;
               <p className="text-xs text-slate-400">Best</p>
             </div>
           </div>
+
+          {stats.played > 0 && (
+            <div className="mt-4 text-center">
+              <button
+                onClick={resetStats}
+                className="text-xs font-semibold text-slate-500 hover:text-slate-300"
+              >
+                Reset stats
+              </button>
+            </div>
+          )}
 
           <div className="mt-8 flex justify-center gap-3">
             {(["easy", "medium", "hard"] as PuzzleLevel[]).map((levelOption) => (

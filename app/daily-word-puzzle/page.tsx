@@ -66,6 +66,12 @@ function getBestStatus(
   return rank[next] > rank[current] ? next : current;
 }
 
+function statusToEmoji(status: LetterStatus) {
+  if (status === "correct") return "🟩";
+  if (status === "present") return "🟨";
+  return "⬛";
+}
+
 function loadStats(): GameStats {
   if (typeof window === "undefined") {
     return defaultStats;
@@ -102,6 +108,7 @@ export default function DailyWordPuzzlePage() {
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, setGuesses] = useState<string[]>([]);
   const [message, setMessage] = useState("");
+  const [shareMessage, setShareMessage] = useState("");
   const [stats, setStats] = useState<GameStats>(defaultStats);
 
   useEffect(() => {
@@ -175,6 +182,7 @@ export default function DailyWordPuzzlePage() {
     const nextGuesses = [...guesses, cleaned];
     setGuesses(nextGuesses);
     setCurrentGuess("");
+    setShareMessage("");
 
     if (cleaned === answer) {
       setMessage("Correct! You solved the puzzle.");
@@ -248,11 +256,40 @@ export default function DailyWordPuzzlePage() {
     setCurrentGuess("");
     setGuesses([]);
     setMessage("");
+    setShareMessage("");
 
     const params = new URLSearchParams(window.location.search);
     params.set("date", puzzle.date);
     params.set("level", newLevel);
     window.history.replaceState(null, "", `?${params.toString()}`);
+  }
+
+  function createShareText() {
+    const emojiRows = guesses
+      .map((guess) =>
+        scoreGuess(guess, answer).map((status) => statusToEmoji(status)).join("")
+      )
+      .join("\n");
+
+    const resultText = won ? `Solved in ${guesses.length}/6` : "Not solved";
+
+    return `LetterWise Daily ${puzzle.date} ${levelLabels[level]}
+${resultText}
+
+${emojiRows}
+
+Play: ${window.location.origin}/daily-word-puzzle`;
+  }
+
+  async function shareResult() {
+    const text = createShareText();
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setShareMessage("Result copied to clipboard.");
+    } catch {
+      setShareMessage("Could not copy automatically. Select and copy your result manually.");
+    }
   }
 
   const rows = Array.from({ length: 6 }, (_, rowIndex) => {
@@ -406,6 +443,21 @@ export default function DailyWordPuzzlePage() {
               <p className="mt-4 text-center text-sm text-slate-300">
                 {message}
               </p>
+            )}
+
+            {gameOver && (
+              <div className="mt-4 text-center">
+                <button
+                  onClick={shareResult}
+                  className="rounded-xl bg-sky-500 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-400"
+                >
+                  Share result
+                </button>
+
+                {shareMessage && (
+                  <p className="mt-3 text-sm text-slate-400">{shareMessage}</p>
+                )}
+              </div>
             )}
           </div>
 

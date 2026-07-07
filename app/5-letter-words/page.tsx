@@ -10,6 +10,10 @@ const startingLetterPages = [
   { href: "/5-letter-words-starting-with-d", label: "5 Letter Words Starting With D" },
   { href: "/5-letter-words-starting-with-e", label: "5 Letter Words Starting With E" },
   { href: "/5-letter-words-starting-with-f", label: "5 Letter Words Starting With F" },
+  { href: "/5-letter-words-starting-with-g", label: "5 Letter Words Starting With G" },
+  { href: "/5-letter-words-starting-with-h", label: "5 Letter Words Starting With H" },
+  { href: "/5-letter-words-starting-with-i", label: "5 Letter Words Starting With I" },
+  { href: "/5-letter-words-starting-with-j", label: "5 Letter Words Starting With J" },
 ];
 
 export const metadata = {

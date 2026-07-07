@@ -10,9 +10,43 @@ const navLinks = [
   { href: "/about", label: "About" },
 ];
 
+function isWordListPage(pathname: string) {
+  return (
+    pathname === "/word-lists" ||
+    pathname === "/3-letter-words" ||
+    pathname === "/4-letter-words" ||
+    pathname === "/5-letter-words" ||
+    pathname === "/6-letter-words" ||
+    pathname === "/7-letter-words" ||
+    pathname.startsWith("/5-letter-words-starting-with-") ||
+    pathname.startsWith("/5-letter-words-ending-in-") ||
+    pathname.startsWith("/5-letter-words-containing-")
+  );
+}
+
+function isToolsPage(pathname: string) {
+  return (
+    pathname === "/tools" ||
+    pathname === "/word-finder" ||
+    pathname === "/unscramble-letters" ||
+    pathname === "/wordle-solver"
+  );
+}
+
 function isActiveLink(pathname: string, href: string) {
-  if (href === "/") {
-    return pathname === "/";
+  if (href === "/word-lists") {
+    return isWordListPage(pathname);
+  }
+
+  if (href === "/tools") {
+    return isToolsPage(pathname);
+  }
+
+  if (href === "/daily-word-puzzle") {
+    return (
+      pathname === "/daily-word-puzzle" ||
+      pathname.startsWith("/daily-word-puzzle/")
+    );
   }
 
   return pathname === href || pathname.startsWith(`${href}/`);

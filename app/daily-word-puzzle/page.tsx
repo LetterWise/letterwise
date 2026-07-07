@@ -189,6 +189,11 @@ export default function DailyWordPuzzlePage() {
       return;
     }
 
+    if (guesses.includes(cleaned)) {
+      setMessage("You already tried that word.");
+      return;
+    }
+
     const nextGuesses = [...guesses, cleaned];
     setGuesses(nextGuesses);
     setCurrentGuess("");

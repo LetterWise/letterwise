@@ -25,25 +25,36 @@ const footerLinks = [
 export default function Footer() {
   return (
     <footer className="border-t border-slate-800 bg-slate-950 text-white">
-      <div className="mx-auto max-w-6xl px-6 py-10">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+      <div className="mx-auto max-w-6xl px-6 py-12">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr]">
           <div>
-            <Link href="/" className="text-2xl font-bold tracking-tight">
-              LetterWise
+            <Link href="/" className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500 text-sm font-black text-white shadow-lg shadow-sky-950/40">
+                LW
+              </span>
+
+              <span>
+                <span className="block text-xl font-bold tracking-tight">
+                  LetterWise
+                </span>
+                <span className="block text-xs text-slate-400">
+                  Word tools & daily puzzles
+                </span>
+              </span>
             </Link>
 
-            <p className="mt-3 max-w-md text-sm leading-6 text-slate-400">
-              Simple word tools for puzzles, spelling practice, word games, and
-              daily challenges.
+            <p className="mt-5 max-w-md text-sm leading-6 text-slate-400">
+              Simple word tools for puzzles, spelling practice, word games,
+              word lists, and daily challenges.
             </p>
           </div>
 
-          <nav className="grid gap-2 text-sm text-slate-300 sm:grid-cols-2">
+          <nav className="grid gap-2 text-sm text-slate-300 sm:grid-cols-2 lg:grid-cols-3">
             {footerLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="hover:text-white"
+                className="rounded-lg px-2 py-1.5 hover:bg-slate-900 hover:text-white"
               >
                 {link.label}
               </Link>
@@ -51,9 +62,9 @@ export default function Footer() {
           </nav>
         </div>
 
-        <p className="mt-8 text-sm text-slate-500">
+        <div className="mt-10 border-t border-slate-800 pt-6 text-sm text-slate-500">
           © 2026 LetterWise. All rights reserved.
-        </p>
+        </div>
       </div>
     </footer>
   );

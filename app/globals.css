@@ -86,3 +86,13 @@ body {
       0 8px 10px -6px rgba(2, 132, 199, 0.18) !important;
   }
 }
+
+@media (prefers-color-scheme: light) {
+  .border-transparent {
+    border-color: transparent !important;
+  }
+
+  .hover\:border-slate-700:hover {
+    border-color: #cbd5e1 !important;
+  }
+}

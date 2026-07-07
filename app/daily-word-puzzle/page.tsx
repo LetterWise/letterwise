@@ -185,7 +185,7 @@ export default function DailyWordPuzzlePage() {
     }
 
     if (!validFiveLetterWords.has(cleaned) && cleaned !== answer) {
-      setMessage("That word is not in the LetterWise word list.");
+      setMessage("That does not look like a real word.");
       return;
     }
 

@@ -14,6 +14,10 @@ const endingPages = [
   { href: "/5-letter-words-ending-in-er", label: "5 Letter Words Ending In ER" },
   { href: "/5-letter-words-ending-in-ly", label: "5 Letter Words Ending In LY" },
   { href: "/5-letter-words-ending-in-ing", label: "5 Letter Words Ending In ING" },
+  { href: "/5-letter-words-ending-in-al", label: "5 Letter Words Ending In AL" },
+  { href: "/5-letter-words-ending-in-el", label: "5 Letter Words Ending In EL" },
+  { href: "/5-letter-words-ending-in-le", label: "5 Letter Words Ending In LE" },
+  { href: "/5-letter-words-ending-in-se", label: "5 Letter Words Ending In SE" },
 ];
 
 const containingPages = [

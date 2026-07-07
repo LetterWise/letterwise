@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/tools", label: "Tools" },
@@ -7,7 +10,17 @@ const navLinks = [
   { href: "/about", label: "About" },
 ];
 
+function isActiveLink(pathname: string, href: string) {
+  if (href === "/") {
+    return pathname === "/";
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export default function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/90 text-white shadow-sm backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
@@ -27,15 +40,23 @@ export default function Header() {
         </Link>
 
         <nav className="flex flex-wrap gap-2 text-sm text-slate-300">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-full border border-transparent px-3 py-2 transition hover:border-slate-700 hover:bg-slate-900 hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active = isActiveLink(pathname, link.href);
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-full border px-3 py-2 transition ${
+                  active
+                    ? "border-sky-500/40 bg-sky-500/15 text-sky-300"
+                    : "border-transparent hover:border-slate-700 hover:bg-slate-900 hover:text-white"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </header>

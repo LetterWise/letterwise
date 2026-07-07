@@ -1,7 +1,9 @@
 const wordLengthPages = [
+  { href: "/3-letter-words", label: "3 Letter Words" },
   { href: "/4-letter-words", label: "4 Letter Words" },
   { href: "/5-letter-words", label: "5 Letter Words" },
   { href: "/6-letter-words", label: "6 Letter Words" },
+  { href: "/7-letter-words", label: "7 Letter Words" },
 ];
 
 const startingLetterPages = "abcdefghijklmnopqrstuvwxyz".split("").map((letter) => ({

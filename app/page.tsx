@@ -27,6 +27,11 @@ const tools = [
 
 const wordLists = [
   {
+    href: "/3-letter-words",
+    title: "3 Letter Words",
+    description: "Browse useful three-letter words for quick word games.",
+  },
+  {
     href: "/4-letter-words",
     title: "4 Letter Words",
     description: "Browse useful four-letter words for word games and spelling.",
@@ -40,6 +45,11 @@ const wordLists = [
     href: "/6-letter-words",
     title: "6 Letter Words",
     description: "Browse six-letter words for puzzles, vocabulary, and games.",
+  },
+  {
+    href: "/7-letter-words",
+    title: "7 Letter Words",
+    description: "Browse seven-letter words for longer puzzles and vocabulary.",
   },
 ];
 

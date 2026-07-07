@@ -14,9 +14,11 @@ const staticPages = [
   "/unscramble-letters",
   "/wordle-solver",
   "/word-lists",
+  "/3-letter-words",
   "/4-letter-words",
   "/5-letter-words",
   "/6-letter-words",
+  "/7-letter-words",
   "/daily-word-puzzle",
   "/daily-word-puzzle/archive",
 ];

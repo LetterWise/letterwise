@@ -16,6 +16,7 @@ const footerLinks = [
   { href: "/daily-word-puzzle/archive", label: "Puzzle Archive" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
+  { href: "/updates", label: "Updates" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms of Use" },

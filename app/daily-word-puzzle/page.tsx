@@ -21,6 +21,22 @@ const keyboardRows = [
   ["Enter", "z", "x", "c", "v", "b", "n", "m", "Back"],
 ];
 
+type GameStats = {
+  played: number;
+  won: number;
+  currentStreak: number;
+  bestStreak: number;
+  completedPuzzleIds: string[];
+};
+
+const defaultStats: GameStats = {
+  played: 0,
+  won: 0,
+  currentStreak: 0,
+  bestStreak: 0,
+  completedPuzzleIds: [],
+};
+
 function getTileClass(status: LetterStatus) {
   if (status === "correct") return "border-emerald-500 bg-emerald-600";
   if (status === "present") return "border-yellow-500 bg-yellow-600";
@@ -50,14 +66,47 @@ function getBestStatus(
   return rank[next] > rank[current] ? next : current;
 }
 
+function loadStats(): GameStats {
+  if (typeof window === "undefined") {
+    return defaultStats;
+  }
+
+  const saved = window.localStorage.getItem("letterwise-daily-stats");
+
+  if (!saved) {
+    return defaultStats;
+  }
+
+  try {
+    const parsed = JSON.parse(saved) as GameStats;
+
+    return {
+      played: parsed.played || 0,
+      won: parsed.won || 0,
+      currentStreak: parsed.currentStreak || 0,
+      bestStreak: parsed.bestStreak || 0,
+      completedPuzzleIds: parsed.completedPuzzleIds || [],
+    };
+  } catch {
+    return defaultStats;
+  }
+}
+
+function saveStats(stats: GameStats) {
+  window.localStorage.setItem("letterwise-daily-stats", JSON.stringify(stats));
+}
+
 export default function DailyWordPuzzlePage() {
   const [selectedDate, setSelectedDate] = useState(getTodayDate());
   const [level, setLevel] = useState<PuzzleLevel>("easy");
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, setGuesses] = useState<string[]>([]);
   const [message, setMessage] = useState("");
+  const [stats, setStats] = useState<GameStats>(defaultStats);
 
   useEffect(() => {
+    setStats(loadStats());
+
     const params = new URLSearchParams(window.location.search);
     const dateFromUrl = params.get("date");
     const levelFromUrl = params.get("level");
@@ -76,6 +125,7 @@ export default function DailyWordPuzzlePage() {
   }, [selectedDate]);
 
   const answer = puzzle[level];
+  const puzzleId = `${puzzle.date}-${level}`;
   const isArchivePuzzle = puzzle.date !== getTodayDate();
 
   const won = guesses.includes(answer);
@@ -90,6 +140,26 @@ export default function DailyWordPuzzlePage() {
     guess.split("").forEach((letter, index) => {
       keyStatuses[letter] = getBestStatus(keyStatuses[letter], statuses[index]);
     });
+  }
+
+  function recordGameResult(didWin: boolean) {
+    if (stats.completedPuzzleIds.includes(puzzleId)) {
+      return;
+    }
+
+    const nextCurrentStreak = didWin ? stats.currentStreak + 1 : 0;
+    const nextBestStreak = Math.max(stats.bestStreak, nextCurrentStreak);
+
+    const nextStats: GameStats = {
+      played: stats.played + 1,
+      won: didWin ? stats.won + 1 : stats.won,
+      currentStreak: nextCurrentStreak,
+      bestStreak: nextBestStreak,
+      completedPuzzleIds: [...stats.completedPuzzleIds, puzzleId],
+    };
+
+    setStats(nextStats);
+    saveStats(nextStats);
   }
 
   function submitGuess() {
@@ -108,8 +178,10 @@ export default function DailyWordPuzzlePage() {
 
     if (cleaned === answer) {
       setMessage("Correct! You solved the puzzle.");
+      recordGameResult(true);
     } else if (nextGuesses.length >= 6) {
       setMessage(`Game over. The word was ${answer.toUpperCase()}.`);
+      recordGameResult(false);
     } else {
       setMessage("");
     }
@@ -195,6 +267,9 @@ export default function DailyWordPuzzlePage() {
     };
   });
 
+  const winRate =
+    stats.played > 0 ? Math.round((stats.won / stats.played) * 100) : 0;
+
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <section className="mx-auto max-w-5xl px-6 py-12">
@@ -249,6 +324,28 @@ export default function DailyWordPuzzlePage() {
               {levelLabels[levelOption]}
             </button>
           ))}
+        </div>
+
+        <div className="mx-auto mt-8 grid max-w-xl grid-cols-4 gap-3 text-center">
+          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+            <p className="text-2xl font-bold">{stats.played}</p>
+            <p className="text-xs text-slate-400">Played</p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+            <p className="text-2xl font-bold">{winRate}%</p>
+            <p className="text-xs text-slate-400">Win rate</p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+            <p className="text-2xl font-bold">{stats.currentStreak}</p>
+            <p className="text-xs text-slate-400">Streak</p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+            <p className="text-2xl font-bold">{stats.bestStreak}</p>
+            <p className="text-xs text-slate-400">Best</p>
+          </div>
         </div>
 
         <div className="mx-auto mt-10 max-w-md">

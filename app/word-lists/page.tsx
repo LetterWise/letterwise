@@ -22,6 +22,10 @@ const containingPages = [
   { href: "/5-letter-words-containing-i", label: "5 Letter Words Containing I" },
   { href: "/5-letter-words-containing-o", label: "5 Letter Words Containing O" },
   { href: "/5-letter-words-containing-u", label: "5 Letter Words Containing U" },
+  { href: "/5-letter-words-containing-ai", label: "5 Letter Words Containing AI" },
+  { href: "/5-letter-words-containing-ou", label: "5 Letter Words Containing OU" },
+  { href: "/5-letter-words-containing-st", label: "5 Letter Words Containing ST" },
+  { href: "/5-letter-words-containing-ch", label: "5 Letter Words Containing CH" },
 ];
 
 export const metadata = {

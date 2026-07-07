@@ -310,17 +310,26 @@ Play: ${window.location.origin}/daily-word-puzzle`;
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <section className="mx-auto max-w-5xl px-6 py-12">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <a href="/" className="text-sm text-slate-400 hover:text-white">
             ← Back to LetterWise
           </a>
 
-          <a
-            href="/daily-word-puzzle/archive"
-            className="text-sm text-slate-400 hover:text-white"
-          >
-            Puzzle archive →
-          </a>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="/daily-word-puzzle/how-to-play"
+              className="text-sm text-slate-400 hover:text-white"
+            >
+              How to play
+            </a>
+
+            <a
+              href="/daily-word-puzzle/archive"
+              className="text-sm text-slate-400 hover:text-white"
+            >
+              Puzzle archive →
+            </a>
+          </div>
         </div>
 
         <div className="mt-8 text-center">

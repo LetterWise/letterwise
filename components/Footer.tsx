@@ -9,6 +9,7 @@ const footerLinks = [
   { href: "/daily-word-puzzle/archive", label: "Puzzle Archive" },
   { href: "/about", label: "About" },
   { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Use" },
 ];
 
 export default function Footer() {

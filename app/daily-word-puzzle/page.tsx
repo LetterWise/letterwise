@@ -38,10 +38,10 @@ const defaultStats: GameStats = {
 };
 
 function getTileClass(status: LetterStatus) {
-  if (status === "correct") return "border-emerald-500 bg-emerald-600";
-  if (status === "present") return "border-yellow-500 bg-yellow-600";
-  if (status === "absent") return "border-slate-700 bg-slate-800";
-  return "border-slate-700 bg-slate-950";
+  if (status === "correct") return "border-emerald-500 bg-emerald-600 text-white";
+  if (status === "present") return "border-yellow-500 bg-yellow-600 text-white";
+  if (status === "absent") return "border-slate-700 bg-slate-800 text-white";
+  return "border-slate-700 bg-slate-950 text-white";
 }
 
 function getKeyClass(status: LetterStatus | undefined) {
@@ -309,179 +309,186 @@ Play: ${window.location.origin}/daily-word-puzzle`;
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
-      <section className="mx-auto max-w-5xl px-6 py-12">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <a href="/" className="text-sm text-slate-400 hover:text-white">
-            ← Back to LetterWise
-          </a>
+      <section className="relative overflow-hidden">
+        <div className="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-sky-500/20 blur-3xl" />
 
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="/daily-word-puzzle/how-to-play"
-              className="text-sm text-slate-400 hover:text-white"
-            >
-              How to play
+        <div className="relative mx-auto max-w-6xl px-6 py-12">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <a href="/" className="text-sm text-slate-400 hover:text-white">
+              ← Back to LetterWise
             </a>
 
-            <a
-              href="/daily-word-puzzle/archive"
-              className="text-sm text-slate-400 hover:text-white"
-            >
-              Puzzle archive →
-            </a>
-          </div>
-        </div>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="/daily-word-puzzle/how-to-play"
+                className="text-sm text-slate-400 hover:text-white"
+              >
+                How to play
+              </a>
 
-        <div className="mt-8 text-center">
-          <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">
-            LetterWise Daily
-          </p>
-
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-            Daily Word Puzzle
-          </h1>
-
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-300">
-            Guess the five-letter word. Choose easy, medium, or hard and try to
-            solve it in six guesses.
-          </p>
-
-          <p className="mt-3 text-sm text-slate-500">
-            Puzzle date: {puzzle.date}{" "}
-            {isArchivePuzzle ? (
-              <span className="text-sky-400">(archive puzzle)</span>
-            ) : (
-              <span className="text-emerald-400">(today&apos;s puzzle)</span>
-            )}
-          </p>
-        </div>
-
-        <div className="mt-8 flex justify-center gap-3">
-          {(["easy", "medium", "hard"] as PuzzleLevel[]).map((levelOption) => (
-            <button
-              key={levelOption}
-              onClick={() => resetLevel(levelOption)}
-              className={`rounded-xl px-5 py-3 text-sm font-semibold ${
-                level === levelOption
-                  ? "bg-sky-500 text-white"
-                  : "border border-slate-700 text-slate-300 hover:bg-slate-900"
-              }`}
-            >
-              {levelLabels[levelOption]}
-            </button>
-          ))}
-        </div>
-
-        <div className="mx-auto mt-8 grid max-w-xl grid-cols-4 gap-3 text-center">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4">
-            <p className="text-2xl font-bold">{stats.played}</p>
-            <p className="text-xs text-slate-400">Played</p>
+              <a
+                href="/daily-word-puzzle/archive"
+                className="text-sm text-slate-400 hover:text-white"
+              >
+                Puzzle archive →
+              </a>
+            </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4">
-            <p className="text-2xl font-bold">{winRate}%</p>
-            <p className="text-xs text-slate-400">Win rate</p>
+          <div className="mx-auto mt-10 max-w-4xl text-center">
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-4 py-2 text-sm text-slate-300">
+              <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              LetterWise Daily
+            </p>
+
+            <h1 className="text-4xl font-black tracking-tight sm:text-6xl">
+              Daily Word Puzzle
+            </h1>
+
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+              Guess the five-letter word. Choose easy, medium, or hard and try
+              to solve it in six guesses.
+            </p>
+
+            <p className="mt-4 text-sm text-slate-500">
+              Puzzle date: {puzzle.date}{" "}
+              {isArchivePuzzle ? (
+                <span className="text-sky-400">(archive puzzle)</span>
+              ) : (
+                <span className="text-emerald-400">(today&apos;s puzzle)</span>
+              )}
+            </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4">
-            <p className="text-2xl font-bold">{stats.currentStreak}</p>
-            <p className="text-xs text-slate-400">Streak</p>
+          <div className="mx-auto mt-8 grid max-w-xl grid-cols-4 gap-3 text-center">
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+              <p className="text-2xl font-black">{stats.played}</p>
+              <p className="text-xs text-slate-400">Played</p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+              <p className="text-2xl font-black">{winRate}%</p>
+              <p className="text-xs text-slate-400">Win rate</p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+              <p className="text-2xl font-black">{stats.currentStreak}</p>
+              <p className="text-xs text-slate-400">Streak</p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+              <p className="text-2xl font-black">{stats.bestStreak}</p>
+              <p className="text-xs text-slate-400">Best</p>
+            </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4">
-            <p className="text-2xl font-bold">{stats.bestStreak}</p>
-            <p className="text-xs text-slate-400">Best</p>
-          </div>
-        </div>
-
-        <div className="mx-auto mt-10 max-w-md">
-          <div className="grid gap-2">
-            {rows.map((row, rowIndex) => (
-              <div key={rowIndex} className="grid grid-cols-5 gap-2">
-                {Array.from({ length: 5 }, (_, letterIndex) => {
-                  const letter = row.rowWord[letterIndex] || "";
-                  const status = row.statuses[letterIndex] as LetterStatus;
-
-                  return (
-                    <div
-                      key={letterIndex}
-                      className={`flex aspect-square items-center justify-center rounded-lg border text-3xl font-bold uppercase ${getTileClass(
-                        status
-                      )}`}
-                    >
-                      {letter}
-                    </div>
-                  );
-                })}
-              </div>
+          <div className="mt-8 flex justify-center gap-3">
+            {(["easy", "medium", "hard"] as PuzzleLevel[]).map((levelOption) => (
+              <button
+                key={levelOption}
+                onClick={() => resetLevel(levelOption)}
+                className={`rounded-xl px-5 py-3 text-sm font-bold transition ${
+                  level === levelOption
+                    ? "bg-sky-500 text-white shadow-lg shadow-sky-950/30"
+                    : "border border-slate-700 bg-slate-900/80 text-slate-300 hover:bg-slate-800"
+                }`}
+              >
+                {levelLabels[levelOption]}
+              </button>
             ))}
           </div>
 
-          <div className="mt-6 rounded-3xl border border-slate-800 bg-slate-900 p-4">
-            <p className="mb-3 text-center text-sm text-slate-400">
-              Type on your keyboard or use the buttons below.
-            </p>
+          <div className="mx-auto mt-10 grid max-w-5xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6">
+              <div className="grid gap-2">
+                {rows.map((row, rowIndex) => (
+                  <div key={rowIndex} className="grid grid-cols-5 gap-2">
+                    {Array.from({ length: 5 }, (_, letterIndex) => {
+                      const letter = row.rowWord[letterIndex] || "";
+                      const status = row.statuses[letterIndex] as LetterStatus;
 
-            <div className="space-y-2">
-              {keyboardRows.map((row, rowIndex) => (
-                <div key={rowIndex} className="flex justify-center gap-1.5">
-                  {row.map((key) => {
-                    const isSpecialKey = key === "Enter" || key === "Back";
-                    const status = !isSpecialKey ? keyStatuses[key] : undefined;
-
-                    return (
-                      <button
-                        key={key}
-                        onClick={() => handleKeyPress(key)}
-                        disabled={gameOver}
-                        className={`h-12 rounded-md px-3 text-sm font-bold uppercase disabled:opacity-50 ${
-                          isSpecialKey
-                            ? "bg-slate-500 text-white hover:bg-slate-400"
-                            : getKeyClass(status)
-                        } ${isSpecialKey ? "min-w-16" : "min-w-9"}`}
-                      >
-                        {key === "Back" ? "⌫" : key}
-                      </button>
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
-
-            {message && (
-              <p className="mt-4 text-center text-sm text-slate-300">
-                {message}
-              </p>
-            )}
-
-            {gameOver && (
-              <div className="mt-4 text-center">
-                <button
-                  onClick={shareResult}
-                  className="rounded-xl bg-sky-500 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-400"
-                >
-                  Share result
-                </button>
-
-                {shareMessage && (
-                  <p className="mt-3 text-sm text-slate-400">{shareMessage}</p>
-                )}
+                      return (
+                        <div
+                          key={letterIndex}
+                          className={`flex aspect-square items-center justify-center rounded-xl border text-3xl font-black uppercase shadow-sm ${getTileClass(
+                            status
+                          )}`}
+                        >
+                          {letter}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
               </div>
-            )}
-          </div>
 
-          <div className="mt-6 grid gap-3 text-sm text-slate-400 sm:grid-cols-3">
-            <div className="rounded-xl border border-slate-800 bg-slate-900 p-4">
-              <span className="font-semibold text-emerald-400">Green</span> =
-              correct spot
+              {message && (
+                <p className="mt-5 rounded-2xl border border-slate-800 bg-slate-950 p-4 text-center text-sm text-slate-300">
+                  {message}
+                </p>
+              )}
+
+              {gameOver && (
+                <div className="mt-5 text-center">
+                  <button
+                    onClick={shareResult}
+                    className="rounded-xl bg-sky-500 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-400"
+                  >
+                    Share result
+                  </button>
+
+                  {shareMessage && (
+                    <p className="mt-3 text-sm text-slate-400">{shareMessage}</p>
+                  )}
+                </div>
+              )}
             </div>
-            <div className="rounded-xl border border-slate-800 bg-slate-900 p-4">
-              <span className="font-semibold text-yellow-400">Yellow</span> =
-              in the word
-            </div>
-            <div className="rounded-xl border border-slate-800 bg-slate-900 p-4">
-              <span className="font-semibold text-slate-300">Gray</span> = not
-              in the word
+
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6">
+              <p className="mb-4 text-center text-sm text-slate-400">
+                Type on your keyboard or use the buttons below.
+              </p>
+
+              <div className="space-y-2">
+                {keyboardRows.map((row, rowIndex) => (
+                  <div key={rowIndex} className="flex justify-center gap-1.5">
+                    {row.map((key) => {
+                      const isSpecialKey = key === "Enter" || key === "Back";
+                      const status = !isSpecialKey ? keyStatuses[key] : undefined;
+
+                      return (
+                        <button
+                          key={key}
+                          onClick={() => handleKeyPress(key)}
+                          disabled={gameOver}
+                          className={`h-12 rounded-md px-3 text-sm font-bold uppercase disabled:opacity-50 ${
+                            isSpecialKey
+                              ? "bg-slate-500 text-white hover:bg-slate-400"
+                              : getKeyClass(status)
+                          } ${isSpecialKey ? "min-w-16" : "min-w-9"}`}
+                        >
+                          {key === "Back" ? "⌫" : key}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 grid gap-3 text-sm text-slate-400">
+                <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
+                  <span className="font-semibold text-emerald-400">Green</span>{" "}
+                  = correct spot
+                </div>
+                <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
+                  <span className="font-semibold text-yellow-400">Yellow</span>{" "}
+                  = in the word
+                </div>
+                <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
+                  <span className="font-semibold text-slate-300">Gray</span> =
+                  not in the word
+                </div>
+              </div>
             </div>
           </div>
         </div>

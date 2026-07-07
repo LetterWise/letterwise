@@ -5,7 +5,7 @@ const navLinks = [
   { href: "/word-finder", label: "Word Finder" },
   { href: "/unscramble-letters", label: "Unscramble" },
   { href: "/wordle-solver", label: "Wordle Solver" },
-  { href: "/5-letter-words", label: "5 Letter Words" },
+  { href: "/word-lists", label: "Word Lists" },
   { href: "/daily-word-puzzle", label: "Daily Puzzle" },
   { href: "/about", label: "About" },
 ];

@@ -4,6 +4,7 @@ const footerLinks = [
   { href: "/word-finder", label: "Word Finder" },
   { href: "/unscramble-letters", label: "Unscramble Letters" },
   { href: "/wordle-solver", label: "Wordle Solver" },
+  { href: "/word-lists", label: "Word Lists" },
   { href: "/4-letter-words", label: "4 Letter Words" },
   { href: "/5-letter-words", label: "5 Letter Words" },
   { href: "/6-letter-words", label: "6 Letter Words" },

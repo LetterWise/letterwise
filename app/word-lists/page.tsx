@@ -9,6 +9,10 @@ const startingLetterPages = "abcdefghijklmnopqrstuvwxyz".split("").map((letter) 
   label: `5 Letter Words Starting With ${letter.toUpperCase()}`,
 }));
 
+const endingPages = [
+  { href: "/5-letter-words-ending-in-ed", label: "5 Letter Words Ending In ED" },
+];
+
 export const metadata = {
   title: "Word Lists | LetterWise",
   description:
@@ -69,6 +73,28 @@ export default function WordListsPage() {
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {startingLetterPages.map((page) => (
+              <a
+                key={page.href}
+                href={page.href}
+                className="rounded-2xl border border-slate-800 bg-slate-950 p-4 hover:bg-slate-800"
+              >
+                <h3 className="font-semibold">{page.label}</h3>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-12 rounded-3xl border border-slate-800 bg-slate-900 p-6">
+          <h2 className="text-2xl font-semibold">
+            5 letter words by ending
+          </h2>
+
+          <p className="mt-3 text-sm text-slate-400">
+            Browse five-letter words by common endings.
+          </p>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {endingPages.map((page) => (
               <a
                 key={page.href}
                 href={page.href}

@@ -11,6 +11,9 @@ const startingLetterPages = "abcdefghijklmnopqrstuvwxyz".split("").map((letter) 
 
 const endingPages = [
   { href: "/5-letter-words-ending-in-ed", label: "5 Letter Words Ending In ED" },
+  { href: "/5-letter-words-ending-in-er", label: "5 Letter Words Ending In ER" },
+  { href: "/5-letter-words-ending-in-ly", label: "5 Letter Words Ending In LY" },
+  { href: "/5-letter-words-ending-in-ing", label: "5 Letter Words Ending In ING" },
 ];
 
 export const metadata = {

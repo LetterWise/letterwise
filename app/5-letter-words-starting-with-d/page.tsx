@@ -1,0 +1,147 @@
+const words = [
+  "daily",
+  "dairy",
+  "daisy",
+  "dance",
+  "dated",
+  "datum",
+  "dealt",
+  "death",
+  "debit",
+  "debug",
+  "decay",
+  "decor",
+  "decoy",
+  "defer",
+  "delay",
+  "delta",
+  "dense",
+  "depth",
+  "derby",
+  "detox",
+  "devil",
+  "diary",
+  "dicey",
+  "digit",
+  "diner",
+  "dirty",
+  "ditch",
+  "diver",
+  "dizzy",
+  "dodge",
+  "doing",
+  "dolly",
+  "donor",
+  "donut",
+  "doubt",
+  "dough",
+  "dozen",
+  "draft",
+  "drain",
+  "drama",
+  "drank",
+  "drawn",
+  "dream",
+  "dress",
+  "dried",
+  "drift",
+  "drill",
+  "drink",
+  "drive",
+  "droid",
+  "droop",
+  "drove",
+  "drown",
+  "drums",
+  "drunk",
+  "dryer",
+  "duchy",
+  "dummy",
+  "dumpy",
+  "dunce",
+  "dusty",
+  "dutch",
+  "duvet",
+  "dwarf",
+  "dwell",
+  "dying",
+];
+
+export const metadata = {
+  title: "5 Letter Words Starting With D | LetterWise",
+  description:
+    "Browse useful 5 letter words starting with D for Wordle, word games, spelling practice, and vocabulary building.",
+};
+
+export default function FiveLetterWordsStartingWithDPage() {
+  return (
+    <main className="min-h-screen bg-slate-950 text-white">
+      <section className="mx-auto max-w-5xl px-6 py-16">
+        <a
+          href="/5-letter-words"
+          className="text-sm text-slate-400 hover:text-white"
+        >
+          ← Back to 5 Letter Words
+        </a>
+
+        <div className="mt-10">
+          <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">
+            5 letter words
+          </p>
+
+          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+            5 Letter Words Starting With D
+          </h1>
+
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+            This list of 5 letter words starting with D can help with Wordle,
+            crossword clues, spelling practice, vocabulary building, and other
+            word games.
+          </p>
+        </div>
+
+        <section className="mt-12 rounded-3xl border border-slate-800 bg-slate-900 p-6">
+          <h2 className="text-2xl font-semibold">Words starting with D</h2>
+
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {words.map((word) => (
+              <a
+                key={word}
+                href={`/word-finder?letters=${word}`}
+                className="rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-center text-lg font-semibold uppercase tracking-wide hover:bg-slate-800"
+              >
+                {word}
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-10 grid gap-4 sm:grid-cols-2">
+          <a
+            href="/5-letter-words-starting-with-b"
+            className="rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:bg-slate-800"
+          >
+            <h2 className="text-xl font-semibold">
+              5 Letter Words Starting With B
+            </h2>
+            <p className="mt-2 text-sm text-slate-400">
+              Browse another useful Wordle-style word list.
+            </p>
+          </a>
+
+          <a
+            href="/5-letter-words-starting-with-c"
+            className="rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:bg-slate-800"
+          >
+            <h2 className="text-xl font-semibold">
+              5 Letter Words Starting With C
+            </h2>
+            <p className="mt-2 text-sm text-slate-400">
+              Browse another useful Wordle-style word list.
+            </p>
+          </a>
+        </section>
+      </section>
+    </main>
+  );
+}

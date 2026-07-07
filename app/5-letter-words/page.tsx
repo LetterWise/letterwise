@@ -6,6 +6,8 @@ const fiveLetterWords = getWordsByLength(words, 5).slice(0, 250);
 const startingLetterPages = [
   { href: "/5-letter-words-starting-with-a", label: "5 Letter Words Starting With A" },
   { href: "/5-letter-words-starting-with-b", label: "5 Letter Words Starting With B" },
+  { href: "/5-letter-words-starting-with-c", label: "5 Letter Words Starting With C" },
+  { href: "/5-letter-words-starting-with-d", label: "5 Letter Words Starting With D" },
 ];
 
 export const metadata = {

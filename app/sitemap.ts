@@ -20,6 +20,7 @@ const staticPages = [
   "/6-letter-words",
   "/7-letter-words",
   "/daily-word-puzzle",
+  "/daily-word-puzzle/how-to-play",
   "/daily-word-puzzle/archive",
 ];
 

@@ -12,6 +12,7 @@ const footerLinks = [
   { href: "/6-letter-words", label: "6 Letter Words" },
   { href: "/7-letter-words", label: "7 Letter Words" },
   { href: "/daily-word-puzzle", label: "Daily Puzzle" },
+  { href: "/daily-word-puzzle/how-to-play", label: "How to Play" },
   { href: "/daily-word-puzzle/archive", label: "Puzzle Archive" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },

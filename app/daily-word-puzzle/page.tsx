@@ -274,6 +274,13 @@ export default function DailyWordPuzzlePage() {
     window.history.replaceState(null, "", `?${params.toString()}`);
   }
 
+  function startOverSameLevel() {
+    setCurrentGuess("");
+    setGuesses([]);
+    setMessage("");
+    setShareMessage("");
+  }
+
   function createShareText() {
     const emojiRows = guesses
       .map((guess) =>
@@ -458,12 +465,25 @@ Play: ${window.location.origin}/daily-word-puzzle`;
 
               {gameOver && (
                 <div className="mt-5 text-center">
-                  <button
-                    onClick={shareResult}
-                    className="rounded-xl bg-sky-500 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-400"
-                  >
-                    Share result
-                  </button>
+                  <div className="flex flex-wrap justify-center gap-3">
+                    <button
+                      onClick={shareResult}
+                      className="rounded-xl bg-sky-500 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-400"
+                    >
+                      Share result
+                    </button>
+
+                    <button
+                      onClick={startOverSameLevel}
+                      className="rounded-xl border border-slate-700 px-5 py-3 text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white"
+                    >
+                      Try again
+                    </button>
+                  </div>
+
+                  <p className="mt-3 text-xs text-slate-500">
+                    You can also choose another level above.
+                  </p>
 
                   {shareMessage && (
                     <p className="mt-3 text-sm text-slate-400">{shareMessage}</p>

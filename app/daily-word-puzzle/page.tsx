@@ -8,6 +8,7 @@ import {
   PuzzleLevel,
 } from "@/data/dailyPuzzles";
 import { cleanGuess, scoreGuess, LetterStatus } from "@/lib/wordGame";
+import { words } from "@/data/words";
 
 const levelLabels: Record<PuzzleLevel, string> = {
   easy: "Easy",
@@ -20,6 +21,10 @@ const keyboardRows = [
   ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
   ["Enter", "z", "x", "c", "v", "b", "n", "m", "Back"],
 ];
+
+const validFiveLetterWords = new Set(
+  words.filter((word) => word.length === 5)
+);
 
 type GameStats = {
   played: number;
@@ -176,6 +181,11 @@ export default function DailyWordPuzzlePage() {
 
     if (cleaned.length !== 5) {
       setMessage("Please enter a 5-letter word.");
+      return;
+    }
+
+    if (!validFiveLetterWords.has(cleaned) && cleaned !== answer) {
+      setMessage("That word is not in the LetterWise word list.");
       return;
     }
 

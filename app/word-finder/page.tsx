@@ -1,268 +1,265 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { words } from "@/data/words";
-import { unscrambleWords } from "@/lib/unscramble";
+import { unscrambleWords, cleanLetters } from "@/lib/unscramble";
 
 export default function WordFinderPage() {
   const [letters, setLetters] = useState("");
-  const [minLength, setMinLength] = useState(2);
-  const [exactLength, setExactLength] = useState(0);
-  const [startsWith, setStartsWith] = useState("");
-  const [endsWith, setEndsWith] = useState("");
+  const [starts, setStarts] = useState("");
+  const [ends, setEnds] = useState("");
   const [contains, setContains] = useState("");
+  const [length, setLength] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    setLetters(params.get("letters") || "");
+    setStarts(params.get("starts") || "");
+    setEnds(params.get("ends") || "");
+    setContains(params.get("contains") || "");
+    setLength(params.get("length") || "");
+  }, []);
 
   const results = useMemo(() => {
+    const exactLength = Number(length);
+
     return unscrambleWords(letters, words, {
-      minLength,
-      exactLength,
-      startsWith,
-      endsWith,
+      minLength: 2,
+      exactLength: Number.isFinite(exactLength) ? exactLength : 0,
+      startsWith: starts,
+      endsWith: ends,
       contains,
-    });
-  }, [letters, minLength, exactLength, startsWith, endsWith, contains]);
+    }).slice(0, 300);
+  }, [letters, starts, ends, contains, length]);
 
-  const visibleResults = results.slice(0, 100);
+  const cleanedLetters = cleanLetters(letters);
+  const hasSearched = cleanedLetters.length > 0;
 
-  function clearAll() {
-    setLetters("");
-    setMinLength(2);
-    setExactLength(0);
-    setStartsWith("");
-    setEndsWith("");
-    setContains("");
+  function updateUrl() {
+    const params = new URLSearchParams();
+
+    if (letters) params.set("letters", letters);
+    if (starts) params.set("starts", starts);
+    if (ends) params.set("ends", ends);
+    if (contains) params.set("contains", contains);
+    if (length) params.set("length", length);
+
+    window.history.replaceState(null, "", `/word-finder?${params.toString()}`);
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    updateUrl();
   }
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <a href="/" className="text-sm text-slate-400 hover:text-white">
-          ← Back to LetterWise
-        </a>
-
-        <div className="mt-10">
-          <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">
-            Word finder
+    <main className="min-h-screen bg-[#fbfaff] text-slate-900">
+      <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-14 pt-12 text-white">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="mb-4 inline-block rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-violet-50">
+            Word Solver
           </p>
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+          <h1 className="text-5xl font-black tracking-tight sm:text-6xl">
             Word Finder
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg text-slate-300">
-            Enter your letters to find words you can make. Filter by word
-            length, starting letters, ending letters, and letters that must
-            appear.
+          <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-violet-50">
+            Enter letters and find possible words for word games, puzzles,
+            spelling practice, and vocabulary building.
           </p>
-        </div>
 
-        <div className="mt-10 rounded-3xl border border-slate-800 bg-slate-900 p-6">
-          <label
-            htmlFor="letters"
-            className="block text-sm font-medium text-slate-300"
+          <form
+            onSubmit={handleSubmit}
+            className="mx-auto mt-10 max-w-3xl rounded-3xl bg-white p-5 shadow-xl shadow-violet-950/20"
           >
-            Letters you have
-          </label>
-
-          <input
-            id="letters"
-            type="text"
-            value={letters}
-            onChange={(event) => setLetters(event.target.value)}
-            placeholder="Example: aerst"
-            className="mt-3 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400"
-          />
-
-          <div className="mt-6 grid gap-4 md:grid-cols-5">
-            <div>
-              <label
-                htmlFor="minLength"
-                className="block text-sm font-medium text-slate-300"
-              >
-                Minimum length
-              </label>
-
-              <select
-                id="minLength"
-                value={minLength}
-                onChange={(event) => setMinLength(Number(event.target.value))}
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-400"
-              >
-                <option value={2}>2+</option>
-                <option value={3}>3+</option>
-                <option value={4}>4+</option>
-                <option value={5}>5+</option>
-                <option value={6}>6+</option>
-              </select>
-            </div>
-
-            <div>
-              <label
-                htmlFor="exactLength"
-                className="block text-sm font-medium text-slate-300"
-              >
-                Exact length
-              </label>
-
-              <select
-                id="exactLength"
-                value={exactLength}
-                onChange={(event) => setExactLength(Number(event.target.value))}
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-400"
-              >
-                <option value={0}>Any</option>
-                <option value={2}>2 letters</option>
-                <option value={3}>3 letters</option>
-                <option value={4}>4 letters</option>
-                <option value={5}>5 letters</option>
-                <option value={6}>6 letters</option>
-                <option value={7}>7 letters</option>
-                <option value={8}>8 letters</option>
-                <option value={9}>9 letters</option>
-                <option value={10}>10 letters</option>
-                <option value={11}>11 letters</option>
-                <option value={12}>12 letters</option>
-              </select>
-            </div>
-
-            <div>
-              <label
-                htmlFor="startsWith"
-                className="block text-sm font-medium text-slate-300"
-              >
-                Starts with
+            <div className="rounded-2xl border-2 border-slate-900 bg-white px-5 py-4 text-left">
+              <label htmlFor="letters" className="sr-only">
+                Enter letters
               </label>
 
               <input
-                id="startsWith"
-                type="text"
-                value={startsWith}
-                onChange={(event) => setStartsWith(event.target.value)}
-                placeholder="st"
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400"
+                id="letters"
+                value={letters}
+                onChange={(event) => setLetters(event.target.value)}
+                placeholder="Enter letters, like crane or stone"
+                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="endsWith"
-                className="block text-sm font-medium text-slate-300"
-              >
-                Ends with
-              </label>
-
+            <div className="mt-3 grid gap-3 sm:grid-cols-4">
               <input
-                id="endsWith"
-                type="text"
-                value={endsWith}
-                onChange={(event) => setEndsWith(event.target.value)}
-                placeholder="er"
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400"
+                value={starts}
+                onChange={(event) => setStarts(event.target.value)}
+                placeholder="Starts"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
-            </div>
-
-            <div>
-              <label
-                htmlFor="contains"
-                className="block text-sm font-medium text-slate-300"
-              >
-                Contains
-              </label>
 
               <input
-                id="contains"
-                type="text"
+                value={ends}
+                onChange={(event) => setEnds(event.target.value)}
+                placeholder="Ends"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+              />
+
+              <input
                 value={contains}
                 onChange={(event) => setContains(event.target.value)}
-                placeholder="ea"
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400"
+                placeholder="Contains"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+              />
+
+              <input
+                value={length}
+                onChange={(event) => setLength(event.target.value)}
+                placeholder="Length"
+                inputMode="numeric"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
             </div>
-          </div>
 
-          <p className="mt-4 text-sm text-slate-500">
-            Try <span className="text-slate-300">aerst</span>,{" "}
-            <span className="text-slate-300">triangle</span>, or{" "}
-            <span className="text-slate-300">teacher</span>.
-          </p>
+            <button
+              type="submit"
+              className="mt-5 rounded-full bg-amber-300 px-14 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-10">
+        <div className="grid gap-3 sm:grid-cols-5">
+          <a
+            href="/word-lists"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
+            Word Lists
+          </a>
+          <a
+            href="/unscramble-letters"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
+            Unscrambler
+          </a>
+          <a
+            href="/word-finder"
+            className="rounded-xl bg-violet-600 px-5 py-4 text-center font-black text-white hover:bg-violet-700"
+          >
+            Word Finder
+          </a>
+          <a
+            href="/wordle-solver"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
+            Wordle
+          </a>
+          <a
+            href="/daily-word-puzzle"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
+            Daily Game
+          </a>
         </div>
 
-        <section className="mt-10">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <section className="mt-12">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-2xl font-semibold">Words found</h2>
-              <p className="mt-1 text-sm text-slate-400">
-                {letters.trim()
-                  ? `${results.length} words found${
-                      results.length > 100 ? " — showing first 100" : ""
-                    }`
-                  : "Enter letters to see results"}
+              <h2 className="text-3xl font-black">
+                {hasSearched ? "Words you can make" : "Start by entering letters"}
+              </h2>
+
+              <p className="mt-2 text-slate-600">
+                {hasSearched
+                  ? `Showing possible words from "${cleanedLetters.toUpperCase()}".`
+                  : "Type your letters above to find possible words."}
               </p>
             </div>
 
-            {(letters ||
-              startsWith ||
-              endsWith ||
-              contains ||
-              minLength !== 2 ||
-              exactLength !== 0) && (
-              <button
-                onClick={clearAll}
-                className="rounded-xl border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-900"
-              >
-                Clear all
-              </button>
+            {hasSearched && (
+              <p className="rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">
+                {results.length} results
+              </p>
             )}
           </div>
 
-          <div className="mt-5 rounded-3xl border border-slate-800 bg-slate-900 p-6">
-            {visibleResults.length > 0 ? (
-              <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {visibleResults.map((word) => (
-                  <div
+          {hasSearched ? (
+            results.length > 0 ? (
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                {results.map((word) => (
+                  <a
                     key={word}
-                    className="rounded-xl border border-slate-800 bg-slate-950 px-4 py-3"
+                    href={`/word-finder?letters=${word}`}
+                    className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
                   >
-                    <p className="text-lg font-semibold">{word}</p>
-                    <p className="text-xs text-slate-500">
-                      {word.length} letters
-                    </p>
-                  </div>
+                    {word}
+                  </a>
                 ))}
               </div>
             ) : (
-              <p className="text-slate-400">
-                {letters.trim()
-                  ? "No words found. Try more letters, fewer filters, or a lower minimum length."
-                  : "Your results will appear here."}
-              </p>
-            )}
-          </div>
+              <div className="mt-6 rounded-3xl border border-violet-100 bg-white p-8 text-center shadow-sm">
+                <h3 className="text-2xl font-black">No words found</h3>
+                <p className="mt-2 text-slate-600">
+                  Try using fewer filters or entering different letters.
+                </p>
+              </div>
+            )
+          ) : (
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <a
+                href="/5-letter-words"
+                className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                <h3 className="text-2xl font-black">5 Letter Words</h3>
+                <p className="mt-2 text-slate-600">
+                  Browse useful words for Wordle and other games.
+                </p>
+              </a>
+
+              <a
+                href="/5-letter-words-starting-with-a"
+                className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                <h3 className="text-2xl font-black">Starting Letters</h3>
+                <p className="mt-2 text-slate-600">
+                  Find words by the first letter.
+                </p>
+              </a>
+
+              <a
+                href="/wordle-solver"
+                className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                <h3 className="text-2xl font-black">Wordle Solver</h3>
+                <p className="mt-2 text-slate-600">
+                  Use known letters to narrow down answers.
+                </p>
+              </a>
+            </div>
+          )}
         </section>
 
-        <section className="mt-12 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-            <h2 className="font-semibold">Make words from letters</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Enter the letters you have and quickly find possible words.
-            </p>
-          </div>
+        <section className="mx-auto mt-16 max-w-4xl text-lg leading-8 text-slate-700">
+          <h2 className="text-3xl font-black text-slate-900">
+            What is Word Finder?
+          </h2>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-            <h2 className="font-semibold">Useful for word games</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Use this word finder for anagrams, word puzzles, and spelling
-              practice.
-            </p>
-          </div>
+          <p className="mt-4">
+            Word Finder helps you turn letters into possible words. It is useful
+            for word games, spelling practice, vocabulary building, and puzzle
+            solving.
+          </p>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-            <h2 className="font-semibold">Narrow your results</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Filter words by exact length, starting letters, ending letters,
-              and included letters.
-            </p>
-          </div>
+          <h2 className="mt-10 text-3xl font-black text-slate-900">
+            How to use it
+          </h2>
+
+          <p className="mt-4">
+            Enter your letters, then add optional filters. You can search by
+            starting letters, ending letters, contained letters, or exact word
+            length.
+          </p>
         </section>
       </section>
     </main>

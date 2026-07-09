@@ -46,14 +46,14 @@ function getTileClass(status: LetterStatus) {
   if (status === "correct") return "border-emerald-500 bg-emerald-600 text-white";
   if (status === "present") return "border-yellow-500 bg-yellow-600 text-white";
   if (status === "absent") return "border-slate-700 bg-slate-800 text-white";
-  return "border-slate-700 bg-slate-950 text-white";
+  return "border-violet-100 bg-white text-slate-900";
 }
 
 function getKeyClass(status: LetterStatus | undefined) {
   if (status === "correct") return "bg-emerald-600 text-white";
   if (status === "present") return "bg-yellow-600 text-white";
   if (status === "absent") return "bg-slate-800 text-slate-300";
-  return "bg-slate-600 text-white hover:bg-slate-500";
+  return "bg-violet-100 text-slate-900 hover:bg-violet-200";
 }
 
 function getBestStatus(
@@ -337,27 +337,27 @@ Play: ${window.location.origin}/daily-word-puzzle`;
     stats.played > 0 ? Math.round((stats.won / stats.played) * 100) : 0;
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
-      <section className="relative overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-sky-500/20 blur-3xl" />
+    <main className="min-h-screen bg-[#fbfaff] text-slate-900">
+      <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-14 pt-12 text-white">
+        
 
-        <div className="relative mx-auto max-w-6xl px-6 py-12">
+        <div className="mx-auto max-w-6xl">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <a href="/" className="text-sm text-slate-400 hover:text-white">
+            <a href="/" className="text-sm font-bold text-violet-100 hover:text-white">
               ← Back to LetterWise
             </a>
 
             <div className="flex flex-wrap gap-4">
               <a
                 href="/daily-word-puzzle/how-to-play"
-                className="text-sm text-slate-400 hover:text-white"
+                className="text-sm font-bold text-violet-100 hover:text-white"
               >
                 How to play
               </a>
 
               <a
                 href="/daily-word-puzzle/archive"
-                className="text-sm text-slate-400 hover:text-white"
+                className="text-sm font-bold text-violet-100 hover:text-white"
               >
                 Puzzle archive →
               </a>
@@ -365,7 +365,7 @@ Play: ${window.location.origin}/daily-word-puzzle`;
           </div>
 
           <div className="mx-auto mt-10 max-w-4xl text-center">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-4 py-2 text-sm text-slate-300">
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-violet-50">
               <span className="h-2 w-2 rounded-full bg-emerald-400" />
               LetterWise Daily
             </p>
@@ -374,40 +374,40 @@ Play: ${window.location.origin}/daily-word-puzzle`;
               Daily Word Puzzle
             </h1>
 
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-violet-50">
               Guess the five-letter word. Choose easy, medium, or hard and try
               to solve it in six guesses.
             </p>
 
-            <p className="mt-4 text-sm text-slate-500">
+            <p className="mt-4 text-sm text-violet-100">
               Puzzle date: {puzzle.date}{" "}
               {isArchivePuzzle ? (
-                <span className="text-sky-400">(archive puzzle)</span>
+                <span className="text-amber-200">(archive puzzle)</span>
               ) : (
-                <span className="text-emerald-400">(today&apos;s puzzle)</span>
+                <span className="text-emerald-200">(today&apos;s puzzle)</span>
               )}
             </p>
           </div>
 
           <div className="mx-auto mt-8 grid max-w-xl grid-cols-4 gap-3 text-center">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+            <div className="rounded-2xl bg-white/15 p-4">
               <p className="text-2xl font-black">{stats.played}</p>
-              <p className="text-xs text-slate-400">Played</p>
+              <p className="text-xs text-violet-100">Played</p>
             </div>
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+            <div className="rounded-2xl bg-white/15 p-4">
               <p className="text-2xl font-black">{winRate}%</p>
-              <p className="text-xs text-slate-400">Win rate</p>
+              <p className="text-xs text-violet-100">Win rate</p>
             </div>
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+            <div className="rounded-2xl bg-white/15 p-4">
               <p className="text-2xl font-black">{stats.currentStreak}</p>
-              <p className="text-xs text-slate-400">Streak</p>
+              <p className="text-xs text-violet-100">Streak</p>
             </div>
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+            <div className="rounded-2xl bg-white/15 p-4">
               <p className="text-2xl font-black">{stats.bestStreak}</p>
-              <p className="text-xs text-slate-400">Best</p>
+              <p className="text-xs text-violet-100">Best</p>
             </div>
           </div>
 
@@ -415,7 +415,7 @@ Play: ${window.location.origin}/daily-word-puzzle`;
             <div className="mt-4 text-center">
               <button
                 onClick={resetStats}
-                className="text-xs font-semibold text-slate-500 hover:text-slate-300"
+                className="text-xs font-semibold text-violet-100 hover:text-white"
               >
                 Reset stats
               </button>
@@ -429,8 +429,8 @@ Play: ${window.location.origin}/daily-word-puzzle`;
                 onClick={() => resetLevel(levelOption)}
                 className={`rounded-xl px-5 py-3 text-sm font-bold transition ${
                   level === levelOption
-                    ? "bg-sky-500 text-white shadow-lg shadow-sky-950/30"
-                    : "border border-slate-700 bg-slate-900/80 text-slate-300 hover:bg-slate-800"
+                    ? "bg-amber-300 text-slate-950 shadow-lg shadow-violet-950/20"
+                    : "bg-white/15 text-white hover:bg-white/25"
                 }`}
               >
                 {levelLabels[levelOption]}
@@ -439,7 +439,7 @@ Play: ${window.location.origin}/daily-word-puzzle`;
           </div>
 
           <div className="mx-auto mt-10 grid max-w-5xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6">
+            <div className="rounded-3xl border border-violet-100 bg-white p-5 shadow-xl shadow-violet-950/10 sm:p-6">
               <div className="grid gap-2">
                 {rows.map((row, rowIndex) => (
                   <div key={rowIndex} className="grid grid-cols-5 gap-2">
@@ -463,7 +463,7 @@ Play: ${window.location.origin}/daily-word-puzzle`;
               </div>
 
               {message && (
-                <p className="mt-5 rounded-2xl border border-slate-800 bg-slate-950 p-4 text-center text-sm text-slate-300">
+                <p className="mt-5 rounded-2xl border border-violet-100 bg-violet-50 p-4 text-center text-sm font-bold text-violet-700">
                   {message}
                 </p>
               )}
@@ -473,14 +473,14 @@ Play: ${window.location.origin}/daily-word-puzzle`;
                   <div className="flex flex-wrap justify-center gap-3">
                     <button
                       onClick={shareResult}
-                      className="rounded-xl bg-sky-500 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-400"
+                      className="rounded-xl bg-amber-300 px-5 py-3 text-sm font-black text-slate-950 hover:bg-amber-200"
                     >
                       Share result
                     </button>
 
                     <button
                       onClick={startOverSameLevel}
-                      className="rounded-xl border border-slate-700 px-5 py-3 text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white"
+                      className="rounded-xl border border-violet-200 px-5 py-3 text-sm font-black text-slate-700 hover:bg-violet-50"
                     >
                       Try again
                     </button>
@@ -491,14 +491,14 @@ Play: ${window.location.origin}/daily-word-puzzle`;
                   </p>
 
                   {shareMessage && (
-                    <p className="mt-3 text-sm text-slate-400">{shareMessage}</p>
+                    <p className="mt-3 text-sm text-violet-700">{shareMessage}</p>
                   )}
                 </div>
               )}
             </div>
 
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6">
-              <p className="mb-4 text-center text-sm text-slate-400">
+            <div className="rounded-3xl border border-violet-100 bg-white p-5 shadow-xl shadow-violet-950/10 sm:p-6">
+              <p className="mb-4 text-center text-sm text-slate-600">
                 Type on your keyboard or use the buttons below.
               </p>
 
@@ -516,7 +516,7 @@ Play: ${window.location.origin}/daily-word-puzzle`;
                           disabled={gameOver}
                           className={`h-12 rounded-md px-3 text-sm font-bold uppercase disabled:opacity-50 ${
                             isSpecialKey
-                              ? "bg-slate-500 text-white hover:bg-slate-400"
+                              ? "bg-violet-600 text-white hover:bg-violet-700"
                               : getKeyClass(status)
                           } ${isSpecialKey ? "min-w-16" : "min-w-9"}`}
                         >
@@ -528,17 +528,17 @@ Play: ${window.location.origin}/daily-word-puzzle`;
                 ))}
               </div>
 
-              <div className="mt-6 grid gap-3 text-sm text-slate-400">
-                <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
-                  <span className="font-semibold text-emerald-400">Green</span>{" "}
+              <div className="mt-6 grid gap-3 text-sm text-slate-600">
+                <div className="rounded-xl border border-violet-100 bg-violet-50 p-4">
+                  <span className="font-semibold text-emerald-600">Green</span>{" "}
                   = correct spot
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
-                  <span className="font-semibold text-yellow-400">Yellow</span>{" "}
+                <div className="rounded-xl border border-violet-100 bg-violet-50 p-4">
+                  <span className="font-semibold text-yellow-600">Yellow</span>{" "}
                   = in the word
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
-                  <span className="font-semibold text-slate-300">Gray</span> =
+                <div className="rounded-xl border border-violet-100 bg-violet-50 p-4">
+                  <span className="font-semibold text-slate-700">Gray</span> =
                   not in the word
                 </div>
               </div>

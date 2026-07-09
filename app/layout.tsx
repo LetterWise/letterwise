@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body>
         <Header />
         {children}
+          <Analytics />
         <Footer />
       </body>
     </html>

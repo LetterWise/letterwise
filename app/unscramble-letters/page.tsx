@@ -2,266 +2,254 @@
 
 import { useMemo, useState } from "react";
 import { words } from "@/data/words";
-import { unscrambleWords } from "@/lib/unscramble";
+import { unscrambleWords, cleanLetters } from "@/lib/unscramble";
 
 export default function UnscrambleLettersPage() {
   const [letters, setLetters] = useState("");
-  const [minLength, setMinLength] = useState(2);
-  const [exactLength, setExactLength] = useState(0);
-  const [startsWith, setStartsWith] = useState("");
-  const [endsWith, setEndsWith] = useState("");
+  const [starts, setStarts] = useState("");
+  const [ends, setEnds] = useState("");
   const [contains, setContains] = useState("");
+  const [length, setLength] = useState("");
+
+  const cleanedLetters = cleanLetters(letters);
+  const hasLetters = cleanedLetters.length > 0;
 
   const results = useMemo(() => {
+    const exactLength = Number(length);
+
     return unscrambleWords(letters, words, {
-      minLength,
-      exactLength,
-      startsWith,
-      endsWith,
+      minLength: 2,
+      exactLength: Number.isFinite(exactLength) ? exactLength : 0,
+      startsWith: starts,
+      endsWith: ends,
       contains,
-    });
-  }, [letters, minLength, exactLength, startsWith, endsWith, contains]);
+    }).slice(0, 300);
+  }, [letters, starts, ends, contains, length]);
 
-  const visibleResults = results.slice(0, 100);
-
-  function clearAll() {
+  function clearSearch() {
     setLetters("");
-    setMinLength(2);
-    setExactLength(0);
-    setStartsWith("");
-    setEndsWith("");
+    setStarts("");
+    setEnds("");
     setContains("");
+    setLength("");
   }
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <a href="/" className="text-sm text-slate-400 hover:text-white">
-          ← Back to LetterWise
-        </a>
-
-        <div className="mt-10">
-          <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">
-            Letter unscrambler
+    <main className="min-h-screen bg-[#fbfaff] text-slate-900">
+      <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-14 pt-12 text-white">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="mb-4 inline-block rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-violet-50">
+            Word Unscrambler
           </p>
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+          <h1 className="text-5xl font-black tracking-tight sm:text-6xl">
             Unscramble Letters
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg text-slate-300">
-            Enter your letters and filter the results by length, starting
-            letters, ending letters, or letters that must appear in the word.
+          <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-violet-50">
+            Enter mixed-up letters and find words you can make for word games,
+            puzzles, and spelling practice.
           </p>
-        </div>
 
-        <div className="mt-10 rounded-3xl border border-slate-800 bg-slate-900 p-6">
-          <label
-            htmlFor="letters"
-            className="block text-sm font-medium text-slate-300"
-          >
-            Your letters
-          </label>
-
-          <input
-            id="letters"
-            type="text"
-            value={letters}
-            onChange={(event) => setLetters(event.target.value)}
-            placeholder="Example: tcahe"
-            className="mt-3 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400"
-          />
-
-          <div className="mt-6 grid gap-4 md:grid-cols-5">
-            <div>
-              <label
-                htmlFor="minLength"
-                className="block text-sm font-medium text-slate-300"
-              >
-                Minimum length
-              </label>
-
-              <select
-                id="minLength"
-                value={minLength}
-                onChange={(event) => setMinLength(Number(event.target.value))}
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-400"
-              >
-                <option value={2}>2+</option>
-                <option value={3}>3+</option>
-                <option value={4}>4+</option>
-                <option value={5}>5+</option>
-                <option value={6}>6+</option>
-              </select>
-            </div>
-
-            <div>
-              <label
-                htmlFor="exactLength"
-                className="block text-sm font-medium text-slate-300"
-              >
-                Exact length
-              </label>
-
-              <select
-                id="exactLength"
-                value={exactLength}
-                onChange={(event) => setExactLength(Number(event.target.value))}
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-400"
-              >
-                <option value={0}>Any</option>
-                <option value={2}>2 letters</option>
-                <option value={3}>3 letters</option>
-                <option value={4}>4 letters</option>
-                <option value={5}>5 letters</option>
-                <option value={6}>6 letters</option>
-                <option value={7}>7 letters</option>
-                <option value={8}>8 letters</option>
-                <option value={9}>9 letters</option>
-                <option value={10}>10 letters</option>
-                <option value={11}>11 letters</option>
-                <option value={12}>12 letters</option>
-              </select>
-            </div>
-
-            <div>
-              <label
-                htmlFor="startsWith"
-                className="block text-sm font-medium text-slate-300"
-              >
-                Starts with
+          <div className="mx-auto mt-10 max-w-3xl rounded-3xl bg-white p-5 shadow-xl shadow-violet-950/20">
+            <div className="rounded-2xl border-2 border-slate-900 bg-white px-5 py-4 text-left">
+              <label htmlFor="letters" className="sr-only">
+                Enter letters
               </label>
 
               <input
-                id="startsWith"
-                type="text"
-                value={startsWith}
-                onChange={(event) => setStartsWith(event.target.value)}
-                placeholder="st"
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400"
+                id="letters"
+                value={letters}
+                onChange={(event) => setLetters(event.target.value)}
+                placeholder="Enter scrambled letters, like narec"
+                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="endsWith"
-                className="block text-sm font-medium text-slate-300"
-              >
-                Ends with
-              </label>
-
+            <div className="mt-3 grid gap-3 sm:grid-cols-4">
               <input
-                id="endsWith"
-                type="text"
-                value={endsWith}
-                onChange={(event) => setEndsWith(event.target.value)}
-                placeholder="er"
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400"
+                value={starts}
+                onChange={(event) => setStarts(event.target.value)}
+                placeholder="Starts"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
-            </div>
-
-            <div>
-              <label
-                htmlFor="contains"
-                className="block text-sm font-medium text-slate-300"
-              >
-                Contains
-              </label>
 
               <input
-                id="contains"
-                type="text"
+                value={ends}
+                onChange={(event) => setEnds(event.target.value)}
+                placeholder="Ends"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+              />
+
+              <input
                 value={contains}
                 onChange={(event) => setContains(event.target.value)}
-                placeholder="ea"
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none placeholder:text-slate-500 focus:border-sky-400"
+                placeholder="Contains"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+              />
+
+              <input
+                value={length}
+                onChange={(event) => setLength(event.target.value)}
+                placeholder="Length"
+                inputMode="numeric"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
             </div>
-          </div>
 
-          <p className="mt-4 text-sm text-slate-500">
-            Try <span className="text-slate-300">aerst</span>,{" "}
-            <span className="text-slate-300">tcahe</span>, or{" "}
-            <span className="text-slate-300">triangle</span>.
-          </p>
+            <div className="mt-5 flex flex-wrap justify-center gap-3">
+              <button
+                type="button"
+                className="rounded-full bg-amber-300 px-10 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
+              >
+                Unscramble
+              </button>
+
+              {(letters || starts || ends || contains || length) && (
+                <button
+                  type="button"
+                  onClick={clearSearch}
+                  className="rounded-full border border-slate-200 px-8 py-4 text-sm font-black text-slate-700 hover:bg-slate-50"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-10">
+        <div className="grid gap-3 sm:grid-cols-5">
+          <a
+            href="/word-lists"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
+            Word Lists
+          </a>
+          <a
+            href="/word-finder"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
+            Word Finder
+          </a>
+          <a
+            href="/unscramble-letters"
+            className="rounded-xl bg-violet-600 px-5 py-4 text-center font-black text-white hover:bg-violet-700"
+          >
+            Unscrambler
+          </a>
+          <a
+            href="/wordle-solver"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
+            Wordle
+          </a>
+          <a
+            href="/daily-word-puzzle"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
+            Daily Game
+          </a>
         </div>
 
-        <section className="mt-10">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <section className="mt-12">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-2xl font-semibold">Results</h2>
-              <p className="mt-1 text-sm text-slate-400">
-                {letters.trim()
-                  ? `${results.length} words found${
-                      results.length > 100 ? " — showing first 100" : ""
-                    }`
-                  : "Enter letters to see results"}
+              <h2 className="text-3xl font-black">
+                {hasLetters ? "Unscrambled words" : "Start by entering letters"}
+              </h2>
+
+              <p className="mt-2 text-slate-600">
+                {hasLetters
+                  ? `Showing possible words from "${cleanedLetters.toUpperCase()}".`
+                  : "Type your scrambled letters above to find possible words."}
               </p>
             </div>
 
-            {(letters ||
-              startsWith ||
-              endsWith ||
-              contains ||
-              minLength !== 2 ||
-              exactLength !== 0) && (
-              <button
-                onClick={clearAll}
-                className="rounded-xl border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-900"
-              >
-                Clear all
-              </button>
+            {hasLetters && (
+              <p className="rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">
+                {results.length} results
+              </p>
             )}
           </div>
 
-          <div className="mt-5 rounded-3xl border border-slate-800 bg-slate-900 p-6">
-            {visibleResults.length > 0 ? (
-              <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {visibleResults.map((word) => (
-                  <div
+          {hasLetters ? (
+            results.length > 0 ? (
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                {results.map((word) => (
+                  <a
                     key={word}
-                    className="rounded-xl border border-slate-800 bg-slate-950 px-4 py-3"
+                    href={`/word-finder?letters=${word}`}
+                    className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
                   >
-                    <p className="text-lg font-semibold">{word}</p>
-                    <p className="text-xs text-slate-500">
-                      {word.length} letters
-                    </p>
-                  </div>
+                    {word}
+                  </a>
                 ))}
               </div>
             ) : (
-              <p className="text-slate-400">
-                {letters.trim()
-                  ? "No words found. Try more letters, fewer filters, or a lower minimum length."
-                  : "Your results will appear here."}
-              </p>
-            )}
-          </div>
+              <div className="mt-6 rounded-3xl border border-violet-100 bg-white p-8 text-center shadow-sm">
+                <h3 className="text-2xl font-black">No words found</h3>
+                <p className="mt-2 text-slate-600">
+                  Try using fewer filters or entering different letters.
+                </p>
+              </div>
+            )
+          ) : (
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <a
+                href="/word-finder"
+                className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                <h3 className="text-2xl font-black">Word Finder</h3>
+                <p className="mt-2 text-slate-600">
+                  Find words from the letters you have.
+                </p>
+              </a>
+
+              <a
+                href="/5-letter-words"
+                className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                <h3 className="text-2xl font-black">5 Letter Words</h3>
+                <p className="mt-2 text-slate-600">
+                  Browse useful five-letter words.
+                </p>
+              </a>
+
+              <a
+                href="/wordle-solver"
+                className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                <h3 className="text-2xl font-black">Wordle Solver</h3>
+                <p className="mt-2 text-slate-600">
+                  Use known letters to find possible answers.
+                </p>
+              </a>
+            </div>
+          )}
         </section>
 
-        <section className="mt-12 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-            <h2 className="font-semibold">For word games</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Find possible words from mixed letters for anagrams and word
-              puzzles.
-            </p>
-          </div>
+        <section className="mx-auto mt-16 max-w-4xl text-lg leading-8 text-slate-700">
+          <h2 className="text-3xl font-black text-slate-900">
+            What is an Unscrambler?
+          </h2>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-            <h2 className="font-semibold">For spelling practice</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Turn spelling lists into quick word-building activities.
-            </p>
-          </div>
+          <p className="mt-4">
+            The LetterWise Unscrambler helps you rearrange mixed letters into
+            possible words. It can be useful for word games, spelling practice,
+            classroom activities, and puzzle solving.
+          </p>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-            <h2 className="font-semibold">Fast filters</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Narrow results by length, starting letters, ending letters, and
-              included letters.
-            </p>
-          </div>
+          <h2 className="mt-10 text-3xl font-black text-slate-900">
+            How to unscramble letters
+          </h2>
+
+          <p className="mt-4">
+            Type the letters you have, then add optional filters such as
+            starting letters, ending letters, contained letters, or word length.
+            The results update automatically as you type.
+          </p>
         </section>
       </section>
     </main>

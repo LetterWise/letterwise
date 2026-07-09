@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://letterwise-site.vercel.app";
+const baseUrl = "https://www.tryletterwise.com";
 
 const staticPages = [
   "",

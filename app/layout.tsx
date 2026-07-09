@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://letterwise-site.vercel.app"),
+  metadataBase: new URL("https://www.tryletterwise.com"),
   title: {
     default: "LetterWise | Word Finder, Wordle Solver & Daily Word Puzzle",
     template: "%s | LetterWise",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "LetterWise | Word Finder, Wordle Solver & Daily Word Puzzle",
     description:
       "Simple word tools for finding words, unscrambling letters, solving Wordle-style clues, browsing word lists, and playing daily word puzzles.",
-    url: "https://letterwise-site.vercel.app",
+    url: "https://www.tryletterwise.com",
     siteName: "LetterWise",
     type: "website",
     locale: "en_US",

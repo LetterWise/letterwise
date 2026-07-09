@@ -338,7 +338,7 @@ Play: ${window.location.origin}/daily-word-puzzle`;
 
   return (
     <main className="min-h-screen bg-[#fbfaff] text-slate-900">
-      <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-14 pt-12 text-white">
+      <section className="rounded-b-[1.5rem] bg-violet-600 px-4 pb-8 pt-8 text-white sm:rounded-b-[2rem] sm:px-6 sm:pb-14 sm:pt-12">
         
 
         <div className="mx-auto max-w-6xl">
@@ -370,11 +370,11 @@ Play: ${window.location.origin}/daily-word-puzzle`;
               LetterWise Daily
             </p>
 
-            <h1 className="text-4xl font-black tracking-tight sm:text-6xl">
+            <h1 className="text-3xl font-black tracking-tight sm:text-6xl">
               Daily Word Puzzle
             </h1>
 
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-violet-50">
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-violet-50 sm:text-lg sm:leading-8">
               Guess the five-letter word. Choose easy, medium, or hard and try
               to solve it in six guesses.
             </p>
@@ -389,24 +389,24 @@ Play: ${window.location.origin}/daily-word-puzzle`;
             </p>
           </div>
 
-          <div className="mx-auto mt-8 grid max-w-xl grid-cols-4 gap-3 text-center">
-            <div className="rounded-2xl bg-white/15 p-4">
-              <p className="text-2xl font-black">{stats.played}</p>
+          <div className="mx-auto mt-6 grid max-w-xl grid-cols-4 gap-2 text-center sm:mt-8 sm:gap-3">
+            <div className="rounded-2xl bg-white/15 p-2 sm:p-4">
+              <p className="text-xl font-black sm:text-2xl">{stats.played}</p>
               <p className="text-xs text-violet-100">Played</p>
             </div>
 
-            <div className="rounded-2xl bg-white/15 p-4">
-              <p className="text-2xl font-black">{winRate}%</p>
+            <div className="rounded-2xl bg-white/15 p-2 sm:p-4">
+              <p className="text-xl font-black sm:text-2xl">{winRate}%</p>
               <p className="text-xs text-violet-100">Win rate</p>
             </div>
 
-            <div className="rounded-2xl bg-white/15 p-4">
-              <p className="text-2xl font-black">{stats.currentStreak}</p>
+            <div className="rounded-2xl bg-white/15 p-2 sm:p-4">
+              <p className="text-xl font-black sm:text-2xl">{stats.currentStreak}</p>
               <p className="text-xs text-violet-100">Streak</p>
             </div>
 
-            <div className="rounded-2xl bg-white/15 p-4">
-              <p className="text-2xl font-black">{stats.bestStreak}</p>
+            <div className="rounded-2xl bg-white/15 p-2 sm:p-4">
+              <p className="text-xl font-black sm:text-2xl">{stats.bestStreak}</p>
               <p className="text-xs text-violet-100">Best</p>
             </div>
           </div>
@@ -422,12 +422,12 @@ Play: ${window.location.origin}/daily-word-puzzle`;
             </div>
           )}
 
-          <div className="mt-8 flex justify-center gap-3">
+          <div className="mt-6 flex flex-wrap justify-center gap-2 sm:mt-8 sm:gap-3">
             {(["easy", "medium", "hard"] as PuzzleLevel[]).map((levelOption) => (
               <button
                 key={levelOption}
                 onClick={() => resetLevel(levelOption)}
-                className={`rounded-xl px-5 py-3 text-sm font-bold transition ${
+                className={`rounded-xl px-4 py-2 text-sm font-bold transition sm:px-5 sm:py-3 ${
                   level === levelOption
                     ? "bg-amber-300 text-slate-950 shadow-lg shadow-violet-950/20"
                     : "bg-white/15 text-white hover:bg-white/25"
@@ -438,11 +438,11 @@ Play: ${window.location.origin}/daily-word-puzzle`;
             ))}
           </div>
 
-          <div className="mx-auto mt-10 grid max-w-5xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
-            <div className="rounded-3xl border border-violet-100 bg-white p-5 shadow-xl shadow-violet-950/10 sm:p-6">
-              <div className="grid gap-2">
+          <div className="mx-auto mt-8 grid max-w-5xl gap-5 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+            <div className="rounded-3xl border border-violet-100 bg-white p-3 shadow-xl shadow-violet-950/10 sm:p-6">
+              <div className="mx-auto grid max-w-[310px] gap-1.5 sm:max-w-[380px] sm:gap-2">
                 {rows.map((row, rowIndex) => (
-                  <div key={rowIndex} className="grid grid-cols-5 gap-2">
+                  <div key={rowIndex} className="grid grid-cols-5 gap-1.5 sm:gap-2">
                     {Array.from({ length: 5 }, (_, letterIndex) => {
                       const letter = row.rowWord[letterIndex] || "";
                       const status = row.statuses[letterIndex] as LetterStatus;
@@ -450,7 +450,7 @@ Play: ${window.location.origin}/daily-word-puzzle`;
                       return (
                         <div
                           key={letterIndex}
-                          className={`flex aspect-square items-center justify-center rounded-xl border text-3xl font-black uppercase shadow-sm ${getTileClass(
+                          className={`flex aspect-square items-center justify-center rounded-lg border text-2xl font-black uppercase shadow-sm sm:rounded-xl sm:text-3xl ${getTileClass(
                             status
                           )}`}
                         >
@@ -497,14 +497,14 @@ Play: ${window.location.origin}/daily-word-puzzle`;
               )}
             </div>
 
-            <div className="rounded-3xl border border-violet-100 bg-white p-5 shadow-xl shadow-violet-950/10 sm:p-6">
-              <p className="mb-4 text-center text-sm text-slate-600">
+            <div className="rounded-3xl border border-violet-100 bg-white p-3 shadow-xl shadow-violet-950/10 sm:p-6">
+              <p className="mb-3 text-center text-xs text-slate-600 sm:mb-4 sm:text-sm">
                 Type on your keyboard or use the buttons below.
               </p>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5 sm:space-y-2">
                 {keyboardRows.map((row, rowIndex) => (
-                  <div key={rowIndex} className="flex justify-center gap-1.5">
+                  <div key={rowIndex} className="flex justify-center gap-1 sm:gap-1.5">
                     {row.map((key) => {
                       const isSpecialKey = key === "Enter" || key === "Back";
                       const status = !isSpecialKey ? keyStatuses[key] : undefined;
@@ -514,11 +514,11 @@ Play: ${window.location.origin}/daily-word-puzzle`;
                           key={key}
                           onClick={() => handleKeyPress(key)}
                           disabled={gameOver}
-                          className={`h-12 rounded-md px-3 text-sm font-bold uppercase disabled:opacity-50 ${
+                          className={`h-10 rounded-md px-1.5 text-xs font-bold uppercase disabled:opacity-50 sm:h-12 sm:px-3 sm:text-sm ${
                             isSpecialKey
                               ? "bg-violet-600 text-white hover:bg-violet-700"
                               : getKeyClass(status)
-                          } ${isSpecialKey ? "min-w-16" : "min-w-9"}`}
+                          } ${isSpecialKey ? "min-w-12 sm:min-w-16" : "min-w-7 sm:min-w-9"}`}
                         >
                           {key === "Back" ? "⌫" : key}
                         </button>
@@ -528,16 +528,16 @@ Play: ${window.location.origin}/daily-word-puzzle`;
                 ))}
               </div>
 
-              <div className="mt-6 grid gap-3 text-sm text-slate-600">
-                <div className="rounded-xl border border-violet-100 bg-violet-50 p-4">
+              <div className="mt-5 grid gap-2 text-xs text-slate-600 sm:mt-6 sm:gap-3 sm:text-sm">
+                <div className="rounded-xl border border-violet-100 bg-violet-50 p-3 sm:p-4">
                   <span className="font-semibold text-emerald-600">Green</span>{" "}
                   = correct spot
                 </div>
-                <div className="rounded-xl border border-violet-100 bg-violet-50 p-4">
+                <div className="rounded-xl border border-violet-100 bg-violet-50 p-3 sm:p-4">
                   <span className="font-semibold text-yellow-600">Yellow</span>{" "}
                   = in the word
                 </div>
-                <div className="rounded-xl border border-violet-100 bg-violet-50 p-4">
+                <div className="rounded-xl border border-violet-100 bg-violet-50 p-3 sm:p-4">
                   <span className="font-semibold text-slate-700">Gray</span> =
                   not in the word
                 </div>

@@ -4,6 +4,14 @@ import { useMemo, useState } from "react";
 import { words } from "@/data/words";
 import { solveWordle } from "@/lib/wordle";
 
+function cleanPatternInput(value: string) {
+  return value.toLowerCase().replace(/[^a-z.]/g, "").slice(0, 5);
+}
+
+function cleanLettersInput(value: string) {
+  return value.toLowerCase().replace(/[^a-z]/g, "");
+}
+
 export default function WordleSolverPage() {
   const [pattern, setPattern] = useState("");
   const [includes, setIncludes] = useState("");
@@ -18,9 +26,23 @@ export default function WordleSolverPage() {
   }, [pattern, includes, excludes]);
 
   const hasClues = pattern || includes || excludes;
+  const firstResults = results.slice(0, 50);
+  const moreResults = results.slice(50);
 
   function clearSolver() {
     setPattern("");
+    setIncludes("");
+    setExcludes("");
+  }
+
+  function useExample() {
+    setPattern("c...e");
+    setIncludes("r");
+    setExcludes("s");
+  }
+
+  function useBlankExample() {
+    setPattern(".....");
     setIncludes("");
     setExcludes("");
   }
@@ -48,13 +70,18 @@ export default function WordleSolverPage() {
                 <label htmlFor="pattern" className="block text-sm font-black text-slate-900">
                   Green letters
                 </label>
+
                 <input
                   id="pattern"
                   value={pattern}
-                  onChange={(event) => setPattern(event.target.value)}
+                  onChange={(event) => setPattern(cleanPatternInput(event.target.value))}
                   placeholder="Use dots for unknown letters, like c...e"
-                  className="mt-2 w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                  className="mt-2 w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
                 />
+
+                <p className="mt-2 text-xs font-semibold text-slate-500">
+                  Put correct letters in the exact spots. Use dots for unknown letters.
+                </p>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -62,26 +89,36 @@ export default function WordleSolverPage() {
                   <label htmlFor="includes" className="block text-sm font-black text-slate-900">
                     Yellow letters
                   </label>
+
                   <input
                     id="includes"
                     value={includes}
-                    onChange={(event) => setIncludes(event.target.value)}
+                    onChange={(event) => setIncludes(cleanLettersInput(event.target.value))}
                     placeholder="Letters in the word"
-                    className="mt-2 w-full bg-transparent text-base font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                    className="mt-2 w-full bg-transparent text-base font-semibold text-slate-900 outline-none placeholder:text-slate-400"
                   />
+
+                  <p className="mt-2 text-xs font-semibold text-slate-500">
+                    Add letters that are in the answer.
+                  </p>
                 </div>
 
                 <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-left">
                   <label htmlFor="excludes" className="block text-sm font-black text-slate-900">
                     Gray letters
                   </label>
+
                   <input
                     id="excludes"
                     value={excludes}
-                    onChange={(event) => setExcludes(event.target.value)}
+                    onChange={(event) => setExcludes(cleanLettersInput(event.target.value))}
                     placeholder="Letters not in the word"
-                    className="mt-2 w-full bg-transparent text-base font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                    className="mt-2 w-full bg-transparent text-base font-semibold text-slate-900 outline-none placeholder:text-slate-400"
                   />
+
+                  <p className="mt-2 text-xs font-semibold text-slate-500">
+                    Add letters that should be removed.
+                  </p>
                 </div>
               </div>
             </div>
@@ -89,9 +126,18 @@ export default function WordleSolverPage() {
             <div className="mt-5 flex flex-wrap justify-center gap-3">
               <button
                 type="button"
-                className="rounded-full bg-amber-300 px-10 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
+                onClick={useExample}
+                className="rounded-full bg-amber-300 px-8 py-4 text-sm font-black text-slate-950 hover:bg-amber-200 sm:text-lg"
               >
-                Solve
+                Try Example
+              </button>
+
+              <button
+                type="button"
+                onClick={useBlankExample}
+                className="rounded-full border border-slate-200 px-8 py-4 text-sm font-black text-slate-700 hover:bg-slate-50"
+              >
+                Start Blank
               </button>
 
               {hasClues && (
@@ -110,19 +156,34 @@ export default function WordleSolverPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-10">
         <div className="grid gap-3 sm:grid-cols-5">
-          <a href="/word-lists" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
+          <a
+            href="/word-lists"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
             Word Lists
           </a>
-          <a href="/word-finder" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
+          <a
+            href="/word-finder"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
             Word Finder
           </a>
-          <a href="/unscramble-letters" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
+          <a
+            href="/unscramble-letters"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
             Unscrambler
           </a>
-          <a href="/wordle-solver" className="rounded-xl bg-violet-600 px-5 py-4 text-center font-black text-white hover:bg-violet-700">
+          <a
+            href="/wordle-solver"
+            className="rounded-xl bg-violet-600 px-5 py-4 text-center font-black text-white hover:bg-violet-700"
+          >
             Wordle
           </a>
-          <a href="/daily-word-puzzle" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
+          <a
+            href="/daily-word-puzzle"
+            className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+          >
             Daily Game
           </a>
         </div>
@@ -148,18 +209,85 @@ export default function WordleSolverPage() {
             )}
           </div>
 
+          {hasClues && (
+            <div className="mt-5 grid gap-3 rounded-3xl border border-violet-100 bg-white p-5 shadow-sm sm:grid-cols-3">
+              <div>
+                <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+                  Green pattern
+                </p>
+                <p className="mt-1 text-xl font-black uppercase">
+                  {pattern || "....."}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+                  Must include
+                </p>
+                <p className="mt-1 text-xl font-black uppercase">
+                  {includes || "None"}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+                  Remove letters
+                </p>
+                <p className="mt-1 text-xl font-black uppercase">
+                  {excludes || "None"}
+                </p>
+              </div>
+            </div>
+          )}
+
           {hasClues ? (
             results.length > 0 ? (
-              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                {results.map((word) => (
-                  <a
-                    key={word}
-                    href={`/word-finder?letters=${word}`}
-                    className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
-                  >
-                    {word}
-                  </a>
-                ))}
+              <div className="mt-6 grid gap-8">
+                <section className="rounded-3xl border border-violet-100 bg-white p-5 shadow-sm sm:p-6">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <h3 className="text-2xl font-black">Best Matches</h3>
+
+                    <span className="rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">
+                      Showing {firstResults.length}
+                    </span>
+                  </div>
+
+                  <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                    {firstResults.map((word) => (
+                      <a
+                        key={word}
+                        href={`/word-finder?letters=${word}`}
+                        className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
+                      >
+                        {word}
+                      </a>
+                    ))}
+                  </div>
+                </section>
+
+                {moreResults.length > 0 && (
+                  <section className="rounded-3xl border border-violet-100 bg-white p-5 shadow-sm sm:p-6">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <h3 className="text-2xl font-black">More Matches</h3>
+
+                      <span className="rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">
+                        {moreResults.length} more
+                      </span>
+                    </div>
+
+                    <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                      {moreResults.map((word) => (
+                        <a
+                          key={word}
+                          href={`/word-finder?letters=${word}`}
+                          className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
+                        >
+                          {word}
+                        </a>
+                      ))}
+                    </div>
+                  </section>
+                )}
               </div>
             ) : (
               <div className="mt-6 rounded-3xl border border-violet-100 bg-white p-8 text-center shadow-sm">
@@ -171,24 +299,28 @@ export default function WordleSolverPage() {
             )
           ) : (
             <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <button
+                type="button"
+                onClick={useExample}
+                className="rounded-2xl border border-violet-100 bg-white p-6 text-left shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                <h3 className="text-2xl font-black">Try C...E</h3>
+                <p className="mt-2 text-slate-600">
+                  Example with R included and S removed.
+                </p>
+              </button>
+
               <div className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm">
                 <h3 className="text-2xl font-black">Green</h3>
                 <p className="mt-2 text-slate-600">
-                  Put correct letters in their exact positions. Use dots for unknown spots.
+                  Correct letters in exact positions. Use dots for unknown spots.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm">
-                <h3 className="text-2xl font-black">Yellow</h3>
+                <h3 className="text-2xl font-black">Yellow / Gray</h3>
                 <p className="mt-2 text-slate-600">
-                  Add letters that are in the word, but not necessarily in the right place.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm">
-                <h3 className="text-2xl font-black">Gray</h3>
-                <p className="mt-2 text-slate-600">
-                  Add letters that are not in the answer.
+                  Yellow letters must be included. Gray letters are removed.
                 </p>
               </div>
             </div>

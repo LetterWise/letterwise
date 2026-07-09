@@ -4,6 +4,19 @@ import { useMemo, useState } from "react";
 import { words } from "@/data/words";
 import { unscrambleWords, cleanLetters } from "@/lib/unscramble";
 
+function groupWordsByLength(wordList: string[]) {
+  const grouped = new Map<number, string[]>();
+
+  for (const word of wordList) {
+    const length = word.length;
+    const current = grouped.get(length) || [];
+    current.push(word);
+    grouped.set(length, current);
+  }
+
+  return Array.from(grouped.entries()).sort((a, b) => b[0] - a[0]);
+}
+
 export default function UnscrambleLettersPage() {
   const [letters, setLetters] = useState("");
   const [starts, setStarts] = useState("");
@@ -13,6 +26,7 @@ export default function UnscrambleLettersPage() {
 
   const cleanedLetters = cleanLetters(letters);
   const hasLetters = cleanedLetters.length > 0;
+  const hasFilters = starts || ends || contains || length;
 
   const results = useMemo(() => {
     const exactLength = Number(length);
@@ -23,8 +37,12 @@ export default function UnscrambleLettersPage() {
       startsWith: starts,
       endsWith: ends,
       contains,
-    }).slice(0, 300);
+    }).slice(0, 500);
   }, [letters, starts, ends, contains, length]);
+
+  const groupedResults = useMemo(() => {
+    return groupWordsByLength(results);
+  }, [results]);
 
   function clearSearch() {
     setLetters("");
@@ -62,7 +80,7 @@ export default function UnscrambleLettersPage() {
                 value={letters}
                 onChange={(event) => setLetters(event.target.value)}
                 placeholder="Enter scrambled letters, like narec"
-                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
               />
             </div>
 
@@ -71,21 +89,21 @@ export default function UnscrambleLettersPage() {
                 value={starts}
                 onChange={(event) => setStarts(event.target.value)}
                 placeholder="Starts"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
 
               <input
                 value={ends}
                 onChange={(event) => setEnds(event.target.value)}
                 placeholder="Ends"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
 
               <input
                 value={contains}
                 onChange={(event) => setContains(event.target.value)}
                 placeholder="Contains"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
 
               <input
@@ -93,7 +111,7 @@ export default function UnscrambleLettersPage() {
                 onChange={(event) => setLength(event.target.value)}
                 placeholder="Length"
                 inputMode="numeric"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
             </div>
 
@@ -105,7 +123,7 @@ export default function UnscrambleLettersPage() {
                 Unscramble
               </button>
 
-              {(letters || starts || ends || contains || length) && (
+              {(hasLetters || hasFilters) && (
                 <button
                   type="button"
                   onClick={clearSearch}
@@ -176,15 +194,34 @@ export default function UnscrambleLettersPage() {
 
           {hasLetters ? (
             results.length > 0 ? (
-              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                {results.map((word) => (
-                  <a
-                    key={word}
-                    href={`/word-finder?letters=${word}`}
-                    className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              <div className="mt-6 grid gap-8">
+                {groupedResults.map(([wordLength, group]) => (
+                  <section
+                    key={wordLength}
+                    className="rounded-3xl border border-violet-100 bg-white p-5 shadow-sm sm:p-6"
                   >
-                    {word}
-                  </a>
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <h3 className="text-2xl font-black">
+                        {wordLength} Letter Words
+                      </h3>
+
+                      <span className="rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">
+                        {group.length} words
+                      </span>
+                    </div>
+
+                    <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                      {group.map((word) => (
+                        <a
+                          key={word}
+                          href={`/word-finder?letters=${word}`}
+                          className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
+                        >
+                          {word}
+                        </a>
+                      ))}
+                    </div>
+                  </section>
                 ))}
               </div>
             ) : (
@@ -197,6 +234,17 @@ export default function UnscrambleLettersPage() {
             )
           ) : (
             <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <button
+                type="button"
+                onClick={() => setLetters("narec")}
+                className="rounded-2xl border border-violet-100 bg-white p-6 text-left shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                <h3 className="text-2xl font-black">Try NAREC</h3>
+                <p className="mt-2 text-slate-600">
+                  See possible words made from scrambled letters.
+                </p>
+              </button>
+
               <a
                 href="/word-finder"
                 className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
@@ -204,16 +252,6 @@ export default function UnscrambleLettersPage() {
                 <h3 className="text-2xl font-black">Word Finder</h3>
                 <p className="mt-2 text-slate-600">
                   Find words from the letters you have.
-                </p>
-              </a>
-
-              <a
-                href="/5-letter-words"
-                className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
-              >
-                <h3 className="text-2xl font-black">5 Letter Words</h3>
-                <p className="mt-2 text-slate-600">
-                  Browse useful five-letter words.
                 </p>
               </a>
 
@@ -248,7 +286,7 @@ export default function UnscrambleLettersPage() {
           <p className="mt-4">
             Type the letters you have, then add optional filters such as
             starting letters, ending letters, contained letters, or word length.
-            The results update automatically as you type.
+            Results are grouped by word length to make them easier to browse.
           </p>
         </section>
       </section>

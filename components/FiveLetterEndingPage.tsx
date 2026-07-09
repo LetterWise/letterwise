@@ -1,88 +1,83 @@
 import { words } from "@/data/words";
+import WordListBrowser from "./WordListBrowser";
 
 type FiveLetterEndingPageProps = {
   ending: string;
 };
 
+const quickEndings = ["ed", "er", "ly", "ing", "le", "se"];
+
 export default function FiveLetterEndingPage({
   ending,
 }: FiveLetterEndingPageProps) {
   const cleanEnding = ending.toLowerCase();
+  const displayEnding = cleanEnding.toUpperCase();
 
   const matchingWords = words
     .filter((word) => word.length === 5)
     .filter((word) => word.endsWith(cleanEnding))
-    .slice(0, 300);
-
-  const displayEnding = cleanEnding.toUpperCase();
+    .slice(0, 500);
 
   return (
     <main className="min-h-screen bg-[#fbfaff] text-slate-900">
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <a
-          href="/word-lists"
-          className="text-sm text-slate-600 hover:text-white"
-        >
-          ← Back to Word Lists
-        </a>
-
-        <div className="mt-10">
-          <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-700">
-            Word lists
+      <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-14 pt-12 text-white">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="mb-4 inline-block rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-violet-50">
+            5 Letter Words
           </p>
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+          <h1 className="text-5xl font-black tracking-tight sm:text-6xl">
             5 Letter Words Ending In {displayEnding}
           </h1>
 
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
-            Browse 5 letter words ending in {displayEnding} for Wordle, word
-            games, spelling practice, crossword clues, vocabulary building, and
-            puzzle solving.
+          <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-violet-50">
+            Browse five-letter words ending in {displayEnding} for Wordle, word
+            games, spelling practice, and puzzle solving.
           </p>
         </div>
+      </section>
 
-        <section className="mt-12 rounded-3xl border border-violet-100 bg-white p-6">
-          <h2 className="text-2xl font-semibold">
-            Words ending in {displayEnding}
-          </h2>
+      <section className="mx-auto max-w-6xl px-6 py-10">
+        <div className="grid gap-3 sm:grid-cols-6">
+          {quickEndings.map((item) => (
+            <a
+              key={item}
+              href={`/5-letter-words-ending-in-${item}`}
+              className={
+                item === cleanEnding
+                  ? "rounded-xl bg-violet-600 px-5 py-4 text-center font-black text-white hover:bg-violet-700"
+                  : "rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100"
+              }
+            >
+              {item.toUpperCase()}
+            </a>
+          ))}
+        </div>
 
-          <p className="mt-3 text-sm text-slate-600">
-            Showing up to 300 five-letter words from the LetterWise word list.
-          </p>
-
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {matchingWords.map((word) => (
-              <a
-                key={word}
-                href={`/word-finder?letters=${word}`}
-                className="rounded-xl border border-violet-100 bg-violet-50 px-4 py-3 text-center text-lg font-semibold uppercase tracking-wide hover:bg-violet-50"
-              >
-                {word}
-              </a>
-            ))}
-          </div>
-        </section>
+        <WordListBrowser
+          words={matchingWords}
+          title={`Words Ending In ${displayEnding}`}
+          description={`Search and browse ${matchingWords.length} five-letter words ending in ${displayEnding}.`}
+        />
 
         <section className="mt-10 grid gap-4 sm:grid-cols-2">
           <a
-            href="/wordle-solver"
-            className="rounded-2xl border border-violet-100 bg-white p-6 hover:bg-violet-50"
+            href="/5-letter-words"
+            className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:bg-violet-50"
           >
-            <h2 className="text-xl font-semibold">Use the Wordle Solver</h2>
+            <h2 className="text-xl font-black">Browse 5 Letter Words</h2>
             <p className="mt-2 text-sm text-slate-600">
-              Enter known letters, included letters, and excluded letters to
-              narrow down possible answers.
+              Explore more five-letter word lists.
             </p>
           </a>
 
           <a
-            href="/5-letter-words"
-            className="rounded-2xl border border-violet-100 bg-white p-6 hover:bg-violet-50"
+            href="/word-finder"
+            className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:bg-violet-50"
           >
-            <h2 className="text-xl font-semibold">Browse 5 Letter Words</h2>
+            <h2 className="text-xl font-black">Use Word Finder</h2>
             <p className="mt-2 text-sm text-slate-600">
-              Explore more five-letter word lists.
+              Find words from letters and filters.
             </p>
           </a>
         </section>

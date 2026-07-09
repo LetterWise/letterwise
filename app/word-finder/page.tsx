@@ -4,6 +4,19 @@ import { useEffect, useMemo, useState } from "react";
 import { words } from "@/data/words";
 import { unscrambleWords, cleanLetters } from "@/lib/unscramble";
 
+function groupWordsByLength(wordList: string[]) {
+  const grouped = new Map<number, string[]>();
+
+  for (const word of wordList) {
+    const length = word.length;
+    const current = grouped.get(length) || [];
+    current.push(word);
+    grouped.set(length, current);
+  }
+
+  return Array.from(grouped.entries()).sort((a, b) => b[0] - a[0]);
+}
+
 export default function WordFinderPage() {
   const [letters, setLetters] = useState("");
   const [starts, setStarts] = useState("");
@@ -30,11 +43,16 @@ export default function WordFinderPage() {
       startsWith: starts,
       endsWith: ends,
       contains,
-    }).slice(0, 300);
+    }).slice(0, 500);
   }, [letters, starts, ends, contains, length]);
+
+  const groupedResults = useMemo(() => {
+    return groupWordsByLength(results);
+  }, [results]);
 
   const cleanedLetters = cleanLetters(letters);
   const hasSearched = cleanedLetters.length > 0;
+  const hasFilters = starts || ends || contains || length;
 
   function updateUrl() {
     const params = new URLSearchParams();
@@ -51,6 +69,15 @@ export default function WordFinderPage() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     updateUrl();
+  }
+
+  function clearSearch() {
+    setLetters("");
+    setStarts("");
+    setEnds("");
+    setContains("");
+    setLength("");
+    window.history.replaceState(null, "", "/word-finder");
   }
 
   return (
@@ -84,7 +111,7 @@ export default function WordFinderPage() {
                 value={letters}
                 onChange={(event) => setLetters(event.target.value)}
                 placeholder="Enter letters, like crane or stone"
-                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
               />
             </div>
 
@@ -93,21 +120,21 @@ export default function WordFinderPage() {
                 value={starts}
                 onChange={(event) => setStarts(event.target.value)}
                 placeholder="Starts"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
 
               <input
                 value={ends}
                 onChange={(event) => setEnds(event.target.value)}
                 placeholder="Ends"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
 
               <input
                 value={contains}
                 onChange={(event) => setContains(event.target.value)}
                 placeholder="Contains"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
 
               <input
@@ -115,16 +142,28 @@ export default function WordFinderPage() {
                 onChange={(event) => setLength(event.target.value)}
                 placeholder="Length"
                 inputMode="numeric"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
               />
             </div>
 
-            <button
-              type="submit"
-              className="mt-5 rounded-full bg-amber-300 px-14 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
-            >
-              Search
-            </button>
+            <div className="mt-5 flex flex-wrap justify-center gap-3">
+              <button
+                type="submit"
+                className="rounded-full bg-amber-300 px-12 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
+              >
+                Search
+              </button>
+
+              {(hasSearched || hasFilters) && (
+                <button
+                  type="button"
+                  onClick={clearSearch}
+                  className="rounded-full border border-slate-200 px-8 py-4 text-sm font-black text-slate-700 hover:bg-slate-50"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
           </form>
         </div>
       </section>
@@ -186,15 +225,34 @@ export default function WordFinderPage() {
 
           {hasSearched ? (
             results.length > 0 ? (
-              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                {results.map((word) => (
-                  <a
-                    key={word}
-                    href={`/word-finder?letters=${word}`}
-                    className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              <div className="mt-6 grid gap-8">
+                {groupedResults.map(([wordLength, group]) => (
+                  <section
+                    key={wordLength}
+                    className="rounded-3xl border border-violet-100 bg-white p-5 shadow-sm sm:p-6"
                   >
-                    {word}
-                  </a>
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <h3 className="text-2xl font-black">
+                        {wordLength} Letter Words
+                      </h3>
+
+                      <span className="rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">
+                        {group.length} words
+                      </span>
+                    </div>
+
+                    <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                      {group.map((word) => (
+                        <a
+                          key={word}
+                          href={`/word-finder?letters=${word}`}
+                          className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
+                        >
+                          {word}
+                        </a>
+                      ))}
+                    </div>
+                  </section>
                 ))}
               </div>
             ) : (
@@ -207,6 +265,17 @@ export default function WordFinderPage() {
             )
           ) : (
             <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <button
+                type="button"
+                onClick={() => setLetters("crane")}
+                className="rounded-2xl border border-violet-100 bg-white p-6 text-left shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                <h3 className="text-2xl font-black">Try CRANE</h3>
+                <p className="mt-2 text-slate-600">
+                  See how the Word Finder groups possible words.
+                </p>
+              </button>
+
               <a
                 href="/5-letter-words"
                 className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
@@ -214,16 +283,6 @@ export default function WordFinderPage() {
                 <h3 className="text-2xl font-black">5 Letter Words</h3>
                 <p className="mt-2 text-slate-600">
                   Browse useful words for Wordle and other games.
-                </p>
-              </a>
-
-              <a
-                href="/5-letter-words-starting-with-a"
-                className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
-              >
-                <h3 className="text-2xl font-black">Starting Letters</h3>
-                <p className="mt-2 text-slate-600">
-                  Find words by the first letter.
                 </p>
               </a>
 

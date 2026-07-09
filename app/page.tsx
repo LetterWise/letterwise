@@ -61,7 +61,7 @@ export default function HomePage() {
                 id="letters"
                 name="letters"
                 placeholder="Enter letters, like crane or stone"
-                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
+                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-600"
               />
             </div>
 
@@ -69,22 +69,22 @@ export default function HomePage() {
               <input
                 name="starts"
                 placeholder="Starts"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
               />
               <input
                 name="ends"
                 placeholder="Ends"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
               />
               <input
                 name="contains"
                 placeholder="Contains"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
               />
               <input
                 name="length"
                 placeholder="Length"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
               />
             </div>
 
@@ -125,7 +125,7 @@ export default function HomePage() {
                 Quick tools to help with word games and puzzles.
               </p>
             </div>
-            <a href="/tools" className="hidden text-3xl text-slate-400 hover:text-violet-600 sm:block">
+            <a href="/tools" className="hidden text-3xl text-slate-600 hover:text-violet-600 sm:block">
               →
             </a>
           </div>
@@ -155,7 +155,7 @@ export default function HomePage() {
                 Useful word lists built for Wordle and puzzle solving.
               </p>
             </div>
-            <a href="/word-lists" className="hidden text-3xl text-slate-400 hover:text-violet-600 sm:block">
+            <a href="/word-lists" className="hidden text-3xl text-slate-600 hover:text-violet-600 sm:block">
               →
             </a>
           </div>

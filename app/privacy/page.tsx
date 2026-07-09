@@ -6,9 +6,9 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
+    <main className="min-h-screen bg-[#fbfaff] text-slate-900">
       <section className="mx-auto max-w-4xl px-6 py-16">
-        <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">
+        <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-700">
           Privacy Policy
         </p>
 
@@ -16,7 +16,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </h1>
 
-        <div className="mt-8 space-y-8 text-slate-300">
+        <div className="mt-8 space-y-8 text-slate-700">
           <section>
             <h2 className="text-2xl font-semibold text-white">
               Information we collect

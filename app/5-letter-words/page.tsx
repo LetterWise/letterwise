@@ -40,14 +40,14 @@ export const metadata = {
 
 export default function FiveLetterWordsPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
+    <main className="min-h-screen bg-[#fbfaff] text-slate-900">
       <section className="mx-auto max-w-5xl px-6 py-16">
-        <a href="/" className="text-sm text-slate-400 hover:text-white">
+        <a href="/" className="text-sm text-slate-600 hover:text-white">
           ← Back to LetterWise
         </a>
 
         <div className="mt-10">
-          <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">
+          <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-700">
             Word lists
           </p>
 
@@ -55,18 +55,18 @@ export default function FiveLetterWordsPage() {
             5 Letter Words
           </h1>
 
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
             Browse useful 5 letter words for Wordle, crossword clues, spelling
             practice, vocabulary building, and other word games.
           </p>
         </div>
 
-        <section className="mt-12 rounded-3xl border border-slate-800 bg-slate-900 p-6">
+        <section className="mt-12 rounded-3xl border border-violet-100 bg-white p-6">
           <h2 className="text-2xl font-semibold">
             5 letter words by starting letter
           </h2>
 
-          <p className="mt-3 text-sm text-slate-400">
+          <p className="mt-3 text-sm text-slate-600">
             Choose a starting letter to browse more focused word lists.
           </p>
 
@@ -75,10 +75,10 @@ export default function FiveLetterWordsPage() {
               <a
                 key={page.href}
                 href={page.href}
-                className="rounded-2xl border border-slate-800 bg-slate-950 p-5 hover:bg-slate-800"
+                className="rounded-2xl border border-violet-100 bg-violet-50 p-5 hover:bg-violet-50"
               >
                 <h3 className="text-lg font-semibold">{page.label}</h3>
-                <p className="mt-2 text-sm text-slate-400">
+                <p className="mt-2 text-sm text-slate-600">
                   Browse five-letter words for Wordle-style games and spelling
                   practice.
                 </p>
@@ -87,10 +87,10 @@ export default function FiveLetterWordsPage() {
           </div>
         </section>
 
-        <section className="mt-12 rounded-3xl border border-slate-800 bg-slate-900 p-6">
+        <section className="mt-12 rounded-3xl border border-violet-100 bg-white p-6">
           <h2 className="text-2xl font-semibold">Popular 5 letter words</h2>
 
-          <p className="mt-3 text-sm text-slate-400">
+          <p className="mt-3 text-sm text-slate-600">
             Here are some common 5 letter words from the LetterWise word list.
           </p>
 
@@ -99,7 +99,7 @@ export default function FiveLetterWordsPage() {
               <a
                 key={word}
                 href={`/word-finder?letters=${word}`}
-                className="rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-center text-lg font-semibold uppercase tracking-wide hover:bg-slate-800"
+                className="rounded-xl border border-violet-100 bg-violet-50 px-4 py-3 text-center text-lg font-semibold uppercase tracking-wide hover:bg-violet-50"
               >
                 {word}
               </a>
@@ -110,10 +110,10 @@ export default function FiveLetterWordsPage() {
         <section className="mt-10 grid gap-4 sm:grid-cols-2">
           <a
             href="/wordle-solver"
-            className="rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:bg-slate-800"
+            className="rounded-2xl border border-violet-100 bg-white p-6 hover:bg-violet-50"
           >
             <h2 className="text-xl font-semibold">Use the Wordle Solver</h2>
-            <p className="mt-2 text-sm text-slate-400">
+            <p className="mt-2 text-sm text-slate-600">
               Enter known letters, included letters, and excluded letters to
               narrow down possible answers.
             </p>
@@ -121,10 +121,10 @@ export default function FiveLetterWordsPage() {
 
           <a
             href="/unscramble-letters"
-            className="rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:bg-slate-800"
+            className="rounded-2xl border border-violet-100 bg-white p-6 hover:bg-violet-50"
           >
             <h2 className="text-xl font-semibold">Unscramble Letters</h2>
-            <p className="mt-2 text-sm text-slate-400">
+            <p className="mt-2 text-sm text-slate-600">
               Rearrange letters to find possible words for games and puzzles.
             </p>
           </a>

@@ -52,7 +52,7 @@ function getTileClass(status: LetterStatus) {
 function getKeyClass(status: LetterStatus | undefined) {
   if (status === "correct") return "bg-emerald-600 text-white";
   if (status === "present") return "bg-yellow-600 text-white";
-  if (status === "absent") return "bg-slate-800 text-slate-300";
+  if (status === "absent") return "bg-slate-800 text-slate-700";
   return "bg-violet-100 text-slate-900 hover:bg-violet-200";
 }
 
@@ -486,7 +486,7 @@ Play: ${window.location.origin}/daily-word-puzzle`;
                     </button>
                   </div>
 
-                  <p className="mt-3 text-xs text-slate-500">
+                  <p className="mt-3 text-xs text-slate-600">
                     You can also choose another level above.
                   </p>
 

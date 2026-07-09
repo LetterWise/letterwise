@@ -53,7 +53,7 @@ export default function WordleSolverPage() {
                   value={pattern}
                   onChange={(event) => setPattern(event.target.value)}
                   placeholder="Use dots for unknown letters, like c...e"
-                  className="mt-2 w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
+                  className="mt-2 w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-600"
                 />
               </div>
 
@@ -67,7 +67,7 @@ export default function WordleSolverPage() {
                     value={includes}
                     onChange={(event) => setIncludes(event.target.value)}
                     placeholder="Letters in the word"
-                    className="mt-2 w-full bg-transparent text-base font-semibold text-slate-900 outline-none placeholder:text-slate-400"
+                    className="mt-2 w-full bg-transparent text-base font-semibold text-slate-900 outline-none placeholder:text-slate-600"
                   />
                 </div>
 
@@ -80,7 +80,7 @@ export default function WordleSolverPage() {
                     value={excludes}
                     onChange={(event) => setExcludes(event.target.value)}
                     placeholder="Letters not in the word"
-                    className="mt-2 w-full bg-transparent text-base font-semibold text-slate-900 outline-none placeholder:text-slate-400"
+                    className="mt-2 w-full bg-transparent text-base font-semibold text-slate-900 outline-none placeholder:text-slate-600"
                   />
                 </div>
               </div>

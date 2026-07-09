@@ -84,7 +84,7 @@ export default function WordFinderPage() {
                 value={letters}
                 onChange={(event) => setLetters(event.target.value)}
                 placeholder="Enter letters, like crane or stone"
-                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
+                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-600"
               />
             </div>
 
@@ -93,21 +93,21 @@ export default function WordFinderPage() {
                 value={starts}
                 onChange={(event) => setStarts(event.target.value)}
                 placeholder="Starts"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
               />
 
               <input
                 value={ends}
                 onChange={(event) => setEnds(event.target.value)}
                 placeholder="Ends"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
               />
 
               <input
                 value={contains}
                 onChange={(event) => setContains(event.target.value)}
                 placeholder="Contains"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
               />
 
               <input
@@ -115,7 +115,7 @@ export default function WordFinderPage() {
                 onChange={(event) => setLength(event.target.value)}
                 placeholder="Length"
                 inputMode="numeric"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
               />
             </div>
 

@@ -44,9 +44,9 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
+    <main className="min-h-screen bg-[#fbfaff] text-slate-900">
       <section className="mx-auto max-w-4xl px-6 py-16">
-        <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">
+        <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-700">
           FAQ
         </p>
 
@@ -54,7 +54,7 @@ export default function FAQPage() {
           Frequently Asked Questions
         </h1>
 
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+        <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
           Answers to common questions about LetterWise word tools, word lists,
           puzzle helpers, and the Daily Word Puzzle.
         </p>
@@ -63,10 +63,10 @@ export default function FAQPage() {
           {faqs.map((faq) => (
             <section
               key={faq.question}
-              className="rounded-3xl border border-slate-800 bg-slate-900 p-6"
+              className="rounded-3xl border border-violet-100 bg-white p-6"
             >
               <h2 className="text-2xl font-semibold">{faq.question}</h2>
-              <p className="mt-3 leading-7 text-slate-300">{faq.answer}</p>
+              <p className="mt-3 leading-7 text-slate-700">{faq.answer}</p>
             </section>
           ))}
         </div>
@@ -74,20 +74,20 @@ export default function FAQPage() {
         <section className="mt-10 grid gap-4 sm:grid-cols-2">
           <a
             href="/word-finder"
-            className="rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:bg-slate-800"
+            className="rounded-2xl border border-violet-100 bg-white p-6 hover:bg-violet-50"
           >
             <h2 className="text-xl font-semibold">Try Word Finder</h2>
-            <p className="mt-2 text-sm text-slate-400">
+            <p className="mt-2 text-sm text-slate-600">
               Find possible words from your letters.
             </p>
           </a>
 
           <a
             href="/daily-word-puzzle"
-            className="rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:bg-slate-800"
+            className="rounded-2xl border border-violet-100 bg-white p-6 hover:bg-violet-50"
           >
             <h2 className="text-xl font-semibold">Play Daily Word Puzzle</h2>
-            <p className="mt-2 text-sm text-slate-400">
+            <p className="mt-2 text-sm text-slate-600">
               Try the daily five-letter word challenge.
             </p>
           </a>

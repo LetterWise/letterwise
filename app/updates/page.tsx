@@ -41,14 +41,14 @@ const updates = [
 
 export default function UpdatesPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
+    <main className="min-h-screen bg-[#fbfaff] text-slate-900">
       <section className="mx-auto max-w-4xl px-6 py-16">
-        <a href="/" className="text-sm text-slate-400 hover:text-white">
+        <a href="/" className="text-sm text-slate-600 hover:text-white">
           ← Back to LetterWise
         </a>
 
         <div className="mt-10">
-          <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">
+          <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-700">
             Site updates
           </p>
 
@@ -56,7 +56,7 @@ export default function UpdatesPage() {
             LetterWise Updates
           </h1>
 
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
             Recent changes and improvements to LetterWise word tools, word
             lists, daily puzzles, and site features.
           </p>
@@ -66,15 +66,15 @@ export default function UpdatesPage() {
           {updates.map((update) => (
             <section
               key={update.title}
-              className="rounded-3xl border border-slate-800 bg-slate-900 p-6"
+              className="rounded-3xl border border-violet-100 bg-white p-6"
             >
-              <p className="text-sm font-semibold text-sky-400">
+              <p className="text-sm font-semibold text-violet-600">
                 {update.date}
               </p>
 
               <h2 className="mt-2 text-2xl font-semibold">{update.title}</h2>
 
-              <ul className="mt-4 space-y-2 text-slate-300">
+              <ul className="mt-4 space-y-2 text-slate-700">
                 {update.items.map((item) => (
                   <li key={item}>• {item}</li>
                 ))}

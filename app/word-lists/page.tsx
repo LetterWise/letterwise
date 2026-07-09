@@ -94,7 +94,7 @@ export default function WordListsPage() {
                   id="letters"
                   name="letters"
                   placeholder="Enter letters to find words"
-                  className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
+                  className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-600"
                 />
               </div>
 

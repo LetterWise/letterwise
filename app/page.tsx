@@ -1,265 +1,222 @@
-const tools = [
+const solverCards = [
   {
     href: "/word-finder",
     title: "Word Finder",
-    description:
-      "Enter letters and find possible words for games, puzzles, and spelling practice.",
+    description: "Find words from the letters you have.",
   },
   {
     href: "/unscramble-letters",
-    title: "Unscramble Letters",
-    description:
-      "Rearrange mixed letters to discover words you can make.",
+    title: "Word Unscrambler",
+    description: "Unscramble letters into possible words.",
   },
   {
     href: "/wordle-solver",
     title: "Wordle Solver",
-    description:
-      "Use known letters, included letters, and excluded letters to narrow down Wordle-style answers.",
-  },
-  {
-    href: "/daily-word-puzzle",
-    title: "Daily Word Puzzle",
-    description:
-      "Play a daily five-letter word challenge with easy, medium, and hard levels.",
+    description: "Narrow down possible Wordle answers.",
   },
 ];
 
-const wordLists = [
+const wordListCards = [
+  { href: "/5-letter-words", title: "5 Letter Words" },
+  { href: "/5-letter-words-starting-with-a", title: "5 Letter Words Starting With A" },
+  { href: "/5-letter-words-containing-e", title: "5 Letter Words Containing E" },
+  { href: "/5-letter-words-ending-in-ed", title: "5 Letter Words Ending In ED" },
+];
+
+const gameCards = [
   {
-    href: "/3-letter-words",
-    title: "3 Letter Words",
-    description: "Browse useful three-letter words for quick word games.",
+    href: "/daily-word-puzzle",
+    title: "Daily Word Puzzle",
+    description: "Guess the five-letter word in six tries.",
   },
   {
-    href: "/4-letter-words",
-    title: "4 Letter Words",
-    description: "Browse useful four-letter words for word games and spelling.",
-  },
-  {
-    href: "/5-letter-words",
-    title: "5 Letter Words",
-    description: "Browse five-letter words for Wordle and other word games.",
-  },
-  {
-    href: "/6-letter-words",
-    title: "6 Letter Words",
-    description: "Browse six-letter words for puzzles, vocabulary, and games.",
-  },
-  {
-    href: "/7-letter-words",
-    title: "7 Letter Words",
-    description: "Browse seven-letter words for longer puzzles and vocabulary.",
+    href: "/daily-word-puzzle/archive",
+    title: "Puzzle Archive",
+    description: "Replay previous daily word puzzles.",
   },
 ];
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
-      <section className="relative overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-sky-500/20 blur-3xl" />
-        <div className="absolute right-0 top-40 h-80 w-80 rounded-full bg-indigo-500/10 blur-3xl" />
+    <main className="min-h-screen bg-[#fbfaff] text-slate-900">
+      <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-16 pt-14 text-white">
+        <div className="mx-auto max-w-5xl text-center">
+          <h1 className="text-5xl font-black tracking-tight sm:text-6xl">
+            Word Finder
+          </h1>
 
-        <div className="relative mx-auto max-w-6xl px-6 py-20 sm:py-28">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-4 py-2 text-sm text-slate-300">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Word tools, word lists, and daily puzzles
-            </p>
+          <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-violet-50">
+            Find words, unscramble letters, solve Wordle clues, and play a daily word puzzle.
+          </p>
 
-            <h1 className="text-5xl font-black tracking-tight sm:text-7xl">
-              Find words faster with{" "}
-              <span className="text-sky-400">LetterWise</span>
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl">
-              Simple word tools for finding words, unscrambling letters,
-              solving Wordle-style clues, browsing word lists, and playing
-              daily word puzzles.
-            </p>
-
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a
-                href="/daily-word-puzzle"
-                className="rounded-2xl bg-sky-500 px-7 py-4 text-sm font-bold text-white shadow-lg shadow-sky-950/40 hover:bg-sky-400"
-              >
-                Play Daily Puzzle
-              </a>
-
-              <a
-                href="/tools"
-                className="rounded-2xl border border-slate-700 bg-slate-900/80 px-7 py-4 text-sm font-bold text-slate-200 hover:bg-slate-800"
-              >
-                Explore Tools
-              </a>
-            </div>
-          </div>
-
-          <div className="mx-auto mt-16 grid max-w-4xl gap-4 sm:grid-cols-3">
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 text-center">
-              <p className="text-3xl font-black text-sky-400">A-Z</p>
-              <p className="mt-2 text-sm text-slate-400">
-                Starting-letter word lists
-              </p>
+          <form
+            action="/word-finder"
+            className="mx-auto mt-10 max-w-3xl rounded-3xl bg-white p-5 shadow-xl shadow-violet-950/20"
+          >
+            <div className="rounded-2xl border-2 border-slate-900 bg-white px-5 py-4 text-left">
+              <label htmlFor="letters" className="sr-only">
+                Enter letters
+              </label>
+              <input
+                id="letters"
+                name="letters"
+                placeholder="Enter letters, like crane or stone"
+                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
+              />
             </div>
 
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 text-center">
-              <p className="text-3xl font-black text-sky-400">3-7</p>
-              <p className="mt-2 text-sm text-slate-400">
-                Word length pages
-              </p>
+            <div className="mt-3 grid gap-3 sm:grid-cols-4">
+              <input
+                name="starts"
+                placeholder="Starts"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+              />
+              <input
+                name="ends"
+                placeholder="Ends"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+              />
+              <input
+                name="contains"
+                placeholder="Contains"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+              />
+              <input
+                name="length"
+                placeholder="Length"
+                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-500"
+              />
             </div>
 
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 text-center">
-              <p className="text-3xl font-black text-sky-400">Daily</p>
-              <p className="mt-2 text-sm text-slate-400">
-                Puzzle with stats
-              </p>
-            </div>
-          </div>
+            <button
+              type="submit"
+              className="mt-5 rounded-full bg-amber-300 px-14 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
+            >
+              Search
+            </button>
+          </form>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <section>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-sky-400">
-                Main tools
-              </p>
-              <h2 className="mt-2 text-3xl font-bold">Word tools</h2>
-            </div>
+      <section className="mx-auto max-w-6xl px-6 py-10">
+        <div className="grid gap-3 sm:grid-cols-5">
+          <a href="/word-lists" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
+            Word Lists
+          </a>
+          <a href="/daily-word-puzzle" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
+            Daily Game
+          </a>
+          <a href="/tools" className="rounded-xl bg-violet-600 px-5 py-4 text-center font-black text-white hover:bg-violet-700">
+            Word Solvers
+          </a>
+          <a href="/wordle-solver" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
+            Wordle
+          </a>
+          <a href="/faq" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
+            Help
+          </a>
+        </div>
 
-            <a href="/tools" className="text-sm text-slate-400 hover:text-white">
-              View all tools →
+        <section className="mt-14">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-3xl font-black">Popular Word Solvers</h2>
+              <p className="mt-2 text-slate-600">
+                Quick tools to help with word games and puzzles.
+              </p>
+            </div>
+            <a href="/tools" className="hidden text-3xl text-slate-400 hover:text-violet-600 sm:block">
+              →
             </a>
           </div>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {tools.map((tool) => (
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {solverCards.map((card) => (
               <a
-                key={tool.href}
-                href={tool.href}
-                className="group rounded-3xl border border-slate-800 bg-slate-900 p-6 transition hover:-translate-y-1 hover:bg-slate-800"
+                key={card.href}
+                href={card.href}
+                className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
               >
-                <h3 className="text-2xl font-semibold group-hover:text-sky-400">
-                  {tool.title}
-                </h3>
-                <p className="mt-3 leading-7 text-slate-400">
-                  {tool.description}
-                </p>
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-100 text-xl text-violet-700">
+                  ✦
+                </div>
+                <h3 className="text-2xl font-black">{card.title}</h3>
+                <p className="mt-2 text-slate-600">{card.description}</p>
               </a>
             ))}
           </div>
         </section>
 
-        <section className="mt-16">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <section className="mt-14">
+          <div className="flex items-end justify-between gap-4">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-sky-400">
-                Browse words
+              <h2 className="text-3xl font-black">5 Letter Words</h2>
+              <p className="mt-2 text-slate-600">
+                Useful word lists built for Wordle and puzzle solving.
               </p>
-              <h2 className="mt-2 text-3xl font-bold">Word lists</h2>
             </div>
-
-            <a
-              href="/word-lists"
-              className="text-sm text-slate-400 hover:text-white"
-            >
-              View all word lists →
+            <a href="/word-lists" className="hidden text-3xl text-slate-400 hover:text-violet-600 sm:block">
+              →
             </a>
           </div>
 
-          <p className="mt-3 max-w-3xl leading-7 text-slate-400">
-            Browse words by length, starting letter, ending, or contained
-            letters for games, puzzles, spelling practice, and vocabulary
-            building.
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            {wordListCards.map((card) => (
+              <a
+                key={card.href}
+                href={card.href}
+                className="rounded-2xl border border-violet-100 bg-white px-5 py-4 text-lg font-bold shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                {card.title}
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-14">
+          <div>
+            <h2 className="text-3xl font-black">Word Games</h2>
+            <p className="mt-2 text-slate-600">
+              Simple daily word games made by LetterWise.
+            </p>
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {gameCards.map((card) => (
+              <a
+                key={card.href}
+                href={card.href}
+                className="rounded-3xl bg-violet-100 p-7 hover:bg-violet-200"
+              >
+                <h3 className="text-2xl font-black">{card.title}</h3>
+                <p className="mt-2 text-slate-700">{card.description}</p>
+                <span className="mt-6 inline-block rounded-full bg-amber-300 px-6 py-3 font-black text-slate-950">
+                  Play
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto mt-16 max-w-4xl text-lg leading-8 text-slate-700">
+          <h2 className="text-3xl font-black text-slate-900">
+            What is LetterWise?
+          </h2>
+
+          <p className="mt-4">
+            LetterWise is a simple word helper for finding words, solving letter puzzles,
+            checking five-letter word patterns, and playing daily word games. It is designed
+            to be fast, clean, and easy to use.
           </p>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {wordLists.map((list) => (
-              <a
-                key={list.href}
-                href={list.href}
-                className="rounded-3xl border border-slate-800 bg-slate-900 p-6 transition hover:-translate-y-1 hover:bg-slate-800"
-              >
-                <h3 className="text-xl font-semibold">{list.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-400">
-                  {list.description}
-                </p>
-              </a>
-            ))}
-          </div>
-        </section>
+          <h2 className="mt-10 text-3xl font-black text-slate-900">
+            How to use the Word Finder
+          </h2>
 
-        <section className="mt-16 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-8">
-          <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-sky-400">
-                Daily challenge
-              </p>
-
-              <h2 className="mt-2 text-3xl font-bold">
-                Try the Daily Word Puzzle
-              </h2>
-
-              <p className="mt-4 max-w-3xl leading-7 text-slate-300">
-                Choose easy, medium, or hard and try to solve the five-letter
-                word in six guesses. Your stats are saved in your browser.
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href="/daily-word-puzzle"
-                  className="rounded-xl bg-sky-500 px-6 py-3 text-sm font-semibold text-white hover:bg-sky-400"
-                >
-                  Play today&apos;s puzzle
-                </a>
-
-                <a
-                  href="/daily-word-puzzle/how-to-play"
-                  className="rounded-xl border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white"
-                >
-                  How to play
-                </a>
-
-                <a
-                  href="/daily-word-puzzle/archive"
-                  className="rounded-xl border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white"
-                >
-                  Puzzle archive
-                </a>
-              </div>
-            </div>
-
-            <div className="rounded-3xl border border-slate-800 bg-slate-950 p-5">
-              <div className="grid grid-cols-5 gap-2">
-                {["W", "O", "R", "D", "S"].map((letter) => (
-                  <div
-                    key={letter}
-                    className="flex aspect-square items-center justify-center rounded-lg border border-emerald-500 bg-emerald-600 text-xl font-black"
-                  >
-                    {letter}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-3 grid grid-cols-5 gap-2">
-                {["P", "L", "A", "Y", "S"].map((letter, index) => (
-                  <div
-                    key={letter + index}
-                    className={`flex aspect-square items-center justify-center rounded-lg border text-xl font-black ${
-                      index < 2
-                        ? "border-yellow-500 bg-yellow-600"
-                        : "border-slate-700 bg-slate-800"
-                    }`}
-                  >
-                    {letter}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <p className="mt-4">
+            Enter your letters, add optional filters like starting letters, ending letters,
+            contained letters, or word length, then search for possible words.
+          </p>
         </section>
       </section>
     </main>

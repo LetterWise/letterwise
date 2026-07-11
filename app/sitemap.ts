@@ -12,6 +12,7 @@ const staticPages = [
   "/terms",
   "/tools",
   "/word-finder",
+  "/how-to-use-word-finder",
   "/unscramble-letters",
   "/wordle-solver",
   "/wordle-starter-words",

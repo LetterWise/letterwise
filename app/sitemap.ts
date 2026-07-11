@@ -21,6 +21,7 @@ const staticPages = [
   "/5-letter-words",
   "/common-5-letter-words",
   "/5-letter-words-with-vowels",
+  "/5-letter-words-no-repeats",
   "/6-letter-words",
   "/7-letter-words",
   "/daily-word-puzzle",

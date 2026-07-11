@@ -18,6 +18,7 @@ const footerSections = [
       { href: "/5-letter-words", label: "5 Letter Words" },
       { href: "/common-5-letter-words", label: "Common 5 Letter Words" },
       { href: "/5-letter-words-with-vowels", label: "5 Letter Words With Vowels" },
+      { href: "/5-letter-words-no-repeats", label: "5 Letter Words No Repeats" },
       { href: "/6-letter-words", label: "6 Letter Words" },
       { href: "/7-letter-words", label: "7 Letter Words" },
     ],

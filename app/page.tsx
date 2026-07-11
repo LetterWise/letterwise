@@ -79,7 +79,7 @@ const gameCards = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#fbfaff] text-slate-900">
+    <main className="min-h-screen overflow-x-hidden bg-[#fbfaff] text-slate-900">
       <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-16 pt-14 text-white">
         <div className="mx-auto max-w-5xl text-center">
           <h1 className="text-5xl font-black tracking-tight sm:text-6xl">
@@ -222,7 +222,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="mt-6 grid min-w-0 gap-4 md:grid-cols-2">
             {gameCards.map((card) => (
               <a
                 key={card.href}
@@ -253,7 +253,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid min-w-0 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {guideCards.map((card) => (
               <a
                 key={card.href}

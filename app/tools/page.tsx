@@ -105,7 +105,7 @@ export default function ToolsPage() {
               <a
                 key={tool.href}
                 href={tool.href}
-                className="rounded-3xl border border-violet-100 bg-white p-7 shadow-sm hover:border-violet-300 hover:bg-violet-50"
+                className="rounded-3xl border border-violet-100 bg-white p-7 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 hover:shadow-md"
               >
                 <div className="mb-5">
                   <ToolIcon type={tool.icon as "finder" | "unscramble" | "wordle"} />

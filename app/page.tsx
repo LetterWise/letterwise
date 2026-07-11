@@ -176,7 +176,7 @@ export default function HomePage() {
               <a
                 key={card.href}
                 href={card.href}
-                className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
+                className="rounded-3xl border border-violet-100 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 hover:shadow-md"
               >
                 <div className="mb-5">
                   <ToolIcon type={card.icon as "finder" | "unscramble" | "wordle"} />
@@ -227,7 +227,7 @@ export default function HomePage() {
               <a
                 key={card.href}
                 href={card.href}
-                className="rounded-3xl bg-violet-100 p-7 hover:bg-violet-200"
+                className="relative overflow-hidden rounded-3xl bg-violet-100 p-7 transition hover:-translate-y-0.5 hover:bg-violet-200 hover:shadow-md"
               >
                 <div className="mb-5">
                   <ToolIcon type={card.icon as "daily" | "lists"} />
@@ -258,7 +258,7 @@ export default function HomePage() {
               <a
                 key={card.href}
                 href={card.href}
-                className="rounded-3xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
+                className="rounded-3xl border border-violet-100 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 hover:shadow-md"
               >
                 <div className="mb-5">
                   <ToolIcon type={card.icon as "wordle" | "lists" | "vowels" | "repeat" | "guide"} />

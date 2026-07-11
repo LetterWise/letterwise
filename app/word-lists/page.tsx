@@ -24,6 +24,15 @@ const endingLinks = [
   { href: "/5-letter-words-ending-in-se", title: "Ending In SE" },
 ];
 
+
+const guideLinks = [
+  { href: "/wordle-starter-words", title: "Best Wordle Starter Words" },
+  { href: "/common-5-letter-words", title: "Common 5 Letter Words" },
+  { href: "/5-letter-words-with-vowels", title: "5 Letter Words With Vowels" },
+  { href: "/5-letter-words-no-repeats", title: "5 Letter Words No Repeats" },
+  { href: "/how-to-use-word-finder", title: "How to Use Word Finder" },
+];
+
 const containingLinks = [
   { href: "/5-letter-words-containing-a", title: "Containing A" },
   { href: "/5-letter-words-containing-e", title: "Containing E" },
@@ -150,6 +159,13 @@ export default function WordListsPage() {
           title="5 Letter Words Containing"
           description="Find words that include specific letters or letter pairs."
           links={containingLinks}
+        />
+
+
+        <LinkGrid
+          title="Word Guides"
+          description="Helpful guides for Wordle, word games, and using LetterWise tools."
+          links={guideLinks}
         />
 
         <section className="mx-auto mt-16 max-w-4xl text-lg leading-8 text-slate-700">

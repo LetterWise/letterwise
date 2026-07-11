@@ -23,6 +23,35 @@ const wordListCards = [
   { href: "/5-letter-words-ending-in-ed", title: "5 Letter Words Ending In ED" },
 ];
 
+
+const guideCards = [
+  {
+    href: "/wordle-starter-words",
+    title: "Best Wordle Starter Words",
+    description: "Useful first guesses for Wordle and five-letter word games.",
+  },
+  {
+    href: "/common-5-letter-words",
+    title: "Common 5 Letter Words",
+    description: "Everyday five-letter words for games, spelling, and vocabulary.",
+  },
+  {
+    href: "/5-letter-words-with-vowels",
+    title: "5 Letter Words With Vowels",
+    description: "Vowel-heavy words for Wordle and word puzzles.",
+  },
+  {
+    href: "/5-letter-words-no-repeats",
+    title: "5 Letter Words No Repeats",
+    description: "Five-letter words with no repeated letters.",
+  },
+  {
+    href: "/how-to-use-word-finder",
+    title: "How to Use Word Finder",
+    description: "Learn how to search letters and use filters.",
+  },
+];
+
 const gameCards = [
   {
     href: "/daily-word-puzzle",
@@ -193,6 +222,31 @@ export default function HomePage() {
                 <span className="mt-6 inline-block rounded-full bg-amber-300 px-6 py-3 font-black text-slate-950">
                   Play
                 </span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+
+        <section className="mt-14">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-3xl font-black">Word Guides</h2>
+              <p className="mt-2 text-slate-600">
+                Helpful guides for Wordle, word games, and using LetterWise tools.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {guideCards.map((card) => (
+              <a
+                key={card.href}
+                href={card.href}
+                className="rounded-3xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
+              >
+                <h3 className="text-2xl font-black">{card.title}</h3>
+                <p className="mt-2 text-slate-600">{card.description}</p>
               </a>
             ))}
           </div>

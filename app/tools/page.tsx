@@ -1,21 +1,26 @@
+import ToolIcon from "@/components/ToolIcon";
+
 const tools = [
   {
     href: "/word-finder",
     title: "Word Finder",
     description: "Find words from the letters you have. Add filters for starting letters, ending letters, contained letters, and word length.",
     label: "Find Words",
+    icon: "finder",
   },
   {
     href: "/unscramble-letters",
     title: "Unscramble Letters",
     description: "Turn mixed-up letters into possible words for word games, puzzles, spelling practice, and classroom activities.",
     label: "Unscramble",
+    icon: "unscramble",
   },
   {
     href: "/wordle-solver",
     title: "Wordle Solver",
     description: "Use green, yellow, and gray letters to narrow down possible five-letter Wordle answers.",
     label: "Solve Wordle",
+    icon: "wordle",
   },
 ];
 
@@ -102,8 +107,8 @@ export default function ToolsPage() {
                 href={tool.href}
                 className="rounded-3xl border border-violet-100 bg-white p-7 shadow-sm hover:border-violet-300 hover:bg-violet-50"
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-100 text-xl text-violet-700">
-                  ✦
+                <div className="mb-5">
+                  <ToolIcon type={tool.icon as "finder" | "unscramble" | "wordle"} />
                 </div>
 
                 <h3 className="text-2xl font-black">{tool.title}</h3>

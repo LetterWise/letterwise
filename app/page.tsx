@@ -1,18 +1,23 @@
+import ToolIcon from "@/components/ToolIcon";
+
 const solverCards = [
   {
     href: "/word-finder",
     title: "Word Finder",
     description: "Find words from the letters you have.",
+    icon: "finder",
   },
   {
     href: "/unscramble-letters",
     title: "Word Unscrambler",
     description: "Unscramble letters into possible words.",
+    icon: "unscramble",
   },
   {
     href: "/wordle-solver",
     title: "Wordle Solver",
     description: "Narrow down possible Wordle answers.",
+    icon: "wordle",
   },
 ];
 
@@ -29,26 +34,31 @@ const guideCards = [
     href: "/wordle-starter-words",
     title: "Best Wordle Starter Words",
     description: "Useful first guesses for Wordle and five-letter word games.",
+    icon: "wordle",
   },
   {
     href: "/common-5-letter-words",
     title: "Common 5 Letter Words",
     description: "Everyday five-letter words for games, spelling, and vocabulary.",
+    icon: "lists",
   },
   {
     href: "/5-letter-words-with-vowels",
     title: "5 Letter Words With Vowels",
     description: "Vowel-heavy words for Wordle and word puzzles.",
+    icon: "vowels",
   },
   {
     href: "/5-letter-words-no-repeats",
     title: "5 Letter Words No Repeats",
     description: "Five-letter words with no repeated letters.",
+    icon: "repeat",
   },
   {
     href: "/how-to-use-word-finder",
     title: "How to Use Word Finder",
     description: "Learn how to search letters and use filters.",
+    icon: "guide",
   },
 ];
 
@@ -57,11 +67,13 @@ const gameCards = [
     href: "/daily-word-puzzle",
     title: "Daily Word Puzzle",
     description: "Guess the five-letter word in six tries.",
+    icon: "daily",
   },
   {
     href: "/daily-word-puzzle/archive",
     title: "Puzzle Archive",
     description: "Replay previous daily word puzzles.",
+    icon: "lists",
   },
 ];
 
@@ -166,8 +178,8 @@ export default function HomePage() {
                 href={card.href}
                 className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-100 text-xl text-violet-700">
-                  ✦
+                <div className="mb-5">
+                  <ToolIcon type={card.icon as "finder" | "unscramble" | "wordle"} />
                 </div>
                 <h3 className="text-2xl font-black">{card.title}</h3>
                 <p className="mt-2 text-slate-600">{card.description}</p>
@@ -217,6 +229,9 @@ export default function HomePage() {
                 href={card.href}
                 className="rounded-3xl bg-violet-100 p-7 hover:bg-violet-200"
               >
+                <div className="mb-5">
+                  <ToolIcon type={card.icon as "daily" | "lists"} />
+                </div>
                 <h3 className="text-2xl font-black">{card.title}</h3>
                 <p className="mt-2 text-slate-700">{card.description}</p>
                 <span className="mt-6 inline-block rounded-full bg-amber-300 px-6 py-3 font-black text-slate-950">
@@ -245,6 +260,9 @@ export default function HomePage() {
                 href={card.href}
                 className="rounded-3xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
               >
+                <div className="mb-5">
+                  <ToolIcon type={card.icon as "wordle" | "lists" | "vowels" | "repeat" | "guide"} />
+                </div>
                 <h3 className="text-2xl font-black">{card.title}</h3>
                 <p className="mt-2 text-slate-600">{card.description}</p>
               </a>

@@ -6,6 +6,7 @@ const footerSections = [
       { href: "/word-finder", label: "Word Finder" },
       { href: "/unscramble-letters", label: "Unscramble Letters" },
       { href: "/wordle-solver", label: "Wordle Solver" },
+      { href: "/wordle-starter-words", label: "Wordle Starter Words" },
     ],
   },
   {

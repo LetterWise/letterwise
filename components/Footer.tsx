@@ -15,6 +15,7 @@ const footerSections = [
     title: "Word Lists",
     links: [
       { href: "/word-lists", label: "All Word Lists" },
+      { href: "/word-guides", label: "Word Guides" },
       { href: "/3-letter-words", label: "3 Letter Words" },
       { href: "/4-letter-words", label: "4 Letter Words" },
       { href: "/5-letter-words", label: "5 Letter Words" },

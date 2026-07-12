@@ -18,6 +18,7 @@ const staticPages = [
   "/wordle-solver",
   "/wordle-starter-words",
   "/word-lists",
+  "/word-guides",
   "/3-letter-words",
   "/4-letter-words",
   "/5-letter-words",

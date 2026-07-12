@@ -83,6 +83,38 @@ const gameCards = [
   },
 ];
 
+
+const mainPathCards = [
+  {
+    href: "/word-finder",
+    title: "Find Words",
+    description: "Search letters, patterns, starts, endings, and word lengths.",
+    icon: "finder",
+    action: "Open Word Finder",
+  },
+  {
+    href: "/word-lists",
+    title: "Browse Word Lists",
+    description: "Explore words by length, starting letters, endings, and more.",
+    icon: "lists",
+    action: "View Word Lists",
+  },
+  {
+    href: "/daily-word-puzzle",
+    title: "Play Daily Puzzle",
+    description: "Try today’s five-letter word puzzle and keep your streak going.",
+    icon: "daily",
+    action: "Play Today",
+  },
+  {
+    href: "/word-guides",
+    title: "Read Word Guides",
+    description: "Learn better word strategies for Wordle and word games.",
+    icon: "guide",
+    action: "Browse Guides",
+  },
+];
+
 export default function HomePage() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#fbfaff] text-slate-900">
@@ -164,7 +196,60 @@ export default function HomePage() {
           </a>
         </div>
 
-        <section className="mt-14">
+        
+      <section className="mx-auto max-w-6xl px-6 py-10">
+        <div className="text-center">
+          <p className="text-sm font-black uppercase tracking-[0.25em] text-violet-600">
+            Start Here
+          </p>
+
+          <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950">
+            Choose what you want to do
+          </h2>
+
+          <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-600">
+            LetterWise is built around four simple areas: finding words,
+            browsing word lists, playing the daily puzzle, and learning word
+            game strategies.
+          </p>
+        </div>
+
+        <div className="mt-8 grid min-w-0 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {mainPathCards.map((card) => (
+            <a
+              key={card.href}
+              href={card.href}
+              className="group rounded-3xl border border-violet-100 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 hover:shadow-md"
+            >
+              <div className="mb-5">
+                <ToolIcon
+                  type={
+                    card.icon as
+                      | "finder"
+                      | "lists"
+                      | "daily"
+                      | "guide"
+                  }
+                />
+              </div>
+
+              <h3 className="text-2xl font-black text-slate-950">
+                {card.title}
+              </h3>
+
+              <p className="mt-3 leading-7 text-slate-600">
+                {card.description}
+              </p>
+
+              <span className="mt-5 inline-flex rounded-full bg-violet-100 px-5 py-3 text-sm font-black text-violet-700 group-hover:bg-amber-300 group-hover:text-slate-950">
+                {card.action}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+<section className="mt-14">
           <div className="flex items-end justify-between gap-4">
             <div>
               <h2 className="text-3xl font-black">Popular Word Solvers</h2>

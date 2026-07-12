@@ -31,6 +31,7 @@ const guideLinks = [
   { href: "/5-letter-words-with-vowels", title: "5 Letter Words With Vowels" },
   { href: "/5-letter-words-no-repeats", title: "5 Letter Words No Repeats" },
   { href: "/how-to-use-word-finder", title: "How to Use Word Finder" },
+  { href: "/best-words-for-word-games", title: "Best Words for Word Games" },
 ];
 
 const containingLinks = [

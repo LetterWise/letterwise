@@ -60,6 +60,12 @@ const guideCards = [
     description: "Learn how to search letters and use filters.",
     icon: "guide",
   },
+  {
+    href: "/best-words-for-word-games",
+    title: "Best Words for Word Games",
+    description: "Useful words and tips for word games and puzzles.",
+    icon: "guide",
+  },
 ];
 
 const gameCards = [

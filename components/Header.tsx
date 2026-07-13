@@ -59,7 +59,10 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm font-bold text-slate-700 md:flex">
+        <nav
+          aria-label="Primary navigation"
+          className="hidden items-center gap-8 text-sm font-bold text-slate-700 md:flex"
+        >
           {navLinks.map((link) => {
             const active = isActiveLink(pathname, link.href);
 
@@ -67,6 +70,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                aria-current={active ? "page" : undefined}
                 className={active ? "text-violet-600" : "hover:text-violet-600"}
               >
                 {link.label}
@@ -83,16 +87,28 @@ export default function Header() {
         </Link>
       </div>
 
-      <nav className="flex gap-2 overflow-x-auto border-t border-violet-100 px-4 py-3 text-sm font-bold text-slate-700 md:hidden">
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="whitespace-nowrap rounded-full bg-violet-50 px-4 py-2"
-          >
-            {link.label}
-          </Link>
-        ))}
+      <nav
+        aria-label="Primary navigation"
+        className="flex gap-2 overflow-x-auto border-t border-violet-100 px-4 py-3 text-sm font-bold text-slate-700 md:hidden"
+      >
+        {navLinks.map((link) => {
+          const active = isActiveLink(pathname, link.href);
+
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={active ? "page" : undefined}
+              className={
+                active
+                  ? "whitespace-nowrap rounded-full bg-violet-100 px-4 py-2 text-violet-700 ring-1 ring-inset ring-violet-200"
+                  : "whitespace-nowrap rounded-full bg-violet-50 px-4 py-2 hover:bg-violet-100 hover:text-violet-700"
+              }
+            >
+              {link.label}
+            </Link>
+          );
+        })}
       </nav>
     </header>
   );

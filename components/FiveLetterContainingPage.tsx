@@ -1,5 +1,6 @@
 import { words } from "@/data/words";
 import WordListBrowser from "./WordListBrowser";
+import WordListInsights from "./WordListInsights";
 
 type FiveLetterContainingPageProps = {
   letters: string;
@@ -13,10 +14,11 @@ export default function FiveLetterContainingPage({
   const cleanLetters = letters.toLowerCase();
   const displayLetters = cleanLetters.toUpperCase();
 
-  const matchingWords = words
-    .filter((word) => word.length === 5)
-    .filter((word) => word.includes(cleanLetters))
-    .slice(0, 500);
+  const fiveLetterWords = words.filter((word) => word.length === 5);
+  const allMatchingWords = fiveLetterWords.filter((word) =>
+    word.includes(cleanLetters),
+  );
+  const matchingWords = allMatchingWords.slice(0, 500);
 
   return (
     <main className="min-h-screen bg-[#fbfaff] text-slate-900">
@@ -56,8 +58,17 @@ export default function FiveLetterContainingPage({
 
         <WordListBrowser
           words={matchingWords}
+          totalCount={allMatchingWords.length}
           title={`Words Containing ${displayLetters}`}
-          description={`Search and browse ${matchingWords.length} five-letter words containing ${displayLetters}.`}
+          description={`Search and browse ${matchingWords.length === allMatchingWords.length ? allMatchingWords.length : `the first ${matchingWords.length} of ${allMatchingWords.length}`} five-letter words containing ${displayLetters}.`}
+        />
+
+        <WordListInsights
+          words={allMatchingWords}
+          pattern={cleanLetters}
+          listType="containing"
+          totalFiveLetterWords={fiveLetterWords.length}
+          displayedCount={matchingWords.length}
         />
 
         <section className="mt-10 grid gap-4 sm:grid-cols-2">

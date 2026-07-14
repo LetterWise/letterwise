@@ -1,5 +1,6 @@
 import { words } from "@/data/words";
 import WordListBrowser from "./WordListBrowser";
+import WordListInsights from "./WordListInsights";
 
 type FiveLetterEndingPageProps = {
   ending: string;
@@ -13,10 +14,11 @@ export default function FiveLetterEndingPage({
   const cleanEnding = ending.toLowerCase();
   const displayEnding = cleanEnding.toUpperCase();
 
-  const matchingWords = words
-    .filter((word) => word.length === 5)
-    .filter((word) => word.endsWith(cleanEnding))
-    .slice(0, 500);
+  const fiveLetterWords = words.filter((word) => word.length === 5);
+  const allMatchingWords = fiveLetterWords.filter((word) =>
+    word.endsWith(cleanEnding),
+  );
+  const matchingWords = allMatchingWords.slice(0, 500);
 
   return (
     <main className="min-h-screen bg-[#fbfaff] text-slate-900">
@@ -56,8 +58,17 @@ export default function FiveLetterEndingPage({
 
         <WordListBrowser
           words={matchingWords}
+          totalCount={allMatchingWords.length}
           title={`Words Ending In ${displayEnding}`}
-          description={`Search and browse ${matchingWords.length} five-letter words ending in ${displayEnding}.`}
+          description={`Search and browse ${matchingWords.length === allMatchingWords.length ? allMatchingWords.length : `the first ${matchingWords.length} of ${allMatchingWords.length}`} five-letter words ending in ${displayEnding}.`}
+        />
+
+        <WordListInsights
+          words={allMatchingWords}
+          pattern={cleanEnding}
+          listType="ending"
+          totalFiveLetterWords={fiveLetterWords.length}
+          displayedCount={matchingWords.length}
         />
 
         <section className="mt-10 grid gap-4 sm:grid-cols-2">

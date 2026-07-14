@@ -1,5 +1,6 @@
 import { words } from "@/data/words";
 import WordListBrowser from "./WordListBrowser";
+import WordListInsights from "./WordListInsights";
 
 type FiveLetterStartingPageProps = {
   letter: string;
@@ -13,10 +14,11 @@ export default function FiveLetterStartingPage({
   const cleanLetter = letter.toLowerCase();
   const uppercaseLetter = cleanLetter.toUpperCase();
 
-  const matchingWords = words
-    .filter((word) => word.length === 5)
-    .filter((word) => word.startsWith(cleanLetter))
-    .slice(0, 500);
+  const fiveLetterWords = words.filter((word) => word.length === 5);
+  const allMatchingWords = fiveLetterWords.filter((word) =>
+    word.startsWith(cleanLetter),
+  );
+  const matchingWords = allMatchingWords.slice(0, 500);
 
   return (
     <main className="min-h-screen bg-[#fbfaff] text-slate-900">
@@ -56,8 +58,17 @@ export default function FiveLetterStartingPage({
 
         <WordListBrowser
           words={matchingWords}
+          totalCount={allMatchingWords.length}
           title={`Words Starting With ${uppercaseLetter}`}
-          description={`Search and browse ${matchingWords.length} five-letter words starting with ${uppercaseLetter}.`}
+          description={`Search and browse ${matchingWords.length === allMatchingWords.length ? allMatchingWords.length : `the first ${matchingWords.length} of ${allMatchingWords.length}`} five-letter words starting with ${uppercaseLetter}.`}
+        />
+
+        <WordListInsights
+          words={allMatchingWords}
+          pattern={cleanLetter}
+          listType="starting"
+          totalFiveLetterWords={fiveLetterWords.length}
+          displayedCount={matchingWords.length}
         />
 
         <section className="mt-10 grid gap-4 sm:grid-cols-2">

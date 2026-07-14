@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 
 type WordListBrowserProps = {
   words: string[];
+  totalCount?: number;
   title: string;
   description: string;
   emptyMessage?: string;
@@ -11,6 +12,7 @@ type WordListBrowserProps = {
 
 export default function WordListBrowser({
   words,
+  totalCount = words.length,
   title,
   description,
   emptyMessage = "No matching words found.",
@@ -27,6 +29,12 @@ export default function WordListBrowser({
     return words.filter((word) => word.includes(cleanQuery));
   }, [query, words]);
 
+  const countLabel = query
+    ? `${filteredWords.length} shown matches`
+    : words.length < totalCount
+      ? `${words.length} of ${totalCount} words`
+      : `${totalCount} words`;
+
   return (
     <section className="mt-12 rounded-3xl border border-violet-100 bg-white p-5 shadow-sm sm:p-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -39,7 +47,7 @@ export default function WordListBrowser({
         </div>
 
         <span className="w-fit rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">
-          {filteredWords.length} words
+          {countLabel}
         </span>
       </div>
 

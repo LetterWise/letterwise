@@ -31,6 +31,12 @@ const wordListCards = [
 
 const guideCards = [
   {
+    href: "/best-5-letter-starter-words-by-data",
+    title: "Best 5 Letter Starter Words by Data",
+    description: "Original LetterWise ranking of 42 familiar opening words.",
+    icon: "guide",
+  },
+  {
     href: "/most-common-letters-in-5-letter-words",
     title: "Most Common Letters in 5 Letter Words",
     description: "Original LetterWise analysis of letter frequency and position.",

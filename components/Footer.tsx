@@ -18,6 +18,7 @@ const footerSections = [
     links: [
       { href: "/word-lists", label: "All Word Lists" },
       { href: "/word-guides", label: "Word Guides" },
+      { href: "/best-5-letter-starter-words-by-data", label: "Starter Words by Data" },
       { href: "/most-common-letters-in-5-letter-words", label: "5 Letter Frequency Guide" },
       { href: "/3-letter-words", label: "3 Letter Words" },
       { href: "/4-letter-words", label: "4 Letter Words" },

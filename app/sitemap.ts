@@ -19,6 +19,7 @@ const staticPages = [
   "/wordle-starter-words",
   "/word-lists",
   "/word-guides",
+  "/best-5-letter-starter-words-by-data",
   "/most-common-letters-in-5-letter-words",
   "/3-letter-words",
   "/4-letter-words",
@@ -37,8 +38,21 @@ const fiveLetterStartingPages = "abcdefghijklmnopqrstuvwxyz"
   .split("")
   .map((letter) => `/5-letter-words-starting-with-${letter}`);
 
+const fiveLetterEndingPages = ["al", "ed", "el", "er", "ing", "le", "ly", "se"].map(
+  (ending) => `/5-letter-words-ending-in-${ending}`,
+);
+
+const fiveLetterContainingPages = ["a", "ai", "ch", "e", "i", "o", "ou", "st", "u"].map(
+  (letters) => `/5-letter-words-containing-${letters}`,
+);
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = [...staticPages, ...fiveLetterStartingPages];
+  const pages = [
+    ...staticPages,
+    ...fiveLetterStartingPages,
+    ...fiveLetterEndingPages,
+    ...fiveLetterContainingPages,
+  ];
 
   return pages.map((page) => ({
     url: `${baseUrl}${page}`,

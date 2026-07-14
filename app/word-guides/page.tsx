@@ -8,6 +8,13 @@ export const metadata = {
 
 const guides = [
   {
+    href: "/best-5-letter-starter-words-by-data",
+    title: "Best 5 Letter Starter Words by Data",
+    description:
+      "See how 42 familiar starters rank across 12,578 five-letter entries.",
+    icon: "guide",
+  },
+  {
     href: "/most-common-letters-in-5-letter-words",
     title: "Most Common Letters in 5 Letter Words",
     description: "See original LetterWise data on letter frequency and position.",

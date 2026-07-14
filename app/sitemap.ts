@@ -33,6 +33,7 @@ const staticPages = [
   "/daily-word-puzzle",
   "/daily-word-puzzle/how-to-play",
   "/daily-word-puzzle/archive",
+  "/letter-links",
 ];
 
 const fiveLetterStartingPages = "abcdefghijklmnopqrstuvwxyz"
@@ -58,7 +59,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return pages.map((page) => ({
     url: `${baseUrl}${page}`,
     lastModified: new Date(),
-    changeFrequency: page === "" || page === "/daily-word-puzzle" ? "daily" : "weekly",
-    priority: page === "" ? 1 : page === "/daily-word-puzzle" ? 0.9 : 0.7,
+    changeFrequency:
+      page === "" || page === "/daily-word-puzzle" || page === "/letter-links"
+        ? "daily"
+        : "weekly",
+    priority:
+      page === ""
+        ? 1
+        : page === "/daily-word-puzzle" || page === "/letter-links"
+          ? 0.9
+          : 0.7,
   }));
 }

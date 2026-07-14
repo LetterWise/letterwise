@@ -82,6 +82,12 @@ const guideCards = [
 
 const gameCards = [
   {
+    href: "/letter-links",
+    title: "Letter Links",
+    description: "Connect two words by changing one letter at a time.",
+    icon: "daily",
+  },
+  {
     href: "/daily-word-puzzle",
     title: "Daily Word Puzzle",
     description: "Guess the five-letter word in six tries.",
@@ -325,7 +331,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-6 grid min-w-0 gap-4 md:grid-cols-2">
+          <div className="mt-6 grid min-w-0 gap-4 md:grid-cols-3">
             {gameCards.map((card) => (
               <a
                 key={card.href}

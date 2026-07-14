@@ -7,6 +7,8 @@ export type DailyPuzzle = {
   hard: string;
 };
 
+export const PUZZLE_ARCHIVE_START_DATE = "2026-06-13";
+
 export const dailyPuzzles: DailyPuzzle[] = [
   { date: "2026-07-07", easy: "chair", medium: "flame", hard: "vivid" },
   { date: "2026-07-08", easy: "bread", medium: "stone", hard: "nymph" },
@@ -75,21 +77,77 @@ export function getTodayDate() {
   return `${year}-${month}-${day}`;
 }
 
+function isValidDate(date: string) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return false;
+  }
+
+  const parsed = new Date(`${date}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date;
+}
+
+function getPreviousDate(date: string) {
+  const parsed = new Date(`${date}T00:00:00Z`);
+  parsed.setUTCDate(parsed.getUTCDate() - 1);
+  return parsed.toISOString().slice(0, 10);
+}
+
+const answerPools = {
+  easy: [...new Set(dailyPuzzles.map((puzzle) => puzzle.easy))],
+  medium: [...new Set(dailyPuzzles.map((puzzle) => puzzle.medium))],
+  hard: [...new Set(dailyPuzzles.map((puzzle) => puzzle.hard))],
+};
+
+function selectAnswer(pool: string[], date: string, offset: number) {
+  const dayNumber = Math.floor(
+    new Date(`${date}T00:00:00Z`).getTime() / 86_400_000,
+  );
+  return pool[(dayNumber + offset) % pool.length];
+}
+
+function generatePuzzle(date: string): DailyPuzzle {
+  return {
+    date,
+    easy: selectAnswer(answerPools.easy, date, 0),
+    medium: selectAnswer(answerPools.medium, date, 11),
+    hard: selectAnswer(answerPools.hard, date, 23),
+  };
+}
+
+function getPuzzleForDate(date: string) {
+  return dailyPuzzles.find((puzzle) => puzzle.date === date) || generatePuzzle(date);
+}
+
 export function getTodayPuzzle() {
   const today = getTodayDate();
-
-  return (
-    dailyPuzzles.find((puzzle) => puzzle.date === today) ||
-    dailyPuzzles[dailyPuzzles.length - 1]
-  );
+  return getPuzzleForDate(today);
 }
 
 export function getPuzzleByDate(date: string | null) {
-  if (!date) {
+  const today = getTodayDate();
+
+  if (
+    !date ||
+    !isValidDate(date) ||
+    date < PUZZLE_ARCHIVE_START_DATE ||
+    date > today
+  ) {
     return getTodayPuzzle();
   }
 
-  return dailyPuzzles.find((puzzle) => puzzle.date === date) || getTodayPuzzle();
+  return getPuzzleForDate(date);
+}
+
+export function getArchivePuzzles() {
+  const puzzles: DailyPuzzle[] = [];
+  let date = getPreviousDate(getTodayDate());
+
+  while (date >= PUZZLE_ARCHIVE_START_DATE) {
+    puzzles.push(getPuzzleForDate(date));
+    date = getPreviousDate(date);
+  }
+
+  return puzzles;
 }
 
 export function isPuzzleLevel(value: string | null): value is PuzzleLevel {

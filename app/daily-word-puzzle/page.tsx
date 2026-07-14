@@ -126,7 +126,13 @@ export default function DailyWordPuzzlePage() {
       const levelFromUrl = params.get("level");
 
       if (dateFromUrl) {
-        setSelectedDate(dateFromUrl);
+        const requestedPuzzle = getPuzzleByDate(dateFromUrl);
+        setSelectedDate(requestedPuzzle.date);
+
+        if (requestedPuzzle.date !== dateFromUrl) {
+          params.set("date", requestedPuzzle.date);
+          window.history.replaceState(null, "", `?${params.toString()}`);
+        }
       }
 
       if (isPuzzleLevel(levelFromUrl)) {

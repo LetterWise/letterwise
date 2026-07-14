@@ -337,21 +337,21 @@ export default function BestStarterWordsByDataPage() {
 
         <section className="mt-14 grid gap-4 md:grid-cols-3">
           <a
+            href="/best-two-word-starts-by-data"
+            className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:bg-violet-50"
+          >
+            <h2 className="text-xl font-black">Two Word Starts by Data</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              See which second words add the strongest ten-letter coverage.
+            </p>
+          </a>
+          <a
             href="/most-common-letters-in-5-letter-words"
             className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:bg-violet-50"
           >
             <h2 className="text-xl font-black">Letter Frequency Guide</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
               See the letter and position counts behind this analysis.
-            </p>
-          </a>
-          <a
-            href="/wordle-starter-words"
-            className="rounded-2xl border border-violet-100 bg-white p-6 shadow-sm hover:bg-violet-50"
-          >
-            <h2 className="text-xl font-black">Practical Starter Tips</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
-              Turn the numbers into a simple opening strategy.
             </p>
           </a>
           <a

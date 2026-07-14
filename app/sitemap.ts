@@ -19,6 +19,7 @@ const staticPages = [
   "/wordle-starter-words",
   "/word-lists",
   "/word-guides",
+  "/best-two-word-starts-by-data",
   "/best-5-letter-starter-words-by-data",
   "/most-common-letters-in-5-letter-words",
   "/3-letter-words",

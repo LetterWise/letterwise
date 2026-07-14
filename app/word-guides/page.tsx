@@ -8,6 +8,13 @@ export const metadata = {
 
 const guides = [
   {
+    href: "/best-two-word-starts-by-data",
+    title: "Best Two Word Starts by Data",
+    description:
+      "Compare familiar two-word openings across 12,578 five-letter entries.",
+    icon: "guide",
+  },
+  {
     href: "/best-5-letter-starter-words-by-data",
     title: "Best 5 Letter Starter Words by Data",
     description:

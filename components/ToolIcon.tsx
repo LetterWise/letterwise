@@ -5,6 +5,8 @@ type ToolIconProps = {
     | "wordle"
     | "lists"
     | "daily"
+    | "letterLinks"
+    | "anagramRush"
     | "guide"
     | "vowels"
     | "repeat";
@@ -125,6 +127,49 @@ function DailyIcon() {
   );
 }
 
+function LetterLinksIcon() {
+  return (
+    <IconShell className="bg-gradient-to-br from-cyan-100 to-violet-200">
+      <div className="relative flex items-center gap-1">
+        <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white text-lg font-black text-cyan-700 shadow-sm">
+          C
+        </span>
+        <span className="text-lg font-black text-violet-700">→</span>
+        <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-violet-600 text-lg font-black text-white shadow-sm">
+          W
+        </span>
+      </div>
+      <span className="absolute bottom-2.5 text-[10px] font-black uppercase tracking-widest text-violet-800">
+        Link
+      </span>
+    </IconShell>
+  );
+}
+
+function AnagramRushIcon() {
+  return (
+    <IconShell className="bg-gradient-to-br from-amber-100 to-rose-200">
+      <div className="relative flex gap-1">
+        {["A", "R", "T"].map((letter, index) => (
+          <span
+            key={letter}
+            className={`flex h-7 w-7 items-center justify-center rounded-lg text-sm font-black shadow-sm ${
+              index === 1
+                ? "-translate-y-2 bg-rose-500 text-white"
+                : "bg-white text-rose-700"
+            }`}
+          >
+            {letter}
+          </span>
+        ))}
+      </div>
+      <span className="absolute bottom-2.5 right-3 flex h-5 w-5 items-center justify-center rounded-full bg-amber-300 text-[9px] font-black text-slate-900 ring-2 ring-white">
+        60
+      </span>
+    </IconShell>
+  );
+}
+
 function GuideIcon() {
   return (
     <IconShell className="bg-gradient-to-br from-indigo-100 to-violet-200">
@@ -176,6 +221,8 @@ export default function ToolIcon({ type }: ToolIconProps) {
   if (type === "wordle") return <WordleIcon />;
   if (type === "lists") return <ListsIcon />;
   if (type === "daily") return <DailyIcon />;
+  if (type === "letterLinks") return <LetterLinksIcon />;
+  if (type === "anagramRush") return <AnagramRushIcon />;
   if (type === "guide") return <GuideIcon />;
   if (type === "vowels") return <VowelsIcon />;
   if (type === "repeat") return <RepeatIcon />;

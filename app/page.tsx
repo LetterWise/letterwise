@@ -85,13 +85,13 @@ const gameCards = [
     href: "/anagram-rush",
     title: "Anagram Rush",
     description: "Find as many words as you can in 60 seconds.",
-    icon: "unscramble",
+    icon: "anagramRush",
   },
   {
     href: "/letter-links",
     title: "Letter Links",
     description: "Connect two words by changing one letter at a time.",
-    icon: "daily",
+    icon: "letterLinks",
   },
   {
     href: "/daily-word-puzzle",
@@ -345,7 +345,15 @@ export default function HomePage() {
                 className="relative overflow-hidden rounded-3xl bg-violet-100 p-7 transition hover:-translate-y-0.5 hover:bg-violet-200 hover:shadow-md"
               >
                 <div className="mb-5">
-                  <ToolIcon type={card.icon as "daily" | "lists" | "unscramble"} />
+                  <ToolIcon
+                    type={
+                      card.icon as
+                        | "daily"
+                        | "lists"
+                        | "letterLinks"
+                        | "anagramRush"
+                    }
+                  />
                 </div>
                 <h3 className="text-2xl font-black">{card.title}</h3>
                 <p className="mt-2 text-slate-700">{card.description}</p>

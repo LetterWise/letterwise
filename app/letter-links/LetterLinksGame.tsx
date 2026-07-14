@@ -187,7 +187,7 @@ function PlayableLetterLinksGame({
     if (nextStep) {
       setGuess(nextStep);
       setHints((count) => count + 1);
-      setMessage(`Hint: try ${nextStep.toUpperCase()} next.`);
+      setMessage(`Next word revealed: ${nextStep.toUpperCase()}.`);
     } else {
       setMessage("Try undoing your last move to return to a clear path.");
     }
@@ -323,7 +323,7 @@ function PlayableLetterLinksGame({
               disabled={complete}
               className="rounded-full border border-violet-200 px-5 py-2 font-bold text-violet-700 hover:bg-violet-50 disabled:cursor-not-allowed disabled:opacity-40"
             >
-              Hint ({hints})
+              Reveal next word ({hints})
             </button>
             <button
               type="button"

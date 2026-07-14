@@ -34,6 +34,7 @@ const staticPages = [
   "/daily-word-puzzle/how-to-play",
   "/daily-word-puzzle/archive",
   "/letter-links",
+  "/anagram-rush",
 ];
 
 const fiveLetterStartingPages = "abcdefghijklmnopqrstuvwxyz"
@@ -60,13 +61,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${page}`,
     lastModified: new Date(),
     changeFrequency:
-      page === "" || page === "/daily-word-puzzle" || page === "/letter-links"
+      page === "" ||
+      page === "/daily-word-puzzle" ||
+      page === "/letter-links" ||
+      page === "/anagram-rush"
         ? "daily"
         : "weekly",
     priority:
       page === ""
         ? 1
-        : page === "/daily-word-puzzle" || page === "/letter-links"
+        : page === "/daily-word-puzzle" ||
+            page === "/letter-links" ||
+            page === "/anagram-rush"
           ? 0.9
           : 0.7,
   }));

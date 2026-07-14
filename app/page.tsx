@@ -82,6 +82,12 @@ const guideCards = [
 
 const gameCards = [
   {
+    href: "/anagram-rush",
+    title: "Anagram Rush",
+    description: "Find as many words as you can in 60 seconds.",
+    icon: "unscramble",
+  },
+  {
     href: "/letter-links",
     title: "Letter Links",
     description: "Connect two words by changing one letter at a time.",
@@ -331,7 +337,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-6 grid min-w-0 gap-4 md:grid-cols-3">
+          <div className="mt-6 grid min-w-0 gap-4 md:grid-cols-2 lg:grid-cols-4">
             {gameCards.map((card) => (
               <a
                 key={card.href}
@@ -339,7 +345,7 @@ export default function HomePage() {
                 className="relative overflow-hidden rounded-3xl bg-violet-100 p-7 transition hover:-translate-y-0.5 hover:bg-violet-200 hover:shadow-md"
               >
                 <div className="mb-5">
-                  <ToolIcon type={card.icon as "daily" | "lists"} />
+                  <ToolIcon type={card.icon as "daily" | "lists" | "unscramble"} />
                 </div>
                 <h3 className="text-2xl font-black">{card.title}</h3>
                 <p className="mt-2 text-slate-700">{card.description}</p>

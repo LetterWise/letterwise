@@ -29,6 +29,7 @@ const quickLinks = [
   { href: "/5-letter-words", title: "5 Letter Words" },
   { href: "/daily-word-puzzle", title: "Daily Game" },
   { href: "/letter-links", title: "Letter Links" },
+  { href: "/anagram-rush", title: "Anagram Rush" },
   { href: "/daily-word-puzzle/archive", title: "Puzzle Archive" },
 ];
 
@@ -132,7 +133,7 @@ export default function ToolsPage() {
             Quick links to useful word pages and games.
           </p>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
             {quickLinks.map((link) => (
               <a
                 key={link.href}

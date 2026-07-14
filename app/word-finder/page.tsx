@@ -25,13 +25,17 @@ export default function WordFinderPage() {
   const [length, setLength] = useState("");
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    const timer = window.setTimeout(() => {
+      const params = new URLSearchParams(window.location.search);
 
-    setLetters(params.get("letters") || "");
-    setStarts(params.get("starts") || "");
-    setEnds(params.get("ends") || "");
-    setContains(params.get("contains") || "");
-    setLength(params.get("length") || "");
+      setLetters(params.get("letters") || "");
+      setStarts(params.get("starts") || "");
+      setEnds(params.get("ends") || "");
+      setContains(params.get("contains") || "");
+      setLength(params.get("length") || "");
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   const results = useMemo(() => {

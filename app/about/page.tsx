@@ -1,15 +1,15 @@
 const values = [
   {
-    title: "Simple",
-    description: "LetterWise is designed to be quick, clean, and easy to understand.",
+    title: "Original",
+    description: "LetterWise tools, puzzles, explanations, and analysis are created for this site.",
   },
   {
-    title: "Useful",
-    description: "The tools help with word games, spelling, vocabulary, and puzzle solving.",
+    title: "Clear",
+    description: "Methods and limitations are explained so results are easy to understand.",
   },
   {
-    title: "Focused",
-    description: "The site keeps the main action clear: enter letters and find words.",
+    title: "Maintained",
+    description: "Tools and content are reviewed as LetterWise grows and feedback arrives.",
   },
 ];
 
@@ -112,6 +112,44 @@ export default function AboutPage() {
               </p>
             </div>
           ))}
+        </section>
+
+        <section className="mx-auto mt-16 max-w-4xl text-lg leading-8 text-slate-700">
+          <h2 className="text-3xl font-black text-slate-900">
+            How LetterWise content is made
+          </h2>
+
+          <p className="mt-4">
+            LetterWise is independently built and maintained. Its word tools
+            filter a broad English word dataset using the letters and patterns
+            supplied by the user. Guides combine that data with practical
+            explanations, worked examples, and clearly stated methods.
+          </p>
+
+          <p className="mt-4">
+            Word lists can differ between dictionaries and games, so LetterWise
+            does not present its results as an official list for every game.
+            Pages are reviewed for clarity, useful navigation, and accuracy, and
+            corrections are made when a problem is found.
+          </p>
+
+          <div className="mt-8 rounded-3xl border border-violet-100 bg-white p-8 shadow-sm">
+            <h3 className="text-2xl font-black text-slate-900">
+              Corrections and feedback
+            </h3>
+
+            <p className="mt-3 text-slate-700">
+              Found a missing word, an unclear explanation, or a tool result
+              that looks wrong? Feedback helps keep LetterWise useful.
+            </p>
+
+            <a
+              href="/contact"
+              className="mt-6 inline-block rounded-full bg-violet-600 px-7 py-3 font-black text-white hover:bg-violet-700"
+            >
+              Contact LetterWise
+            </a>
+          </div>
         </section>
 
         <section className="mx-auto mt-16 max-w-4xl text-lg leading-8 text-slate-700">

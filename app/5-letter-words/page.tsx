@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { words } from "@/data/words";
 import { getWordsByLength } from "@/lib/wordLists";
 
@@ -42,9 +43,9 @@ export default function FiveLetterWordsPage() {
   return (
     <main className="min-h-screen bg-[#fbfaff] text-slate-900">
       <section className="mx-auto max-w-5xl px-6 py-16">
-        <a href="/" className="text-sm text-slate-600 hover:text-white">
+        <Link href="/" className="text-sm text-slate-600 hover:text-violet-700">
           ← Back to LetterWise
-        </a>
+        </Link>
 
         <div className="mt-10">
           <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-700">
@@ -107,7 +108,17 @@ export default function FiveLetterWordsPage() {
           </div>
         </section>
 
-        <section className="mt-10 grid gap-4 sm:grid-cols-2">
+        <section className="mt-10 grid gap-4 md:grid-cols-3">
+          <a
+            href="/most-common-letters-in-5-letter-words"
+            className="rounded-2xl border border-violet-100 bg-white p-6 hover:bg-violet-50"
+          >
+            <h2 className="text-xl font-semibold">Most Common Letters</h2>
+            <p className="mt-2 text-sm text-slate-600">
+              Explore original LetterWise data on letter frequency and position.
+            </p>
+          </a>
+
           <a
             href="/wordle-solver"
             className="rounded-2xl border border-violet-100 bg-white p-6 hover:bg-violet-50"

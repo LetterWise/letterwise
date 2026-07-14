@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import {
   getPuzzleByDate,
   getTodayDate,
@@ -117,19 +118,23 @@ export default function DailyWordPuzzlePage() {
   const [stats, setStats] = useState<GameStats>(defaultStats);
 
   useEffect(() => {
-    setStats(loadStats());
+    const timer = window.setTimeout(() => {
+      setStats(loadStats());
 
-    const params = new URLSearchParams(window.location.search);
-    const dateFromUrl = params.get("date");
-    const levelFromUrl = params.get("level");
+      const params = new URLSearchParams(window.location.search);
+      const dateFromUrl = params.get("date");
+      const levelFromUrl = params.get("level");
 
-    if (dateFromUrl) {
-      setSelectedDate(dateFromUrl);
-    }
+      if (dateFromUrl) {
+        setSelectedDate(dateFromUrl);
+      }
 
-    if (isPuzzleLevel(levelFromUrl)) {
-      setLevel(levelFromUrl);
-    }
+      if (isPuzzleLevel(levelFromUrl)) {
+        setLevel(levelFromUrl);
+      }
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   const puzzle = useMemo(() => {
@@ -343,9 +348,9 @@ Play: ${window.location.origin}/daily-word-puzzle`;
 
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <a href="/" className="text-sm font-bold text-violet-100 hover:text-white">
+            <Link href="/" className="text-sm font-bold text-violet-100 hover:text-white">
               ← Back to LetterWise
-            </a>
+            </Link>
 
             <div className="flex flex-wrap gap-4">
               <a

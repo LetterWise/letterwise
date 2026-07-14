@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NotFoundPage() {
   return (
     <main className="min-h-screen bg-[#fbfaff] text-slate-900">
@@ -57,12 +59,12 @@ export default function NotFoundPage() {
           </a>
         </div>
 
-        <a
+        <Link
           href="/"
           className="mt-10 inline-block rounded-xl bg-violet-600 px-6 py-3 text-sm font-semibold text-white hover:bg-violet-700"
         >
           Back to homepage
-        </a>
+        </Link>
       </section>
     </main>
   );

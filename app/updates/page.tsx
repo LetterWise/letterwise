@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const metadata = {
   title: "Updates | LetterWise",
   description:
@@ -5,6 +7,16 @@ export const metadata = {
 };
 
 const updates = [
+  {
+    date: "2026-07-14",
+    title: "Content and transparency improvements",
+    items: [
+      "Added original analysis of common letters in five-letter words.",
+      "Documented how LetterWise word tools and guides are created.",
+      "Updated the privacy policy with current analytics and advertising information.",
+      "Improved color consistency and readability across device preferences.",
+    ],
+  },
   {
     date: "2026-07-07",
     title: "Daily Word Puzzle improvements",
@@ -43,9 +55,9 @@ export default function UpdatesPage() {
   return (
     <main className="min-h-screen bg-[#fbfaff] text-slate-900">
       <section className="mx-auto max-w-4xl px-6 py-16">
-        <a href="/" className="text-sm text-slate-600 hover:text-white">
+        <Link href="/" className="text-sm text-slate-600 hover:text-violet-700">
           ← Back to LetterWise
-        </a>
+        </Link>
 
         <div className="mt-10">
           <p className="mb-4 inline-block rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-700">

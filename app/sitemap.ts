@@ -19,6 +19,7 @@ const staticPages = [
   "/wordle-starter-words",
   "/word-lists",
   "/word-guides",
+  "/most-common-letters-in-5-letter-words",
   "/3-letter-words",
   "/4-letter-words",
   "/5-letter-words",

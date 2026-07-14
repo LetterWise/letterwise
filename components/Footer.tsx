@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const footerSections = [
   {
     title: "Word Solvers",
@@ -16,6 +18,7 @@ const footerSections = [
     links: [
       { href: "/word-lists", label: "All Word Lists" },
       { href: "/word-guides", label: "Word Guides" },
+      { href: "/most-common-letters-in-5-letter-words", label: "5 Letter Frequency Guide" },
       { href: "/3-letter-words", label: "3 Letter Words" },
       { href: "/4-letter-words", label: "4 Letter Words" },
       { href: "/5-letter-words", label: "5 Letter Words" },
@@ -53,7 +56,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr]">
           <div>
-            <a href="/" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-violet-600 text-sm font-black text-white shadow-lg shadow-violet-950/20">
                 LW
               </span>
@@ -61,7 +64,7 @@ export default function Footer() {
               <span className="text-2xl font-black tracking-tight">
                 LetterWise
               </span>
-            </a>
+            </Link>
 
             <p className="mt-4 max-w-sm leading-7 text-slate-600">
               A simple word helper for finding words, unscrambling letters,

@@ -31,6 +31,12 @@ const wordListCards = [
 
 const guideCards = [
   {
+    href: "/most-common-letters-in-5-letter-words",
+    title: "Most Common Letters in 5 Letter Words",
+    description: "Original LetterWise analysis of letter frequency and position.",
+    icon: "guide",
+  },
+  {
     href: "/wordle-starter-words",
     title: "Best Wordle Starter Words",
     description: "Useful first guesses for Wordle and five-letter word games.",

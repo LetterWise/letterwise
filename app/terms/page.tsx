@@ -18,7 +18,7 @@ export default function TermsPage() {
 
         <div className="mt-8 space-y-8 text-slate-700">
           <section>
-            <h2 className="text-2xl font-semibold text-white">
+            <h2 className="text-2xl font-semibold text-slate-900">
               Using LetterWise
             </h2>
             <p className="mt-3 leading-7">
@@ -29,7 +29,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white">
+            <h2 className="text-2xl font-semibold text-slate-900">
               Accuracy of results
             </h2>
             <p className="mt-3 leading-7">
@@ -41,7 +41,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white">
+            <h2 className="text-2xl font-semibold text-slate-900">
               Personal responsibility
             </h2>
             <p className="mt-3 leading-7">
@@ -52,7 +52,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white">
+            <h2 className="text-2xl font-semibold text-slate-900">
               Changes to the site
             </h2>
             <p className="mt-3 leading-7">
@@ -63,7 +63,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white">
+            <h2 className="text-2xl font-semibold text-slate-900">
               Contact
             </h2>
             <p className="mt-3 leading-7">

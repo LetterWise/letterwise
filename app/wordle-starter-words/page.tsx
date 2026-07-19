@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Best Wordle Starter Words | LetterWise",
+  title: "Best Wordle Starter Words",
   description:
     "Find useful Wordle starter words with strong vowels, common consonants, and no repeated letters. Try examples and use the LetterWise Wordle Solver.",
 };

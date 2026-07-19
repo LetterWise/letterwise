@@ -1,7 +1,7 @@
 import PuzzleArchiveList from "./PuzzleArchiveList";
 
 export const metadata = {
-  title: "Daily Word Puzzle Archive | LetterWise",
+  title: "Daily Word Puzzle Archive",
   description:
     "Browse past LetterWise Daily word puzzles and replay previous easy, medium, and hard word challenges.",
 };

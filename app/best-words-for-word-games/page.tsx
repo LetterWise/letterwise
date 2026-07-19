@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Best Words for Word Games | LetterWise",
+  title: "Best Words for Word Games",
   description:
     "Find useful words for word games, Wordle, spelling practice, and puzzles. Learn how to choose strong words and use LetterWise tools.",
 };

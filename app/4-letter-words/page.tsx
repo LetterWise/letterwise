@@ -1,9 +1,9 @@
 import WordLengthPage from "@/components/WordLengthPage";
 
 export const metadata = {
-  title: "4 Letter Words | LetterWise",
+  title: "4 Letter Words: 5,469-Word List",
   description:
-    "Browse useful 4 letter words for word games, spelling practice, crossword clues, vocabulary building, and puzzle solving.",
+    "Search and browse 5,469 four-letter words, with list counts, starting-letter patterns, examples, and filters for word games and puzzles.",
 };
 
 export default function FourLetterWordsPage() {

@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "How to Play Daily Word Puzzle | LetterWise",
+  title: "How to Play Daily Word Puzzle",
   description:
     "Learn how to play the LetterWise Daily Word Puzzle, including the rules, color clues, levels, guesses, stats, and archive puzzles.",
 };

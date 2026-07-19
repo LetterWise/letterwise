@@ -1,7 +1,7 @@
 import ToolIcon from "@/components/ToolIcon";
 
 export const metadata = {
-  title: "Word Guides | LetterWise",
+  title: "Word Guides",
   description:
     "Browse LetterWise word guides for Wordle, word games, five-letter words, vowels, starter words, and word finder tips.",
 };

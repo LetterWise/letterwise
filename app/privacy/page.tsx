@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Privacy Policy | LetterWise",
+  title: "Privacy Policy",
   description:
     "Learn how LetterWise uses browser storage, privacy-friendly analytics, hosting services, and future advertising technologies.",
 };

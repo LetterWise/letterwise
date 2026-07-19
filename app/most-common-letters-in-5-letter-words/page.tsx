@@ -1,7 +1,7 @@
 import { words } from "@/data/words";
 
 export const metadata = {
-  title: "Most Common Letters in 5 Letter Words | LetterWise",
+  title: "Most Common Letters in 5 Letter Words",
   description:
     "See which letters appear most often in the LetterWise five-letter-word list, where they appear, and how to use the results in word games.",
 };

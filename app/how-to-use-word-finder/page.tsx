@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "How to Use Word Finder | LetterWise",
+  title: "How to Use Word Finder",
   description:
     "Learn how to use the LetterWise Word Finder to find words from letters, use filters, solve word games, and improve spelling practice.",
 };

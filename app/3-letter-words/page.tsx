@@ -1,9 +1,9 @@
 import WordLengthPage from "@/components/WordLengthPage";
 
 export const metadata = {
-  title: "3 Letter Words | LetterWise",
+  title: "3 Letter Words: 1,300-Word List",
   description:
-    "Browse useful 3 letter words for word games, spelling practice, crossword clues, vocabulary building, and puzzle solving.",
+    "Search and browse 1,300 three-letter words, with list counts, starting-letter patterns, examples, and filters for word games and puzzles.",
 };
 
 export default function ThreeLetterWordsPage() {

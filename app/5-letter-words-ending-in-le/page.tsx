@@ -1,7 +1,7 @@
 import FiveLetterEndingPage from "@/components/FiveLetterEndingPage";
 
 export const metadata = {
-  title: "5 Letter Words Ending In LE | LetterWise",
+  title: "5 Letter Words Ending In LE",
   description:
     "Browse useful 5 letter words ending in LE for Wordle, word games, spelling practice, crossword clues, and vocabulary building.",
 };

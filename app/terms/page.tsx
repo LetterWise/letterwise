@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Terms of Use | LetterWise",
+  title: "Terms of Use",
   description:
     "Read the LetterWise terms of use for word tools, word game help, and daily puzzles.",
 };

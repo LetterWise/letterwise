@@ -1,7 +1,7 @@
 import FiveLetterEndingPage from "@/components/FiveLetterEndingPage";
 
 export const metadata = {
-  title: "5 Letter Words Ending In LY | LetterWise",
+  title: "5 Letter Words Ending In LY",
   description:
     "Browse useful 5 letter words ending in LY for Wordle, word games, spelling practice, crossword clues, and vocabulary building.",
 };

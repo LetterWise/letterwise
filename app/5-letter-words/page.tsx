@@ -34,7 +34,7 @@ const startingLetterPages = [
 ];
 
 export const metadata = {
-  title: "5 Letter Words | LetterWise",
+  title: "5 Letter Words",
   description:
     "Browse useful 5 letter words for Wordle, word games, spelling practice, and vocabulary building.",
 };

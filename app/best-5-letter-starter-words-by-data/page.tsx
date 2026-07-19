@@ -1,7 +1,7 @@
 import { words } from "@/data/words";
 
 export const metadata = {
-  title: "Best 5 Letter Starter Words by Data | LetterWise",
+  title: "Best 5 Letter Starter Words by Data",
   description:
     "See how 42 familiar five-letter starter words rank by letter coverage across 12,578 LetterWise entries, with methodology and practical takeaways.",
 };

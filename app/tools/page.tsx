@@ -1,5 +1,14 @@
 import ToolIcon from "@/components/ToolIcon";
 
+export const metadata = {
+  title: "Free Word Tools and Games",
+  description:
+    "Explore LetterWise word finders, solvers, word lists, daily puzzles, and free word games.",
+  alternates: {
+    canonical: "/tools",
+  },
+};
+
 const tools = [
   {
     href: "/word-finder",

@@ -1,5 +1,14 @@
 import ToolIcon from "@/components/ToolIcon";
 
+export const metadata = {
+  title: "LetterWise | Word Finder, Wordle Solver & Daily Word Puzzle",
+  description:
+    "Find words, unscramble letters, solve Wordle-style clues, browse useful word lists, and play free daily word games.",
+  alternates: {
+    canonical: "/",
+  },
+};
+
 const solverCards = [
   {
     href: "/word-finder",

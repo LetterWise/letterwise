@@ -1,3 +1,12 @@
+export const metadata = {
+  title: "Word Lists by Length, Letters, and Patterns",
+  description:
+    "Browse useful word lists by word length, starting letters, endings, contained letters, and common word-game patterns.",
+  alternates: {
+    canonical: "/word-lists",
+  },
+};
+
 const lengthLinks = [
   { href: "/3-letter-words", title: "3 Letter Words" },
   { href: "/4-letter-words", title: "4 Letter Words" },

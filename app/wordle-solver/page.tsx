@@ -257,6 +257,7 @@ export default function WordleSolverPage() {
                       <a
                         key={word}
                         href={`/word-finder?letters=${word}`}
+                        rel="nofollow"
                         className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
                       >
                         {word}
@@ -280,6 +281,7 @@ export default function WordleSolverPage() {
                         <a
                           key={word}
                           href={`/word-finder?letters=${word}`}
+                          rel="nofollow"
                           className="rounded-2xl border border-violet-100 bg-white px-4 py-3 text-center text-lg font-black uppercase tracking-wide shadow-sm hover:border-violet-300 hover:bg-violet-50"
                         >
                           {word}

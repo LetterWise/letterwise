@@ -40,6 +40,7 @@ export default function PuzzleArchiveList() {
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 <a
                   href={`/daily-word-puzzle?date=${puzzle.date}&level=easy`}
+                  rel="nofollow"
                   className="rounded-2xl border border-violet-100 bg-violet-50 p-4 hover:bg-violet-100"
                 >
                   <p className="text-sm text-slate-600">Easy</p>
@@ -51,6 +52,7 @@ export default function PuzzleArchiveList() {
 
                 <a
                   href={`/daily-word-puzzle?date=${puzzle.date}&level=medium`}
+                  rel="nofollow"
                   className="rounded-2xl border border-violet-100 bg-violet-50 p-4 hover:bg-violet-100"
                 >
                   <p className="text-sm text-slate-600">Medium</p>
@@ -62,6 +64,7 @@ export default function PuzzleArchiveList() {
 
                 <a
                   href={`/daily-word-puzzle?date=${puzzle.date}&level=hard`}
+                  rel="nofollow"
                   className="rounded-2xl border border-violet-100 bg-violet-50 p-4 hover:bg-violet-100"
                 >
                   <p className="text-sm text-slate-600">Hard</p>

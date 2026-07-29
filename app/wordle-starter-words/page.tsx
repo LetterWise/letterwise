@@ -2,6 +2,9 @@ export const metadata = {
   title: "Best Wordle Starter Words",
   description:
     "Find useful Wordle starter words with strong vowels, common consonants, and no repeated letters. Try examples and use the LetterWise Wordle Solver.",
+  alternates: {
+    canonical: "/wordle-starter-words",
+  },
 };
 
 const starterWords = [
@@ -161,6 +164,7 @@ export default function WordleStarterWordsPage() {
               <a
                 key={item.word}
                 href={`/word-finder?letters=${item.word.toLowerCase()}`}
+                rel="nofollow"
                 className="rounded-3xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">

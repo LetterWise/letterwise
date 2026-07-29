@@ -100,6 +100,7 @@ export default function FiveLetterWordsPage() {
               <a
                 key={word}
                 href={`/word-finder?letters=${word}`}
+                rel="nofollow"
                 className="rounded-xl border border-violet-100 bg-violet-50 px-4 py-3 text-center text-lg font-semibold uppercase tracking-wide hover:bg-violet-50"
               >
                 {word}

@@ -145,6 +145,7 @@ export default function HowToUseWordFinderPage() {
               <a
                 key={example.title}
                 href={`/word-finder?letters=${example.letters}`}
+                rel="nofollow"
                 className="rounded-3xl border border-violet-100 bg-white p-6 shadow-sm hover:border-violet-300 hover:bg-violet-50"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">

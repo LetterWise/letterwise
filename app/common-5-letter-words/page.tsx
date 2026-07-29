@@ -180,6 +180,7 @@ export default function CommonFiveLetterWordsPage() {
               <a
                 key={word}
                 href={`/word-finder?letters=${word}`}
+                rel="nofollow"
                 className="rounded-2xl border border-violet-100 bg-violet-50 px-4 py-3 text-center text-lg font-black uppercase tracking-wide hover:border-violet-300 hover:bg-white"
               >
                 {word}
@@ -207,6 +208,7 @@ export default function CommonFiveLetterWordsPage() {
                     <a
                       key={word}
                       href={`/word-finder?letters=${word}`}
+                      rel="nofollow"
                       className="rounded-xl bg-violet-50 px-3 py-2 text-center font-black uppercase hover:bg-white"
                     >
                       {word}

@@ -2,6 +2,9 @@ export const metadata = {
   title: "Best Words for Word Games",
   description:
     "Find useful words for word games, Wordle, spelling practice, and puzzles. Learn how to choose strong words and use LetterWise tools.",
+  alternates: {
+    canonical: "/best-words-for-word-games",
+  },
 };
 
 const wordGroups = [
@@ -146,6 +149,7 @@ export default function BestWordsForWordGamesPage() {
                     <a
                       key={word}
                       href={`/word-finder?letters=${word}`}
+                      rel="nofollow"
                       className="rounded-xl bg-violet-50 px-3 py-2 text-center font-black uppercase hover:bg-white"
                     >
                       {word}

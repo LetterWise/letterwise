@@ -1,3 +1,12 @@
+export const metadata = {
+  title: "About LetterWise",
+  description:
+    "Learn how LetterWise creates and maintains its word tools, original puzzles, word lists, and data-backed guides.",
+  alternates: {
+    canonical: "/about",
+  },
+};
+
 const values = [
   {
     title: "Original",

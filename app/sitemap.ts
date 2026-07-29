@@ -59,7 +59,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return pages.map((page) => ({
     url: `${baseUrl}${page}`,
-    lastModified: new Date(),
     changeFrequency:
       page === "" ||
       page === "/daily-word-puzzle" ||

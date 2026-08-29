@@ -1,4 +1,7 @@
 export const metadata = {
+  alternates: {
+    canonical: "/contact",
+  },
   title: "Contact",
   description:
     "Contact LetterWise about word tools, word lists, daily puzzles, feedback, or suggestions.",

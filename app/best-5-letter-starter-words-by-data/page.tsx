@@ -1,6 +1,9 @@
 import { words } from "@/data/words";
 
 export const metadata = {
+  alternates: {
+    canonical: "/best-5-letter-starter-words-by-data",
+  },
   title: "Best 5 Letter Starter Words by Data",
   description:
     "See how 42 familiar five-letter starter words rank by letter coverage across 12,578 LetterWise entries, with methodology and practical takeaways.",

@@ -1,6 +1,9 @@
 import { words } from "@/data/words";
 
 export const metadata = {
+  alternates: {
+    canonical: "/most-common-letters-in-5-letter-words",
+  },
   title: "Most Common Letters in 5 Letter Words",
   description:
     "See which letters appear most often in the LetterWise five-letter-word list, where they appear, and how to use the results in word games.",

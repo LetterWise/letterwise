@@ -1,6 +1,9 @@
 import ToolIcon from "@/components/ToolIcon";
 
 export const metadata = {
+  alternates: {
+    canonical: "/word-guides",
+  },
   title: "Word Guides",
   description:
     "Browse LetterWise word guides for Wordle, word games, five-letter words, vowels, starter words, and word finder tips.",

@@ -34,6 +34,9 @@ const startingLetterPages = [
 ];
 
 export const metadata = {
+  alternates: {
+    canonical: "/5-letter-words",
+  },
   title: "5 Letter Words",
   description:
     "Browse useful 5 letter words for Wordle, word games, spelling practice, and vocabulary building.",

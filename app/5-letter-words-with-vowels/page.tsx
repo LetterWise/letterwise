@@ -1,4 +1,7 @@
 export const metadata = {
+  alternates: {
+    canonical: "/5-letter-words-with-vowels",
+  },
   title: "5 Letter Words With Vowels",
   description:
     "Find useful 5 letter words with vowels for Wordle, spelling practice, and word games. Browse vowel-heavy words and use LetterWise tools.",

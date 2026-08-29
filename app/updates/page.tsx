@@ -1,6 +1,9 @@
 import Link from "next/link";
 
 export const metadata = {
+  alternates: {
+    canonical: "/updates",
+  },
   title: "Updates",
   description:
     "See recent LetterWise updates, including new word tools, word lists, daily puzzle features, and site improvements.",

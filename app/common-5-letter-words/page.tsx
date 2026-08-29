@@ -1,4 +1,7 @@
 export const metadata = {
+  alternates: {
+    canonical: "/common-5-letter-words",
+  },
   title: "Common 5 Letter Words",
   description:
     "Browse common 5 letter words for Wordle, spelling practice, word games, and vocabulary building. Use LetterWise tools to find and solve words.",

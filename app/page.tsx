@@ -1,9 +1,9 @@
 import ToolIcon from "@/components/ToolIcon";
 
 export const metadata = {
-  title: "LetterWise | Word Finder, Wordle Solver & Daily Word Puzzle",
+  title: "Word Solver & Word Finder | LetterWise",
   description:
-    "Find words, unscramble letters, solve Wordle-style clues, browse useful word lists, and play free daily word games.",
+    "Use LetterWise as a free word solver and word finder. Find words from letters, unscramble words, solve Wordle clues, and browse useful word lists.",
   alternates: {
     canonical: "/",
   },
@@ -154,11 +154,11 @@ export default function HomePage() {
       <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-16 pt-14 text-white">
         <div className="mx-auto max-w-5xl text-center">
           <h1 className="text-5xl font-black tracking-tight sm:text-6xl">
-            Word Finder
+            Word Solver &amp; Word Finder
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-violet-50">
-            Find words, unscramble letters, solve Wordle clues, and play a daily word puzzle.
+            Find words from letters, unscramble words, solve Wordle clues, and play a daily word puzzle.
           </p>
 
           <form

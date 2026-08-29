@@ -1,6 +1,9 @@
 import { words } from "@/data/words";
 
 export const metadata = {
+  alternates: {
+    canonical: "/best-two-word-starts-by-data",
+  },
   title: "Best Two Word Starts by Data",
   description:
     "Compare familiar two-word openings by how many distinct letters they reveal across 12,578 LetterWise five-letter entries, with methods and limitations.",

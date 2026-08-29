@@ -1,6 +1,9 @@
 import FiveLetterEndingPage from "@/components/FiveLetterEndingPage";
 
 export const metadata = {
+  alternates: {
+    canonical: "/5-letter-words-ending-in-er",
+  },
   title: "5 Letter Words Ending In ER",
   description:
     "Browse useful 5 letter words ending in ER for Wordle, word games, spelling practice, crossword clues, and vocabulary building.",

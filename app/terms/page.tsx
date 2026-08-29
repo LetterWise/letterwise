@@ -1,4 +1,7 @@
 export const metadata = {
+  alternates: {
+    canonical: "/terms",
+  },
   title: "Terms of Use",
   description:
     "Read the LetterWise terms of use for word tools, word game help, and daily puzzles.",

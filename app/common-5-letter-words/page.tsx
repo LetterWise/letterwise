@@ -1,3 +1,5 @@
+import { commonFiveLetterWords } from "@/data/commonWords";
+
 export const metadata = {
   alternates: {
     canonical: "/common-5-letter-words",
@@ -6,64 +8,6 @@ export const metadata = {
   description:
     "Browse common 5 letter words for Wordle, spelling practice, word games, and vocabulary building. Use LetterWise tools to find and solve words.",
 };
-
-const commonWords = [
-  "about",
-  "after",
-  "again",
-  "below",
-  "black",
-  "bring",
-  "build",
-  "carry",
-  "clean",
-  "close",
-  "could",
-  "dance",
-  "drink",
-  "early",
-  "earth",
-  "every",
-  "field",
-  "first",
-  "found",
-  "great",
-  "green",
-  "happy",
-  "heart",
-  "house",
-  "large",
-  "learn",
-  "light",
-  "money",
-  "never",
-  "night",
-  "place",
-  "plant",
-  "point",
-  "quick",
-  "right",
-  "round",
-  "small",
-  "sound",
-  "spell",
-  "stand",
-  "start",
-  "still",
-  "stone",
-  "story",
-  "table",
-  "teach",
-  "thing",
-  "think",
-  "today",
-  "under",
-  "water",
-  "where",
-  "which",
-  "world",
-  "write",
-];
 
 const categories = [
   {
@@ -174,12 +118,12 @@ export default function CommonFiveLetterWordsPage() {
             </div>
 
             <span className="rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">
-              {commonWords.length} words
+              {commonFiveLetterWords.length} words
             </span>
           </div>
 
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {commonWords.map((word) => (
+            {commonFiveLetterWords.map((word) => (
               <a
                 key={word}
                 href={`/word-finder?letters=${word}`}

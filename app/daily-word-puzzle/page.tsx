@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import DailyWordPuzzleClient from "./DailyWordPuzzleClient";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Daily Word Puzzle",
   description:

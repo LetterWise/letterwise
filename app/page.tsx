@@ -1,9 +1,9 @@
 import ToolIcon from "@/components/ToolIcon";
 
 export const metadata = {
-  title: "Word Solver & Word Finder | LetterWise",
+  title: "Free Word Solver & Word Finder | LetterWise",
   description:
-    "Use LetterWise as a free word solver and word finder. Find words from letters, unscramble words, solve Wordle clues, and browse useful word lists.",
+    "Find words from letters with LetterWise's free word solver, then explore Wordle help, searchable word lists, and a new daily word puzzle.",
   alternates: {
     canonical: "/",
   },
@@ -31,10 +31,12 @@ const solverCards = [
 ];
 
 const wordListCards = [
+  { href: "/4-letter-words", title: "4 Letter Words" },
   { href: "/5-letter-words", title: "5 Letter Words" },
-  { href: "/5-letter-words-starting-with-a", title: "5 Letter Words Starting With A" },
-  { href: "/5-letter-words-containing-e", title: "5 Letter Words Containing E" },
-  { href: "/5-letter-words-ending-in-ed", title: "5 Letter Words Ending In ED" },
+  { href: "/7-letter-words", title: "7 Letter Words" },
+  { href: "/5-letter-words-starting-with-s", title: "5 Letter Words Starting With S" },
+  { href: "/5-letter-words-starting-with-e", title: "5 Letter Words Starting With E" },
+  { href: "/wordle-starter-words", title: "Best Wordle Starter Words" },
 ];
 
 
@@ -153,6 +155,10 @@ export default function HomePage() {
     <main className="min-h-screen overflow-x-hidden bg-[#fbfaff] text-slate-900">
       <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-16 pt-14 text-white">
         <div className="mx-auto max-w-5xl text-center">
+          <p className="mb-4 inline-block rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-violet-50">
+            Free word game tools
+          </p>
+
           <h1 className="text-5xl font-black tracking-tight sm:text-6xl">
             Word Solver &amp; Word Finder
           </h1>
@@ -204,9 +210,26 @@ export default function HomePage() {
               type="submit"
               className="mt-5 rounded-full bg-amber-300 px-14 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
             >
-              Search
+              Find Words
             </button>
           </form>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-sm font-bold">
+            <span className="text-violet-100">Popular:</span>
+            {[
+              ["/4-letter-words", "4 Letter Words"],
+              ["/7-letter-words", "7 Letter Words"],
+              ["/wordle-starter-words", "Wordle Starters"],
+            ].map(([href, label]) => (
+              <a
+                key={href}
+                href={href}
+                className="rounded-full bg-white/15 px-4 py-2 text-white hover:bg-white/25"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -315,9 +338,9 @@ export default function HomePage() {
         <section className="mt-14">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <h2 className="text-3xl font-black">5 Letter Words</h2>
+              <h2 className="text-3xl font-black">Popular Word Lists</h2>
               <p className="mt-2 text-slate-600">
-                Useful word lists built for Wordle and puzzle solving.
+                Search the word lists people visit most for puzzles and games.
               </p>
             </div>
             <a href="/word-lists" className="hidden text-3xl text-slate-600 hover:text-violet-600 sm:block">

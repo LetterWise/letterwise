@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Best Wordle Starter Words",
+  title: "Best Wordle Starter Words: 10 Strong First Guesses",
   description:
-    "Find useful Wordle starter words with strong vowels, common consonants, and no repeated letters. Try examples and use the LetterWise Wordle Solver.",
+    "Compare 10 useful Wordle starter words, learn what makes a strong first guess, and use your clues in the free LetterWise Wordle Solver.",
   alternates: {
     canonical: "/wordle-starter-words",
   },
@@ -86,28 +86,27 @@ export default function WordleStarterWordsPage() {
             strong vowels, and helpful consonants.
           </p>
 
-          <div className="mx-auto mt-10 max-w-3xl rounded-3xl bg-white p-5 shadow-xl shadow-violet-950/20">
-            <form action="/wordle-solver">
-              <div className="rounded-2xl border-2 border-slate-900 bg-white px-5 py-4 text-left">
-                <label htmlFor="pattern" className="sr-only">
-                  Enter Wordle pattern
-                </label>
+          <div className="mx-auto mt-10 max-w-3xl rounded-3xl bg-white p-6 text-slate-900 shadow-xl shadow-violet-950/20">
+            <p className="text-lg font-bold">
+              Already made your first guess? Turn the colored clues into a
+              shorter answer list.
+            </p>
 
-                <input
-                  id="pattern"
-                  name="pattern"
-                  placeholder="Try the Wordle Solver after your first guess"
-                  className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-400"
-                />
-              </div>
-
+            <div className="mt-5 flex flex-wrap justify-center gap-3">
               <a
                 href="/wordle-solver"
-                className="mt-5 inline-block rounded-full bg-amber-300 px-12 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
+                className="inline-block rounded-full bg-amber-300 px-8 py-4 text-base font-black text-slate-950 hover:bg-amber-200 sm:text-lg"
               >
                 Open Wordle Solver
               </a>
-            </form>
+
+              <a
+                href="/best-5-letter-starter-words-by-data"
+                className="inline-block rounded-full border border-violet-200 px-8 py-4 text-base font-black text-violet-700 hover:bg-violet-50 sm:text-lg"
+              >
+                See the Data Ranking
+              </a>
+            </div>
           </div>
         </div>
       </section>

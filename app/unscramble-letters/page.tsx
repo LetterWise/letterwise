@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { words } from "@/data/words";
+import { publicWords as words } from "@/data/publicWords";
 import { unscrambleWords, cleanLetters } from "@/lib/unscramble";
 
 function groupWordsByLength(wordList: string[]) {
@@ -116,12 +116,9 @@ export default function UnscrambleLettersPage() {
             </div>
 
             <div className="mt-5 flex flex-wrap justify-center gap-3">
-              <button
-                type="button"
-                className="rounded-full bg-amber-300 px-10 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
-              >
-                Unscramble
-              </button>
+              <p className="rounded-full bg-amber-100 px-6 py-4 text-sm font-black text-slate-800">
+                Results update as you type
+              </p>
 
               {(hasLetters || hasFilters) && (
                 <button

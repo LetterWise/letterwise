@@ -1,4 +1,4 @@
-import { words } from "@/data/words";
+import { publicWords as words } from "@/data/publicWords";
 
 export const metadata = {
   title: "Most Common Letters in 5 Letter Words",

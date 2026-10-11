@@ -2,6 +2,9 @@ export const metadata = {
   title: "Contact",
   description:
     "Contact LetterWise about word tools, word lists, daily puzzles, feedback, or suggestions.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {
@@ -33,7 +36,7 @@ export default function ContactPage() {
             href="mailto:josiassmith@hotmail.com?subject=LetterWise%20Feedback"
             className="mt-6 inline-block rounded-xl bg-violet-600 px-6 py-3 text-sm font-semibold text-white hover:bg-violet-700"
           >
-            Email LetterWise
+            Email josiassmith@hotmail.com
           </a>
         </div>
 

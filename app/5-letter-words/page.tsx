@@ -1,8 +1,5 @@
 import Link from "next/link";
-import { words } from "@/data/words";
-import { getWordsByLength } from "@/lib/wordLists";
-
-const fiveLetterWords = getWordsByLength(words, 5).slice(0, 250);
+import { commonFiveLetterWords } from "@/data/commonFiveLetterWords";
 
 const startingLetterPages = [
   { href: "/5-letter-words-starting-with-a", label: "5 Letter Words Starting With A" },
@@ -96,7 +93,7 @@ export default function FiveLetterWordsPage() {
           </p>
 
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {fiveLetterWords.map((word) => (
+            {commonFiveLetterWords.map((word) => (
               <a
                 key={word}
                 href={`/word-finder?letters=${word}`}

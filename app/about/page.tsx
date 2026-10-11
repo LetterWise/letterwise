@@ -144,6 +144,37 @@ export default function AboutPage() {
 
           <div className="mt-8 rounded-3xl border border-violet-100 bg-white p-8 shadow-sm">
             <h3 className="text-2xl font-black text-slate-900">
+              Word data and methodology
+            </h3>
+
+            <p className="mt-3 text-slate-700">
+              The broad English dataset used by the search tools is derived
+              from the open-source{" "}
+              <a
+                href="https://github.com/sindresorhus/word-list"
+                rel="noreferrer"
+                className="font-bold text-violet-700 underline decoration-violet-300 underline-offset-4 hover:text-violet-900"
+              >
+                word-list project
+              </a>
+              , maintained by Sindre Sorhus and distributed under the MIT
+              License. It is intentionally broader than the answer list for any
+              single word game and can include uncommon, regional, plural, or
+              inflected entries.
+            </p>
+
+            <p className="mt-3 text-slate-700">
+              LetterWise filters and analyzes that dataset to create its search
+              results, counts, frequency tables, and position statistics.
+              Explanatory guides, rankings, game interfaces, and daily puzzle
+              selections are created and maintained for LetterWise. Each
+              data-backed guide explains the relevant calculation and its
+              limitations on the page.
+            </p>
+          </div>
+
+          <div className="mt-8 rounded-3xl border border-violet-100 bg-white p-8 shadow-sm">
+            <h3 className="text-2xl font-black text-slate-900">
               Corrections and feedback
             </h3>
 

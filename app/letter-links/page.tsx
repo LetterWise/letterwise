@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import LetterLinksGame from "./LetterLinksGame";
-import { words } from "@/data/words";
+import { publicWords as words } from "@/data/publicWords";
 
 export const metadata: Metadata = {
   title: "Letter Links Daily Word Ladder",

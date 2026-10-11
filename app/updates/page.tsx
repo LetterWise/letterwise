@@ -4,9 +4,22 @@ export const metadata = {
   title: "Updates",
   description:
     "See recent LetterWise updates, including new word tools, word lists, daily puzzle features, and site improvements.",
+  alternates: {
+    canonical: "/updates",
+  },
 };
 
 const updates = [
+  {
+    date: "2026-10-11",
+    title: "Advertising readiness and transparency",
+    items: [
+      "Expanded privacy information for advertising cookies, consent controls, and opt-out choices.",
+      "Added publisher verification support that remains disabled until an approved publisher ID is configured.",
+      "Clarified editorial independence and external-service disclosures.",
+      "Documented the word-list source and editorial review process.",
+    ],
+  },
   {
     date: "2026-07-14",
     title: "Content and transparency improvements",

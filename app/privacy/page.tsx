@@ -1,10 +1,13 @@
 export const metadata = {
   title: "Privacy Policy",
   description:
-    "Learn how LetterWise uses browser storage, privacy-friendly analytics, hosting services, and future advertising technologies.",
+    "Learn how LetterWise uses browser storage, analytics, hosting services, advertising technologies, and privacy controls.",
+  alternates: {
+    canonical: "/privacy",
+  },
 };
 
-const lastUpdated = "July 14, 2026";
+const lastUpdated = "October 11, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -25,8 +28,8 @@ export default function PrivacyPage() {
         <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
           LetterWise is designed to work without an account. This policy
           explains what information is stored in your browser, which services
-          help operate the site, and how advertising will be handled if it is
-          introduced.
+          help operate the site, and how advertising technologies and privacy
+          choices are handled.
         </p>
 
         <div className="mt-10 space-y-10 text-slate-700">
@@ -48,11 +51,11 @@ export default function PrivacyPage() {
               Browser storage
             </h2>
             <p className="mt-3 leading-7">
-              The Daily Word Puzzle saves game progress and statistics in your
-              browser using local storage. This may include games played, win
-              rate, streaks, completed puzzle IDs, and the current puzzle state.
-              The information stays on your device and is used to preserve your
-              puzzle experience between visits.
+              LetterWise games save progress and statistics in your browser
+              using local storage. Depending on the game, this may include
+              guesses, games played, scores, streaks, completed puzzle IDs, and
+              the current puzzle state. The information stays on your device and
+              is used to preserve your puzzle experience between visits.
             </p>
           </section>
 
@@ -96,22 +99,59 @@ export default function PrivacyPage() {
               Advertising and cookies
             </h2>
             <p className="mt-3 leading-7">
-              LetterWise does not currently display third-party advertising. If
-              Google AdSense is enabled, Google and its advertising partners may
-              use cookies, web beacons, IP addresses, or similar technologies to
-              deliver, measure, and personalize ads. Required consent controls
-              will be enabled before personalized advertising is served in
-              regions where consent is required.
+              LetterWise may use Google AdSense to display advertising. When
+              advertising is active, third-party vendors, including Google, use
+              cookies to serve ads based on a visitor&apos;s prior visits to
+              LetterWise or other websites. Google&apos;s use of advertising
+              cookies enables Google and its partners to serve, limit,
+              personalize, and measure ads.
             </p>
             <p className="mt-3 leading-7">
-              You can read more about{" "}
+              Advertising providers may also process information such as IP
+              address, browser and device information, ad interactions, and
+              approximate location. Learn more about{" "}
               <a
                 href="https://policies.google.com/technologies/partner-sites"
+                rel="noreferrer"
                 className="font-bold text-violet-700 underline decoration-violet-300 underline-offset-4 hover:text-violet-900"
               >
                 how Google uses information from partner sites
               </a>
-              . This policy will be updated when advertising is activated.
+              .
+            </p>
+            <p className="mt-3 leading-7">
+              Visitors can opt out of personalized advertising through{" "}
+              <a
+                href="https://adssettings.google.com/"
+                rel="noreferrer"
+                className="font-bold text-violet-700 underline decoration-violet-300 underline-offset-4 hover:text-violet-900"
+              >
+                Google Ads Settings
+              </a>
+              . Where other third-party advertising vendors participate, you
+              can learn about additional opt-out choices at{" "}
+              <a
+                href="https://www.aboutads.info/choices/"
+                rel="noreferrer"
+                className="font-bold text-violet-700 underline decoration-violet-300 underline-offset-4 hover:text-violet-900"
+              >
+                YourAdChoices
+              </a>
+              . Browser settings can also be used to block or remove cookies,
+              although doing so may affect some site features.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-black text-slate-900">
+              Consent controls
+            </h2>
+            <p className="mt-3 leading-7">
+              Before advertising that requires consent is activated, LetterWise
+              will enable a consent message in regions where it is required by
+              law. The message will let eligible visitors accept, reject, or
+              manage available advertising choices and revisit those choices
+              through the privacy controls made available on the site.
             </p>
           </section>
 
@@ -121,9 +161,23 @@ export default function PrivacyPage() {
             </h2>
             <p className="mt-3 leading-7">
               You can remove saved puzzle data by clearing your browser&apos;s
-              site data for LetterWise. If advertising is introduced, available
-              privacy and consent controls will be presented where required.
-              You can also control cookies through your browser settings.
+              site data for LetterWise. You can also use browser controls to
+              limit cookies and the advertising choices described above. These
+              choices do not remove advertisements entirely, but they can limit
+              the use of information for ad personalization.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-black text-slate-900">
+              Children&apos;s privacy
+            </h2>
+            <p className="mt-3 leading-7">
+              LetterWise is a general-audience word and puzzle site and does not
+              knowingly ask children to submit personal information or create
+              accounts. A parent or guardian who believes a child has sent
+              personal information by email can contact LetterWise to request
+              its deletion.
             </p>
           </section>
 

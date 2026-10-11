@@ -7,7 +7,7 @@ export type DailyPuzzle = {
   hard: string;
 };
 
-export const PUZZLE_ARCHIVE_START_DATE = "2026-06-13";
+export const PUZZLE_ARCHIVE_START_DATE = "2026-07-07";
 
 export const dailyPuzzles: DailyPuzzle[] = [
   { date: "2026-07-07", easy: "chair", medium: "flame", hard: "vivid" },

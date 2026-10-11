@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { words } from "@/data/words";
+import { publicWords as words } from "@/data/publicWords";
 import { solveWordle } from "@/lib/wordle";
 
 function cleanPatternInput(value: string) {
@@ -61,7 +61,7 @@ export default function WordleSolverPage() {
 
           <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-violet-50">
             Use your green, yellow, and gray letters to narrow down possible
-            five-letter Wordle answers.
+            five-letter words that match your clues.
           </p>
 
           <div className="mx-auto mt-10 max-w-3xl rounded-3xl bg-white p-5 shadow-xl shadow-violet-950/20">
@@ -99,7 +99,8 @@ export default function WordleSolverPage() {
                   />
 
                   <p className="mt-2 text-xs font-semibold text-slate-500">
-                    Add letters that are in the answer.
+                    Add letters that are in the word. This field does not track
+                    the positions where yellow letters were previously tried.
                   </p>
                 </div>
 
@@ -192,12 +193,12 @@ export default function WordleSolverPage() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="text-3xl font-black">
-                {hasClues ? "Possible Wordle answers" : "Add your Wordle clues"}
+                {hasClues ? "Matching five-letter words" : "Add your Wordle clues"}
               </h2>
 
               <p className="mt-2 text-slate-600">
                 {hasClues
-                  ? "These words match the clues you entered."
+                  ? "These alphabetically sorted words match the clues you entered."
                   : "Enter green, yellow, or gray letters above to start narrowing the list."}
               </p>
             </div>
@@ -245,7 +246,7 @@ export default function WordleSolverPage() {
               <div className="mt-6 grid gap-8">
                 <section className="rounded-3xl border border-violet-100 bg-white p-5 shadow-sm sm:p-6">
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <h3 className="text-2xl font-black">Best Matches</h3>
+                    <h3 className="text-2xl font-black">Alphabetical Matches</h3>
 
                     <span className="rounded-full bg-violet-100 px-4 py-2 text-sm font-bold text-violet-700">
                       Showing {firstResults.length}
@@ -327,6 +328,15 @@ export default function WordleSolverPage() {
               </div>
             </div>
           )}
+
+          {hasClues && (
+            <p className="mt-6 rounded-2xl bg-violet-50 p-4 text-sm leading-6 text-slate-600">
+              Results come from the broad LetterWise English word list, not an
+              official answer list for any particular game. Rare, regional,
+              plural, and inflected words may appear. Yellow letters are checked
+              for presence only; use the green pattern to lock known positions.
+            </p>
+          )}
         </section>
 
         <section className="mx-auto mt-16 max-w-4xl text-lg leading-8 text-slate-700">
@@ -337,7 +347,7 @@ export default function WordleSolverPage() {
           <p className="mt-4">
             Type your green letters in the correct places and use dots for
             unknown positions. Add yellow letters that are in the word, then add
-            gray letters that should be removed from the answer list.
+            gray letters that should be removed from the matching word list.
           </p>
 
           <h2 className="mt-10 text-3xl font-black text-slate-900">

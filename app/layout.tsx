@@ -4,6 +4,8 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GoogleAdSense from "@/components/GoogleAdSense";
+import { adsensePublisherId } from "@/lib/adsense";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.tryletterwise.com"),
@@ -46,6 +48,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  ...(adsensePublisherId
+    ? {
+        other: {
+          "google-adsense-account": adsensePublisherId,
+        },
+      }
+    : {}),
 };
 
 export default function RootLayout({
@@ -68,6 +77,7 @@ export default function RootLayout({
         </div>
         <Analytics />
         <Footer />
+        <GoogleAdSense />
       </body>
     </html>
   );

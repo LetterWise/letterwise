@@ -2,7 +2,12 @@ export const metadata = {
   title: "Terms of Use",
   description:
     "Read the LetterWise terms of use for word tools, word game help, and daily puzzles.",
+  alternates: {
+    canonical: "/terms",
+  },
 };
+
+const lastUpdated = "October 11, 2026";
 
 export default function TermsPage() {
   return (
@@ -15,6 +20,10 @@ export default function TermsPage() {
         <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
           Terms of Use
         </h1>
+
+        <p className="mt-4 text-sm font-semibold text-slate-500">
+          Last updated: {lastUpdated}
+        </p>
 
         <div className="mt-8 space-y-8 text-slate-700">
           <section>
@@ -59,6 +68,30 @@ export default function TermsPage() {
               LetterWise may be updated, changed, expanded, or removed at any
               time. Features, word lists, pages, and daily puzzles may change as
               the site improves.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-slate-900">
+              Advertising and external services
+            </h2>
+            <p className="mt-3 leading-7">
+              LetterWise may display clearly identified advertising or link to
+              external websites. External services operate under their own terms
+              and privacy practices. Advertising relationships do not change
+              the word lists, puzzle answers, or editorial explanations shown
+              on LetterWise.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-slate-900">
+              Independent service
+            </h2>
+            <p className="mt-3 leading-7">
+              LetterWise is an independent website. References to third-party
+              games or services are descriptive and do not imply sponsorship,
+              affiliation, or endorsement by their owners.
             </p>
           </section>
 

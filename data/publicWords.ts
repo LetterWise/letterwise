@@ -1,0 +1,57 @@
+import { words } from "@/data/words";
+
+// The upstream dataset is intentionally broad. These entries are excluded from
+// public lists, suggestions, and games so general-audience pages do not present
+// uncontextualized profanity or slurs as ordinary recommendations.
+const excludedPublicWords = new Set([
+  "arse",
+  "arses",
+  "asshole",
+  "assholes",
+  "bastard",
+  "bastards",
+  "bitch",
+  "bitches",
+  "bullshit",
+  "cock",
+  "cocks",
+  "cunt",
+  "cunts",
+  "dick",
+  "dicks",
+  "fag",
+  "faggy",
+  "faggot",
+  "faggots",
+  "fags",
+  "fuck",
+  "fucked",
+  "fucker",
+  "fuckers",
+  "fucking",
+  "fucks",
+  "gook",
+  "gooks",
+  "nigger",
+  "niggers",
+  "piss",
+  "pissed",
+  "pisses",
+  "porn",
+  "prick",
+  "pricks",
+  "retard",
+  "retards",
+  "shit",
+  "shits",
+  "slut",
+  "sluts",
+  "spic",
+  "spics",
+  "whore",
+  "whores",
+]);
+
+export const publicWords = words.filter(
+  (word) => !excludedPublicWords.has(word),
+);

@@ -9,7 +9,7 @@ import {
   PuzzleLevel,
 } from "@/data/dailyPuzzles";
 import { cleanGuess, scoreGuess, LetterStatus } from "@/lib/wordGame";
-import { words } from "@/data/words";
+import { publicWords as words } from "@/data/publicWords";
 
 const levelLabels: Record<PuzzleLevel, string> = {
   easy: "Easy",

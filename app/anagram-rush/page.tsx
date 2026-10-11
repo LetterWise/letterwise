@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import AnagramRushGame from "./AnagramRushGame";
 import { anagramRacks, canBuildWord } from "@/data/anagramRush";
-import { words } from "@/data/words";
+import { publicWords as words } from "@/data/publicWords";
 
 export const metadata: Metadata = {
   title: "Anagram Rush Daily Word Game",

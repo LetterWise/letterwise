@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { words } from "@/data/words";
+import { publicWords as words } from "@/data/publicWords";
 import { unscrambleWords, cleanLetters } from "@/lib/unscramble";
 
 function groupWordsByLength(wordList: string[]) {

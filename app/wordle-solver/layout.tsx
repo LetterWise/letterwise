@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Wordle Solver: Find Possible Answers",
+  title: "Wordle Solver: Find Matching Words",
   description:
-    "Use confirmed, misplaced, and excluded letters to find possible five-letter Wordle answers.",
+    "Use confirmed, included, and excluded letters to find matching five-letter words from the broad LetterWise word list.",
   alternates: {
     canonical: "/wordle-solver",
   },

@@ -1,4 +1,5 @@
 import PuzzleArchiveList from "./PuzzleArchiveList";
+import { connection } from "next/server";
 
 export const metadata = {
   title: "Daily Word Puzzle Archive",
@@ -6,7 +7,9 @@ export const metadata = {
     "Browse past LetterWise Daily word puzzles and replay previous easy, medium, and hard word challenges.",
 };
 
-export default function DailyWordPuzzleArchivePage() {
+export default async function DailyWordPuzzleArchivePage() {
+  await connection();
+
   return (
     <main className="min-h-screen bg-[#fbfaff] text-slate-900">
       <section className="mx-auto max-w-5xl px-6 py-16">

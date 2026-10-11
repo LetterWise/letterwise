@@ -1,4 +1,4 @@
-import { words } from "@/data/words";
+import { publicWords as words } from "@/data/publicWords";
 import WordListBrowser from "./WordListBrowser";
 import WordListInsights from "./WordListInsights";
 

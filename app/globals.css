@@ -1,19 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f6f1;
+  --foreground: #24302d;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /*
+   * LetterWise originally used Tailwind's violet palette throughout the site.
+   * Keeping the scale centralized lets every existing page inherit the calmer
+   * sage identity while the older pages are simplified over time.
+   */
+  --color-violet-50: #f1f5f2;
+  --color-violet-100: #e5ede9;
+  --color-violet-200: #d5e1db;
+  --color-violet-300: #b3c9c0;
+  --color-violet-400: #83a79a;
+  --color-violet-500: #5f8578;
+  --color-violet-600: #355c52;
+  --color-violet-700: #2c4d45;
+  --color-violet-800: #263f39;
+  --color-violet-900: #213530;
+  --color-violet-950: #11201c;
+
+  --color-amber-100: #f5edda;
+  --color-amber-200: #ead9ac;
+  --color-amber-300: #d6b46a;
+  --color-amber-600: #9a6f2f;
+  --color-amber-900: #5f461f;
+
+  --font-sans: Arial, Helvetica, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #d5e1db;
+  color: #11201c;
+}
+
+:where(a, button, input, summary):focus-visible {
+  outline: 3px solid #d6b46a;
+  outline-offset: 3px;
+}
+
+/*
+ * Tailwind's generated theme is loaded by the import above. Define the
+ * LetterWise palette again at normal CSS priority so every existing violet
+ * utility resolves to the quieter sage colors across the whole site.
+ */
+:root,
+:host {
+  --background: #f7f6f1;
+  --foreground: #24302d;
+  --color-violet-50: #f1f5f2;
+  --color-violet-100: #e5ede9;
+  --color-violet-200: #d5e1db;
+  --color-violet-300: #b3c9c0;
+  --color-violet-400: #83a79a;
+  --color-violet-500: #5f8578;
+  --color-violet-600: #355c52;
+  --color-violet-700: #2c4d45;
+  --color-violet-800: #263f39;
+  --color-violet-900: #213530;
+  --color-violet-950: #11201c;
+  --color-amber-100: #f5edda;
+  --color-amber-200: #ead9ac;
+  --color-amber-300: #d6b46a;
+  --color-amber-600: #9a6f2f;
+  --color-amber-900: #5f461f;
 }

@@ -12,9 +12,11 @@ function countLetters(text: string) {
   return counts;
 }
 
-export function canMakeWord(word: string, letters: string) {
+function canMakeWordWithCounts(
+  word: string,
+  letterCounts: Record<string, number>,
+) {
   const wordCounts = countLetters(word);
-  const letterCounts = countLetters(letters);
 
   for (const letter in wordCounts) {
     if (!letterCounts[letter] || wordCounts[letter] > letterCounts[letter]) {
@@ -23,6 +25,11 @@ export function canMakeWord(word: string, letters: string) {
   }
 
   return true;
+}
+
+export function canMakeWord(word: string, letters: string) {
+  const letterCounts = countLetters(letters);
+  return canMakeWordWithCounts(word, letterCounts);
 }
 
 type UnscrambleOptions = {
@@ -49,6 +56,8 @@ export function unscrambleWords(
     return [];
   }
 
+  const letterCounts = countLetters(letters);
+
   const results = wordList
     .filter((word) => word.length >= minLength)
     .filter((word) => word.length <= letters.length)
@@ -56,7 +65,7 @@ export function unscrambleWords(
     .filter((word) => (startsWith ? word.startsWith(startsWith) : true))
     .filter((word) => (endsWith ? word.endsWith(endsWith) : true))
     .filter((word) => (contains ? word.includes(contains) : true))
-    .filter((word) => canMakeWord(word, letters))
+    .filter((word) => canMakeWordWithCounts(word, letterCounts))
     .sort((a, b) => {
       if (b.length !== a.length) {
         return b.length - a.length;

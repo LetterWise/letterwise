@@ -1,4 +1,4 @@
-import ToolIcon from "@/components/ToolIcon";
+import Link from "next/link";
 
 export const metadata = {
   title: "Free Word Solver & Word Finder | LetterWise",
@@ -9,442 +9,199 @@ export const metadata = {
   },
 };
 
-const solverCards = [
+const primaryTools = [
   {
     href: "/word-finder",
-    title: "Word Finder",
-    description: "Find words from the letters you have.",
-    icon: "finder",
-  },
-  {
-    href: "/unscramble-letters",
-    title: "Word Unscrambler",
-    description: "Unscramble letters into possible words.",
-    icon: "unscramble",
-  },
-  {
-    href: "/wordle-solver",
-    title: "Wordle Solver",
-    description: "Narrow down possible Wordle answers.",
-    icon: "wordle",
-  },
-];
-
-const wordListCards = [
-  { href: "/4-letter-words", title: "4 Letter Words" },
-  { href: "/5-letter-words", title: "5 Letter Words" },
-  { href: "/7-letter-words", title: "7 Letter Words" },
-  { href: "/5-letter-words-starting-with-s", title: "5 Letter Words Starting With S" },
-  { href: "/5-letter-words-starting-with-e", title: "5 Letter Words Starting With E" },
-  { href: "/wordle-starter-words", title: "Best Wordle Starter Words" },
-];
-
-
-const guideCards = [
-  {
-    href: "/best-5-letter-starter-words-by-data",
-    title: "Best 5 Letter Starter Words by Data",
-    description: "Original LetterWise ranking of 42 familiar opening words.",
-    icon: "guide",
-  },
-  {
-    href: "/most-common-letters-in-5-letter-words",
-    title: "Most Common Letters in 5 Letter Words",
-    description: "Original LetterWise analysis of letter frequency and position.",
-    icon: "guide",
-  },
-  {
-    href: "/wordle-starter-words",
-    title: "Best Wordle Starter Words",
-    description: "Useful first guesses for Wordle and five-letter word games.",
-    icon: "wordle",
-  },
-  {
-    href: "/common-5-letter-words",
-    title: "Common 5 Letter Words",
-    description: "Everyday five-letter words for games, spelling, and vocabulary.",
-    icon: "lists",
-  },
-  {
-    href: "/5-letter-words-with-vowels",
-    title: "5 Letter Words With Vowels",
-    description: "Vowel-heavy words for Wordle and word puzzles.",
-    icon: "vowels",
-  },
-  {
-    href: "/5-letter-words-no-repeats",
-    title: "5 Letter Words No Repeats",
-    description: "Five-letter words with no repeated letters.",
-    icon: "repeat",
-  },
-  {
-    href: "/how-to-use-word-finder",
-    title: "How to Use Word Finder",
-    description: "Learn how to search letters and use filters.",
-    icon: "guide",
-  },
-  {
-    href: "/best-words-for-word-games",
-    title: "Best Words for Word Games",
-    description: "Useful words and tips for word games and puzzles.",
-    icon: "guide",
-  },
-];
-
-const gameCards = [
-  {
-    href: "/anagram-rush",
-    title: "Anagram Rush",
-    description: "Find as many words as you can in 60 seconds.",
-    icon: "anagramRush",
-  },
-  {
-    href: "/letter-links",
-    title: "Letter Links",
-    description: "Connect two words by changing one letter at a time.",
-    icon: "letterLinks",
-  },
-  {
-    href: "/daily-word-puzzle",
-    title: "Daily Word Puzzle",
-    description: "Guess the five-letter word in six tries.",
-    icon: "daily",
-  },
-  {
-    href: "/daily-word-puzzle/archive",
-    title: "Puzzle Archive",
-    description: "Replay previous daily word puzzles.",
-    icon: "lists",
-  },
-];
-
-
-const mainPathCards = [
-  {
-    href: "/word-finder",
-    title: "Find Words",
-    description: "Search letters, patterns, starts, endings, and word lengths.",
-    icon: "finder",
+    eyebrow: "Have a set of letters?",
+    title: "Find words",
+    description: "Enter your letters and see the words you can make.",
     action: "Open Word Finder",
   },
   {
-    href: "/word-lists",
-    title: "Browse Word Lists",
-    description: "Explore words by length, starting letters, endings, and more.",
-    icon: "lists",
-    action: "View Word Lists",
+    href: "/wordle-solver",
+    eyebrow: "Stuck on today’s word?",
+    title: "Solve a Wordle",
+    description: "Use the letters you know to narrow the possibilities.",
+    action: "Open Wordle Solver",
   },
   {
     href: "/daily-word-puzzle",
-    title: "Play Daily Puzzle",
-    description: "Try today’s five-letter word puzzle and keep your streak going.",
-    icon: "daily",
+    eyebrow: "Ready for a quick game?",
+    title: "Play today’s puzzle",
+    description: "Guess three five-letter words at your own pace.",
     action: "Play Today",
   },
+];
+
+const popularLists = [
+  { href: "/4-letter-words", label: "4 letter words" },
+  { href: "/5-letter-words", label: "5 letter words" },
+  { href: "/7-letter-words", label: "7 letter words" },
+  { href: "/common-5-letter-words", label: "Common 5 letter words" },
+  { href: "/5-letter-words-with-vowels", label: "Words with vowels" },
+  { href: "/wordle-starter-words", label: "Wordle starter words" },
+];
+
+const featuredGuides = [
   {
-    href: "/word-guides",
-    title: "Read Word Guides",
-    description: "Learn better word strategies for Wordle and word games.",
-    icon: "guide",
-    action: "Browse Guides",
+    href: "/best-5-letter-starter-words-by-data",
+    title: "The best five-letter starters, ranked",
+    description: "An original comparison of 42 useful opening words.",
+  },
+  {
+    href: "/most-common-letters-in-5-letter-words",
+    title: "The most common letters in five-letter words",
+    description: "See which letters appear most often and where they occur.",
+  },
+  {
+    href: "/resources/best-word-game-dictionaries",
+    title: "A practical guide to word-game dictionaries",
+    description: "Choose the right dictionary for the game you play.",
   },
 ];
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#fbfaff] text-slate-900">
-      <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-16 pt-14 text-white">
+    <main className="min-h-screen bg-[#f7f6f1] text-[#24302d]">
+      <section className="border-b border-violet-100 px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-5xl text-center">
-          <p className="mb-4 inline-block rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-violet-50">
-            Free word game tools
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-violet-700">
+            Free word tools
           </p>
-
-          <h1 className="text-5xl font-black tracking-tight sm:text-6xl">
-            Word Solver &amp; Word Finder
+          <h1 className="mx-auto mt-5 max-w-4xl text-4xl font-bold tracking-tight text-[#1f2926] sm:text-6xl">
+            Simple help for word games and puzzles
           </h1>
-
-          <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-violet-50">
-            Find words from letters, unscramble words, solve Wordle clues, and play a daily word puzzle.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#66706c]">
+            Find words, solve Wordle clues, browse useful lists, or play a
+            quick daily puzzle—without having to learn a complicated tool.
           </p>
-
-          <form
-            action="/word-finder"
-            className="mx-auto mt-10 max-w-3xl rounded-3xl bg-white p-5 shadow-xl shadow-violet-950/20"
-          >
-            <div className="rounded-2xl border-2 border-slate-900 bg-white px-5 py-4 text-left">
-              <label htmlFor="letters" className="sr-only">
-                Enter letters
-              </label>
-              <input
-                id="letters"
-                name="letters"
-                placeholder="Enter letters, like crane or stone"
-                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-600"
-              />
-            </div>
-
-            <div className="mt-3 grid gap-3 sm:grid-cols-4">
-              <input
-                name="starts"
-                placeholder="Starts"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
-              />
-              <input
-                name="ends"
-                placeholder="Ends"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
-              />
-              <input
-                name="contains"
-                placeholder="Contains"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
-              />
-              <input
-                name="length"
-                placeholder="Length"
-                className="rounded-2xl border border-slate-200 px-4 py-3 font-semibold text-slate-900 outline-none placeholder:text-slate-600"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="mt-5 rounded-full bg-amber-300 px-14 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/tools"
+              className="inline-flex min-h-12 items-center justify-center rounded-xl bg-violet-600 px-7 py-3 font-bold text-white transition hover:bg-violet-700"
             >
-              Find Words
-            </button>
-          </form>
-
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-sm font-bold">
-            <span className="text-violet-100">Popular:</span>
-            {[
-              ["/4-letter-words", "4 Letter Words"],
-              ["/7-letter-words", "7 Letter Words"],
-              ["/wordle-starter-words", "Wordle Starters"],
-            ].map(([href, label]) => (
-              <a
-                key={href}
-                href={href}
-                className="rounded-full bg-white/15 px-4 py-2 text-white hover:bg-white/25"
-              >
-                {label}
-              </a>
-            ))}
+              Explore the tools
+            </Link>
+            <Link
+              href="/daily-word-puzzle"
+              className="inline-flex min-h-12 items-center justify-center rounded-xl border border-violet-200 bg-white px-7 py-3 font-bold text-[#2c4d45] transition hover:border-violet-300 hover:bg-violet-50"
+            >
+              Play today’s puzzle
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-10">
-        <div className="grid gap-3 sm:grid-cols-5">
-          <a href="/word-lists" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
-            Word Lists
-          </a>
-          <a href="/daily-word-puzzle" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
-            Daily Game
-          </a>
-          <a href="/tools" className="rounded-xl bg-violet-600 px-5 py-4 text-center font-black text-white hover:bg-violet-700">
-            Word Solvers
-          </a>
-          <a href="/wordle-solver" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
-            Wordle
-          </a>
-          <a href="/faq" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
-            Help
-          </a>
-        </div>
-
-        
-      <section className="mx-auto max-w-6xl px-6 py-10">
-        <div className="text-center">
-          <p className="text-sm font-black uppercase tracking-[0.25em] text-violet-600">
-            Start Here
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+        <div className="max-w-2xl">
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-violet-700">
+            Start here
           </p>
-
-          <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950">
-            Choose what you want to do
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#1f2926] sm:text-4xl">
+            What would you like to do?
           </h2>
-
-          <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-600">
-            LetterWise is built around four simple areas: finding words,
-            browsing word lists, playing the daily puzzle, and learning word
-            game strategies.
-          </p>
         </div>
 
-        <div className="mt-8 grid min-w-0 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {mainPathCards.map((card) => (
-            <a
-              key={card.href}
-              href={card.href}
-              className="group rounded-3xl border border-violet-100 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 hover:shadow-md"
+        <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          {primaryTools.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="group flex min-h-64 flex-col rounded-2xl border border-violet-100 bg-white p-7 transition hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-sm"
             >
-              <div className="mb-5">
-                <ToolIcon
-                  type={
-                    card.icon as
-                      | "finder"
-                      | "lists"
-                      | "daily"
-                      | "guide"
-                  }
-                />
-              </div>
-
-              <h3 className="text-2xl font-black text-slate-950">
-                {card.title}
-              </h3>
-
-              <p className="mt-3 leading-7 text-slate-600">
-                {card.description}
+              <p className="text-sm font-semibold text-[#66706c]">
+                {tool.eyebrow}
               </p>
-
-              <span className="mt-5 inline-flex rounded-full bg-violet-100 px-5 py-3 text-sm font-black text-violet-700 group-hover:bg-amber-300 group-hover:text-slate-950">
-                {card.action}
+              <h3 className="mt-4 text-2xl font-bold text-[#1f2926]">
+                {tool.title}
+              </h3>
+              <p className="mt-3 max-w-sm leading-7 text-[#66706c]">
+                {tool.description}
+              </p>
+              <span className="mt-auto pt-8 font-bold text-violet-700 group-hover:text-violet-800">
+                {tool.action} <span aria-hidden="true">→</span>
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
 
-<section className="mt-14">
-          <div className="flex items-end justify-between gap-4">
+      <section className="border-y border-violet-100 bg-white px-6 py-14">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-3xl font-black">Popular Word Solvers</h2>
-              <p className="mt-2 text-slate-600">
-                Quick tools to help with word games and puzzles.
+              <h2 className="text-3xl font-bold tracking-tight text-[#1f2926]">
+                Popular word lists
+              </h2>
+              <p className="mt-2 text-[#66706c]">
+                Quick references for puzzles, games, and vocabulary.
               </p>
             </div>
-            <a href="/tools" className="hidden text-3xl text-slate-600 hover:text-violet-600 sm:block">
-              →
-            </a>
+            <Link href="/word-lists" className="font-bold text-violet-700 hover:text-violet-800">
+              View all word lists <span aria-hidden="true">→</span>
+            </Link>
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {solverCards.map((card) => (
-              <a
-                key={card.href}
-                href={card.href}
-                className="rounded-3xl border border-violet-100 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 hover:shadow-md"
+          <div className="mt-7 grid gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
+            {popularLists.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="border-b border-violet-100 py-4 font-semibold text-[#34423e] hover:text-violet-700"
               >
-                <div className="mb-5">
-                  <ToolIcon type={card.icon as "finder" | "unscramble" | "wordle"} />
-                </div>
-                <h3 className="text-2xl font-black">{card.title}</h3>
-                <p className="mt-2 text-slate-600">{card.description}</p>
-              </a>
+                {item.label}
+              </Link>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="mt-14">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-3xl font-black">Popular Word Lists</h2>
-              <p className="mt-2 text-slate-600">
-                Search the word lists people visit most for puzzles and games.
-              </p>
-            </div>
-            <a href="/word-lists" className="hidden text-3xl text-slate-600 hover:text-violet-600 sm:block">
-              →
-            </a>
-          </div>
-
-          <div className="mt-6 grid gap-3 md:grid-cols-2">
-            {wordListCards.map((card) => (
-              <a
-                key={card.href}
-                href={card.href}
-                className="rounded-2xl border border-violet-100 bg-white px-5 py-4 text-lg font-bold shadow-sm hover:border-violet-300 hover:bg-violet-50"
-              >
-                {card.title}
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-14">
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-3xl font-black">Word Games</h2>
-            <p className="mt-2 text-slate-600">
-              Simple daily word games made by LetterWise.
+            <h2 className="text-3xl font-bold tracking-tight text-[#1f2926]">
+              Useful guides
+            </h2>
+            <p className="mt-2 text-[#66706c]">
+              Straightforward advice backed by real word data.
             </p>
           </div>
+          <Link href="/word-guides" className="font-bold text-violet-700 hover:text-violet-800">
+            Browse all guides <span aria-hidden="true">→</span>
+          </Link>
+        </div>
 
-          <div className="mt-6 grid min-w-0 gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {gameCards.map((card) => (
-              <a
-                key={card.href}
-                href={card.href}
-                className="relative overflow-hidden rounded-3xl bg-violet-100 p-7 transition hover:-translate-y-0.5 hover:bg-violet-200 hover:shadow-md"
+        <div className="mt-8 grid gap-8 lg:grid-cols-3">
+          {featuredGuides.map((guide) => (
+            <article key={guide.href} className="border-t border-violet-200 pt-5">
+              <h3 className="text-xl font-bold leading-7 text-[#1f2926]">
+                <Link href={guide.href} className="hover:text-violet-700">
+                  {guide.title}
+                </Link>
+              </h3>
+              <p className="mt-3 leading-7 text-[#66706c]">{guide.description}</p>
+              <Link
+                href={guide.href}
+                className="mt-5 inline-flex font-bold text-violet-700 hover:text-violet-800"
               >
-                <div className="mb-5">
-                  <ToolIcon
-                    type={
-                      card.icon as
-                        | "daily"
-                        | "lists"
-                        | "letterLinks"
-                        | "anagramRush"
-                    }
-                  />
-                </div>
-                <h3 className="text-2xl font-black">{card.title}</h3>
-                <p className="mt-2 text-slate-700">{card.description}</p>
-                <span className="mt-6 inline-block rounded-full bg-amber-300 px-6 py-3 font-black text-slate-950">
-                  Play
-                </span>
-              </a>
-            ))}
-          </div>
-        </section>
+                Read guide <span className="ml-1" aria-hidden="true">→</span>
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
 
-
-        <section className="mt-14">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-3xl font-black">Word Guides</h2>
-              <p className="mt-2 text-slate-600">
-                Helpful guides for Wordle, word games, and using LetterWise tools.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-6 grid min-w-0 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {guideCards.map((card) => (
-              <a
-                key={card.href}
-                href={card.href}
-                className="rounded-3xl border border-violet-100 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 hover:shadow-md"
-              >
-                <div className="mb-5">
-                  <ToolIcon type={card.icon as "wordle" | "lists" | "vowels" | "repeat" | "guide"} />
-                </div>
-                <h3 className="text-2xl font-black">{card.title}</h3>
-                <p className="mt-2 text-slate-600">{card.description}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section className="mx-auto mt-16 max-w-4xl text-lg leading-8 text-slate-700">
-          <h2 className="text-3xl font-black text-slate-900">
-            What is LetterWise?
+      <section className="px-6 pb-20">
+        <div className="mx-auto max-w-4xl rounded-2xl bg-violet-50 px-7 py-9 sm:px-10">
+          <h2 className="text-2xl font-bold text-[#1f2926]">
+            Made to be straightforward
           </h2>
-
-          <p className="mt-4">
-            LetterWise is a simple word helper for finding words, solving letter puzzles,
-            checking five-letter word patterns, and playing daily word games. It is designed
-            to be fast, clean, and easy to use.
+          <p className="mt-3 max-w-3xl leading-7 text-[#66706c]">
+            LetterWise brings its word tools, games, lists, and original guides
+            together in one place. Choose the task you need, get a clear answer,
+            and move on with your puzzle or practice.
           </p>
-
-          <h2 className="mt-10 text-3xl font-black text-slate-900">
-            How to use the Word Finder
-          </h2>
-
-          <p className="mt-4">
-            Enter your letters, add optional filters like starting letters, ending letters,
-            contained letters, or word length, then search for possible words.
-          </p>
-        </section>
+        </div>
       </section>
     </main>
   );

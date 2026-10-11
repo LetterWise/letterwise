@@ -1,4 +1,4 @@
-import ToolIcon from "@/components/ToolIcon";
+import Link from "next/link";
 
 export const metadata = {
   title: "Free Word Tools and Games",
@@ -13,159 +13,79 @@ const tools = [
   {
     href: "/word-finder",
     title: "Word Finder",
-    description: "Find words from the letters you have. Add filters for starting letters, ending letters, contained letters, and word length.",
-    label: "Find Words",
-    icon: "finder",
+    description: "Make words from the letters you already have.",
+    action: "Find words",
   },
   {
     href: "/unscramble-letters",
     title: "Unscramble Letters",
-    description: "Turn mixed-up letters into possible words for word games, puzzles, spelling practice, and classroom activities.",
-    label: "Unscramble",
-    icon: "unscramble",
+    description: "Turn a mixed-up word or letter rack into possible words.",
+    action: "Unscramble letters",
   },
   {
     href: "/wordle-solver",
     title: "Wordle Solver",
-    description: "Use green, yellow, and gray letters to narrow down possible five-letter Wordle answers.",
-    label: "Solve Wordle",
-    icon: "wordle",
+    description: "Use green, yellow, and gray letters to narrow the answer.",
+    action: "Solve a Wordle",
   },
 ];
 
-const quickLinks = [
-  { href: "/word-lists", title: "Word Lists" },
-  { href: "/5-letter-words", title: "5 Letter Words" },
-  { href: "/daily-word-puzzle", title: "Daily Game" },
-  { href: "/letter-links", title: "Letter Links" },
-  { href: "/anagram-rush", title: "Anagram Rush" },
-  { href: "/daily-word-puzzle/archive", title: "Puzzle Archive" },
+const otherDestinations = [
+  { href: "/word-lists", label: "Browse all word lists" },
+  { href: "/daily-word-puzzle", label: "Play today’s word puzzle" },
+  { href: "/letter-links", label: "Play Letter Links" },
+  { href: "/anagram-rush", label: "Play Anagram Rush" },
 ];
 
 export default function ToolsPage() {
   return (
-    <main className="min-h-screen bg-[#fbfaff] text-slate-900">
-      <section className="rounded-b-[2rem] bg-violet-600 px-6 pb-14 pt-12 text-white">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="mb-4 inline-block rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-violet-50">
-            Word Solvers
+    <main className="min-h-screen bg-[#f7f6f1] text-[#24302d]">
+      <section className="border-b border-violet-100 px-6 py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl">
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-violet-700">
+            Tools
           </p>
-
-          <h1 className="text-5xl font-black tracking-tight sm:text-6xl">
-            Word Solvers
+          <h1 className="mt-3 text-4xl font-bold tracking-tight text-[#1f2926] sm:text-5xl">
+            Choose the help you need
           </h1>
-
-          <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-violet-50">
-            Simple tools for finding words, unscrambling letters, and solving
-            Wordle-style word puzzles.
+          <p className="mt-4 max-w-2xl text-lg leading-8 text-[#66706c]">
+            Each LetterWise tool does one clear job. Pick the one that matches
+            your puzzle and start there.
           </p>
-
-          <form
-            action="/word-finder"
-            className="mx-auto mt-10 max-w-3xl rounded-3xl bg-white p-5 shadow-xl shadow-violet-950/20"
-          >
-            <div className="rounded-2xl border-2 border-slate-900 bg-white px-5 py-4 text-left">
-              <label htmlFor="letters" className="sr-only">
-                Enter letters
-              </label>
-              <input
-                id="letters"
-                name="letters"
-                placeholder="Enter letters, like crane or stone"
-                className="w-full bg-transparent text-lg font-semibold text-slate-900 outline-none placeholder:text-slate-600"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="mt-5 rounded-full bg-amber-300 px-12 py-4 text-lg font-black text-slate-950 hover:bg-amber-200"
-            >
-              Search Words
-            </button>
-          </form>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-10">
-        <div className="grid gap-3 sm:grid-cols-5">
-          <a href="/word-lists" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
-            Word Lists
-          </a>
-          <a href="/daily-word-puzzle" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
-            Daily Game
-          </a>
-          <a href="/tools" className="rounded-xl bg-violet-600 px-5 py-4 text-center font-black text-white hover:bg-violet-700">
-            Word Solvers
-          </a>
-          <a href="/wordle-solver" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
-            Wordle
-          </a>
-          <a href="/faq" className="rounded-xl bg-violet-50 px-5 py-4 text-center font-black text-slate-800 hover:bg-violet-100">
-            Help
-          </a>
+      <section className="mx-auto max-w-6xl px-6 py-14 sm:py-16">
+        <div className="grid gap-5 lg:grid-cols-3">
+          {tools.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="group flex min-h-60 flex-col rounded-2xl border border-violet-100 bg-white p-7 transition hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-sm"
+            >
+              <h2 className="text-2xl font-bold text-[#1f2926]">{tool.title}</h2>
+              <p className="mt-3 leading-7 text-[#66706c]">{tool.description}</p>
+              <span className="mt-auto pt-8 font-bold text-violet-700 group-hover:text-violet-800">
+                {tool.action} <span aria-hidden="true">→</span>
+              </span>
+            </Link>
+          ))}
         </div>
 
-        <section className="mt-14">
-          <h2 className="text-3xl font-black">Choose a Word Solver</h2>
-          <p className="mt-2 text-slate-600">
-            Start with the tool that matches what you need.
-          </p>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {tools.map((tool) => (
-              <a
-                key={tool.href}
-                href={tool.href}
-                className="rounded-3xl border border-violet-100 bg-white p-7 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 hover:shadow-md"
+        <div className="mt-14 border-t border-violet-100 pt-10">
+          <h2 className="text-2xl font-bold text-[#1f2926]">Or explore something else</h2>
+          <div className="mt-5 grid gap-x-8 sm:grid-cols-2">
+            {otherDestinations.map((destination) => (
+              <Link
+                key={destination.href}
+                href={destination.href}
+                className="border-b border-violet-100 py-4 font-semibold text-[#34423e] hover:text-violet-700"
               >
-                <div className="mb-5">
-                  <ToolIcon type={tool.icon as "finder" | "unscramble" | "wordle"} />
-                </div>
-
-                <h3 className="text-2xl font-black">{tool.title}</h3>
-
-                <p className="mt-3 leading-7 text-slate-600">
-                  {tool.description}
-                </p>
-
-                <span className="mt-6 inline-block rounded-full bg-amber-300 px-6 py-3 font-black text-slate-950">
-                  {tool.label}
-                </span>
-              </a>
+                {destination.label}
+              </Link>
             ))}
           </div>
-        </section>
-
-        <section className="mt-14">
-          <h2 className="text-3xl font-black">Popular Shortcuts</h2>
-          <p className="mt-2 text-slate-600">
-            Quick links to useful word pages and games.
-          </p>
-
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
-            {quickLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="rounded-2xl border border-violet-100 bg-white px-5 py-4 text-lg font-black shadow-sm hover:border-violet-300 hover:bg-violet-50"
-              >
-                {link.title}
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section className="mx-auto mt-16 max-w-4xl text-lg leading-8 text-slate-700">
-          <h2 className="text-3xl font-black text-slate-900">
-            What are word solvers?
-          </h2>
-
-          <p className="mt-4">
-            Word solvers help you find possible words from letters and clues.
-            They are useful for word games, spelling practice, classroom word
-            work, vocabulary building, and puzzle solving.
-          </p>
-        </section>
+        </div>
       </section>
     </main>
   );

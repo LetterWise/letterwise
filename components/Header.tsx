@@ -4,11 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const navLinks = [
-  { href: "/tools", label: "Word Solvers" },
+const primaryLinks = [
+  { href: "/tools", label: "Tools" },
   { href: "/word-lists", label: "Word Lists" },
-  { href: "/resources", label: "Resources" },
-  { href: "/about", label: "About" },
+  { href: "/word-guides", label: "Guides" },
 ];
 
 const gameLinks = [
@@ -32,14 +31,9 @@ const gameLinks = [
 function isWordListPage(pathname: string) {
   return (
     pathname === "/word-lists" ||
-    pathname === "/3-letter-words" ||
-    pathname === "/4-letter-words" ||
-    pathname === "/5-letter-words" ||
-    pathname === "/6-letter-words" ||
-    pathname === "/7-letter-words" ||
-    pathname.startsWith("/5-letter-words-starting-with-") ||
-    pathname.startsWith("/5-letter-words-ending-in-") ||
-    pathname.startsWith("/5-letter-words-containing-")
+    /^\/[3-7]-letter-words/.test(pathname) ||
+    pathname.startsWith("/common-5-letter-words") ||
+    pathname.startsWith("/wordle-starter-words")
   );
 }
 
@@ -53,13 +47,8 @@ function isToolsPage(pathname: string) {
 }
 
 function isGamesPage(pathname: string) {
-  return (
-    pathname === "/daily-word-puzzle" ||
-    pathname.startsWith("/daily-word-puzzle/") ||
-    pathname === "/letter-links" ||
-    pathname.startsWith("/letter-links/") ||
-    pathname === "/anagram-rush" ||
-    pathname.startsWith("/anagram-rush/")
+  return gameLinks.some(
+    (game) => pathname === game.href || pathname.startsWith(`${game.href}/`),
   );
 }
 
@@ -71,7 +60,7 @@ function isActiveLink(pathname: string, href: string) {
 
 export default function Header() {
   const pathname = usePathname();
-  const [gamesOpen, setGamesOpen] = useState(false);
+  const [openPanel, setOpenPanel] = useState<"games" | "menu" | null>(null);
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -81,14 +70,12 @@ export default function Header() {
         event.target instanceof Node &&
         !headerRef.current.contains(event.target)
       ) {
-        setGamesOpen(false);
+        setOpenPanel(null);
       }
     }
 
     function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setGamesOpen(false);
-      }
+      if (event.key === "Escape") setOpenPanel(null);
     }
 
     document.addEventListener("mousedown", closeOnOutsideClick);
@@ -105,32 +92,28 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 border-b border-violet-100 bg-white/95 text-slate-900 shadow-sm backdrop-blur"
+      className="sticky top-0 z-50 border-b border-violet-100 bg-[#fffefa]/95 text-[#24302d] backdrop-blur"
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
-        <Link href="/" className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-violet-600 text-sm font-black text-white">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-6">
+        <Link href="/" className="flex items-center gap-3" onClick={() => setOpenPanel(null)}>
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-600 text-xs font-bold tracking-wide text-white">
             LW
           </span>
-
-          <span className="text-2xl font-black tracking-tight">
-            LetterWise
-          </span>
+          <span className="text-xl font-bold tracking-tight">LetterWise</span>
         </Link>
 
         <nav
           aria-label="Primary navigation"
-          className="hidden items-center gap-8 text-sm font-bold text-slate-700 md:flex"
+          className="hidden items-center gap-8 text-sm font-semibold text-[#53615c] md:flex"
         >
-          {navLinks.slice(0, 2).map((link) => {
+          {primaryLinks.slice(0, 2).map((link) => {
             const active = isActiveLink(pathname, link.href);
-
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={active ? "text-violet-600" : "hover:text-violet-600"}
+                className={active ? "text-violet-700" : "hover:text-violet-700"}
               >
                 {link.label}
               </Link>
@@ -140,38 +123,33 @@ export default function Header() {
           <div className="relative">
             <button
               type="button"
-              onClick={() => setGamesOpen((open) => !open)}
-              aria-expanded={gamesOpen}
+              onClick={() => setOpenPanel((panel) => (panel === "games" ? null : "games"))}
+              aria-expanded={openPanel === "games"}
               aria-controls="desktop-games-menu"
               className={`inline-flex items-center gap-1.5 ${
-                gamesActive ? "text-violet-600" : "hover:text-violet-600"
+                gamesActive ? "text-violet-700" : "hover:text-violet-700"
               }`}
             >
-              Word Games
-              <span
-                aria-hidden="true"
-                className={`text-xs transition ${gamesOpen ? "rotate-180" : ""}`}
-              >
-                ▾
+              Games
+              <span aria-hidden="true" className="text-xs">
+                {openPanel === "games" ? "▴" : "▾"}
               </span>
             </button>
 
-            {gamesOpen ? (
+            {openPanel === "games" ? (
               <div
                 id="desktop-games-menu"
-                className="absolute left-1/2 top-full mt-4 w-72 -translate-x-1/2 rounded-2xl border border-violet-100 bg-white p-2 shadow-xl shadow-violet-950/10"
+                className="absolute left-1/2 top-full mt-4 w-72 -translate-x-1/2 rounded-xl border border-violet-100 bg-white p-2 shadow-lg shadow-violet-950/10"
               >
                 {gameLinks.map((game) => (
                   <Link
                     key={game.href}
                     href={game.href}
-                    onClick={() => setGamesOpen(false)}
-                    className="block rounded-xl px-4 py-3 hover:bg-violet-50"
+                    onClick={() => setOpenPanel(null)}
+                    className="block rounded-lg px-4 py-3 hover:bg-violet-50"
                   >
-                    <span className="block font-black text-slate-950">
-                      {game.label}
-                    </span>
-                    <span className="mt-0.5 block text-xs font-medium text-slate-600">
+                    <span className="block font-bold text-[#24302d]">{game.label}</span>
+                    <span className="mt-0.5 block text-xs font-normal text-[#66706c]">
                       {game.description}
                     </span>
                   </Link>
@@ -180,106 +158,68 @@ export default function Header() {
             ) : null}
           </div>
 
-          {navLinks.slice(2).map((link) => {
-            const active = isActiveLink(pathname, link.href);
-
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={active ? "text-violet-600" : "hover:text-violet-600"}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+          <Link
+            href={primaryLinks[2].href}
+            aria-current={isActiveLink(pathname, primaryLinks[2].href) ? "page" : undefined}
+            className={
+              isActiveLink(pathname, primaryLinks[2].href)
+                ? "text-violet-700"
+                : "hover:text-violet-700"
+            }
+          >
+            {primaryLinks[2].label}
+          </Link>
         </nav>
 
         <Link
           href="/daily-word-puzzle"
-          className="rounded-full bg-violet-600 px-5 py-3 text-sm font-bold text-white hover:bg-violet-700"
+          className="hidden rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-violet-700 md:inline-flex"
         >
-          Play
+          Daily puzzle
         </Link>
-      </div>
-
-      <nav
-        aria-label="Primary navigation"
-        className="flex gap-2 overflow-x-auto border-t border-violet-100 px-4 py-3 text-sm font-bold text-slate-700 md:hidden"
-      >
-        {navLinks.slice(0, 2).map((link) => {
-          const active = isActiveLink(pathname, link.href);
-
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              aria-current={active ? "page" : undefined}
-              className={
-                active
-                  ? "whitespace-nowrap rounded-full bg-violet-100 px-4 py-2 text-violet-700 ring-1 ring-inset ring-violet-200"
-                  : "whitespace-nowrap rounded-full bg-violet-50 px-4 py-2 hover:bg-violet-100 hover:text-violet-700"
-              }
-            >
-              {link.label}
-            </Link>
-          );
-        })}
 
         <button
           type="button"
-          onClick={() => setGamesOpen((open) => !open)}
-          aria-expanded={gamesOpen}
-          aria-controls="mobile-games-menu"
-          className={
-            gamesActive
-              ? "whitespace-nowrap rounded-full bg-violet-100 px-4 py-2 text-violet-700 ring-1 ring-inset ring-violet-200"
-              : "whitespace-nowrap rounded-full bg-violet-50 px-4 py-2 hover:bg-violet-100 hover:text-violet-700"
-          }
+          onClick={() => setOpenPanel((panel) => (panel === "menu" ? null : "menu"))}
+          aria-expanded={openPanel === "menu"}
+          aria-controls="mobile-menu"
+          className="inline-flex min-h-10 items-center rounded-lg border border-violet-200 bg-white px-4 text-sm font-bold text-[#34423e] md:hidden"
         >
-          Word Games {gamesOpen ? "▴" : "▾"}
+          {openPanel === "menu" ? "Close" : "Menu"}
         </button>
+      </div>
 
-        {navLinks.slice(2).map((link) => {
-          const active = isActiveLink(pathname, link.href);
-
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              aria-current={active ? "page" : undefined}
-              className={
-                active
-                  ? "whitespace-nowrap rounded-full bg-violet-100 px-4 py-2 text-violet-700 ring-1 ring-inset ring-violet-200"
-                  : "whitespace-nowrap rounded-full bg-violet-50 px-4 py-2 hover:bg-violet-100 hover:text-violet-700"
-              }
-            >
-              {link.label}
-            </Link>
-          );
-        })}
-      </nav>
-
-      {gamesOpen ? (
+      {openPanel === "menu" ? (
         <nav
-          id="mobile-games-menu"
-          aria-label="Word games"
-          className="grid gap-2 border-t border-violet-100 bg-white px-4 py-3 md:hidden"
+          id="mobile-menu"
+          aria-label="Mobile navigation"
+          className="border-t border-violet-100 bg-white px-5 py-4 md:hidden"
         >
-          {gameLinks.map((game) => (
-            <Link
-              key={game.href}
-              href={game.href}
-              onClick={() => setGamesOpen(false)}
-              className="rounded-xl bg-violet-50 px-4 py-3 hover:bg-violet-100"
-            >
-              <span className="block font-black text-slate-950">{game.label}</span>
-              <span className="mt-0.5 block text-xs font-medium text-slate-600">
-                {game.description}
-              </span>
-            </Link>
-          ))}
+          <div className="mx-auto grid max-w-7xl gap-1">
+            {primaryLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpenPanel(null)}
+                className="rounded-lg px-3 py-3 font-semibold hover:bg-violet-50"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <p className="px-3 pb-1 pt-4 text-xs font-bold uppercase tracking-[0.14em] text-[#7a8581]">
+              Games
+            </p>
+            {gameLinks.map((game) => (
+              <Link
+                key={game.href}
+                href={game.href}
+                onClick={() => setOpenPanel(null)}
+                className="rounded-lg px-3 py-3 font-semibold hover:bg-violet-50"
+              >
+                {game.label}
+              </Link>
+            ))}
+          </div>
         </nav>
       ) : null}
     </header>

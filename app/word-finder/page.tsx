@@ -21,6 +21,22 @@ export async function generateMetadata({
   };
 }
 
-export default function WordFinderPage() {
-  return <WordFinderClient />;
+function readSearchValue(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] || "" : value || "";
+}
+
+export default async function WordFinderPage({ searchParams }: WordFinderPageProps) {
+  const params = await searchParams;
+
+  return (
+    <WordFinderClient
+      initialFields={{
+        letters: readSearchValue(params.letters),
+        starts: readSearchValue(params.starts),
+        ends: readSearchValue(params.ends),
+        contains: readSearchValue(params.contains),
+        length: readSearchValue(params.length),
+      }}
+    />
+  );
 }

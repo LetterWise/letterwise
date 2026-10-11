@@ -1,10 +1,10 @@
 export const metadata = {
-  title: "Terms of Use",
-  description:
-    "Read the LetterWise terms of use for word tools, word game help, and daily puzzles.",
   alternates: {
     canonical: "/terms",
   },
+  title: "Terms of Use",
+  description:
+    "Read the LetterWise terms of use for word tools, word game help, and daily puzzles.",
 };
 
 const lastUpdated = "October 11, 2026";

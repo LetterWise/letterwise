@@ -1,6 +1,9 @@
 import FiveLetterStartingPage from "@/components/FiveLetterStartingPage";
 
 export const metadata = {
+  alternates: {
+    canonical: "/5-letter-words-starting-with-y",
+  },
   title: "5 Letter Words Starting With Y",
   description:
     "Browse useful 5 letter words starting with Y for Wordle, word games, spelling practice, and vocabulary building.",

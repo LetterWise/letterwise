@@ -1,10 +1,10 @@
 export const metadata = {
-  title: "FAQ | LetterWise Word Tools",
-  description:
-    "Frequently asked questions about LetterWise word tools, word finder, unscrambler, Wordle solver, word lists, and daily puzzles.",
   alternates: {
     canonical: "/faq",
   },
+  title: "FAQ | LetterWise Word Tools",
+  description:
+    "Frequently asked questions about LetterWise word tools, word finder, unscrambler, Wordle solver, word lists, and daily puzzles.",
 };
 
 const faqs = [

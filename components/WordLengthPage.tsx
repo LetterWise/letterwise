@@ -13,6 +13,14 @@ const lengthLinks = [
   { href: "/7-letter-words", title: "7 Letter Words" },
 ];
 
+const familiarExamplesByLength: Record<number, string[]> = {
+  3: ["and", "can", "one", "the", "try", "two", "use", "you"],
+  4: ["clue", "find", "game", "help", "play", "read", "time", "word"],
+  5: ["crane", "heart", "light", "plant", "sound", "stone", "trace", "water"],
+  6: ["answer", "letter", "puzzle", "search", "solver", "useful", "vowels", "words"],
+  7: ["answers", "finding", "letters", "playing", "puzzles", "solving", "starter", "wording"],
+};
+
 export default function WordLengthPage({ length }: WordLengthPageProps) {
   const allMatchingWords = words.filter((word) => word.length === length);
   const matchingWords = allMatchingWords.slice(0, 500);
@@ -37,7 +45,14 @@ export default function WordLengthPage({ length }: WordLengthPageProps) {
     "",
     0,
   ];
-  const examples = allMatchingWords.slice(0, 8);
+  const wordSet = new Set(allMatchingWords);
+  const familiarExamples = (familiarExamplesByLength[length] ?? []).filter(
+    (word) => wordSet.has(word),
+  );
+  const examples = [
+    ...familiarExamples,
+    ...allMatchingWords.filter((word) => !familiarExamples.includes(word)),
+  ].slice(0, 8);
 
   return (
     <main className="min-h-screen bg-[#fbfaff] text-slate-900">
@@ -172,7 +187,13 @@ export default function WordLengthPage({ length }: WordLengthPageProps) {
             </div>
 
             <div>
-              <h3 className="text-2xl font-black text-slate-950">Examples</h3>
+              <h3 className="text-2xl font-black text-slate-950">
+                Familiar examples
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Start with recognizable words, then use the searchable list for
+                more possibilities.
+              </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {examples.map((word) => (
                   <span

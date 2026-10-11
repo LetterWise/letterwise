@@ -6,7 +6,7 @@ type FiveLetterStartingPageProps = {
   letter: string;
 };
 
-const quickLetters = ["a", "b", "c", "d", "e", "s"];
+const quickLetters = "abcdefghijklmnopqrstuvwxyz".split("");
 
 export default function FiveLetterStartingPage({
   letter,
@@ -40,7 +40,10 @@ export default function FiveLetterStartingPage({
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-10">
-        <div className="grid gap-3 sm:grid-cols-6">
+        <nav
+          aria-label="Browse five-letter words by first letter"
+          className="grid grid-cols-4 gap-3 sm:grid-cols-7 lg:grid-cols-13"
+        >
           {quickLetters.map((item) => (
             <a
               key={item}
@@ -54,7 +57,7 @@ export default function FiveLetterStartingPage({
               {item.toUpperCase()}
             </a>
           ))}
-        </div>
+        </nav>
 
         <WordListBrowser
           words={matchingWords}

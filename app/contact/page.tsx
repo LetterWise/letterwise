@@ -1,10 +1,10 @@
 export const metadata = {
-  title: "Contact",
-  description:
-    "Contact LetterWise about word tools, word lists, daily puzzles, feedback, or suggestions.",
   alternates: {
     canonical: "/contact",
   },
+  title: "Contact",
+  description:
+    "Contact LetterWise about word tools, word lists, daily puzzles, feedback, or suggestions.",
 };
 
 export default function ContactPage() {

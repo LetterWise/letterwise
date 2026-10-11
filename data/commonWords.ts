@@ -54,4 +54,4 @@ export const commonFiveLetterWords = [
   "which",
   "world",
   "write",
-];
+] as const;

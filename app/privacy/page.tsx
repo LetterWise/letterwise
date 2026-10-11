@@ -1,10 +1,10 @@
 export const metadata = {
-  title: "Privacy Policy",
-  description:
-    "Learn how LetterWise uses browser storage, analytics, hosting services, advertising technologies, and privacy controls.",
   alternates: {
     canonical: "/privacy",
   },
+  title: "Privacy Policy",
+  description:
+    "Learn how LetterWise uses browser storage, analytics, hosting services, advertising technologies, and privacy controls.",
 };
 
 const lastUpdated = "October 11, 2026";

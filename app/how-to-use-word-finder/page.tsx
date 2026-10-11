@@ -1,4 +1,7 @@
 export const metadata = {
+  alternates: {
+    canonical: "/how-to-use-word-finder",
+  },
   title: "How to Use Word Finder",
   description:
     "Learn how to use the LetterWise Word Finder to find words from letters, use filters, solve word games, and improve spelling practice.",

@@ -1,6 +1,9 @@
 import FiveLetterContainingPage from "@/components/FiveLetterContainingPage";
 
 export const metadata = {
+  alternates: {
+    canonical: "/5-letter-words-containing-ou",
+  },
   title: "5 Letter Words Containing OU",
   description:
     "Browse useful 5 letter words containing OU for Wordle, word games, spelling practice, crossword clues, and vocabulary building.",

@@ -1,6 +1,9 @@
 import ToolIcon from "@/components/ToolIcon";
 
 export const metadata = {
+  alternates: {
+    canonical: "/word-guides",
+  },
   title: "Word Guides",
   description:
     "Browse LetterWise word guides for Wordle, word games, five-letter words, vowels, starter words, and word finder tips.",
@@ -11,14 +14,14 @@ const guides = [
     href: "/best-two-word-starts-by-data",
     title: "Best Two Word Starts by Data",
     description:
-      "Compare familiar two-word openings across 12,578 five-letter entries.",
+      "Compare familiar two-word openings across 12,575 five-letter entries.",
     icon: "guide",
   },
   {
     href: "/best-5-letter-starter-words-by-data",
     title: "Best 5 Letter Starter Words by Data",
     description:
-      "See how 42 familiar starters rank across 12,578 five-letter entries.",
+      "See how 42 familiar starters rank across 12,575 five-letter entries.",
     icon: "guide",
   },
   {

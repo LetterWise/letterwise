@@ -2,6 +2,9 @@ import PuzzleArchiveList from "./PuzzleArchiveList";
 import { connection } from "next/server";
 
 export const metadata = {
+  alternates: {
+    canonical: "/daily-word-puzzle/archive",
+  },
   title: "Daily Word Puzzle Archive",
   description:
     "Browse past LetterWise Daily word puzzles and replay previous easy, medium, and hard word challenges.",

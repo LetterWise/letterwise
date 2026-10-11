@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { commonFiveLetterWords } from "@/data/commonFiveLetterWords";
+import { commonFiveLetterWords } from "@/data/commonWords";
 
 const startingLetterPages = [
   { href: "/5-letter-words-starting-with-a", label: "5 Letter Words Starting With A" },
@@ -31,6 +31,9 @@ const startingLetterPages = [
 ];
 
 export const metadata = {
+  alternates: {
+    canonical: "/5-letter-words",
+  },
   title: "5 Letter Words",
   description:
     "Browse useful 5 letter words for Wordle, word games, spelling practice, and vocabulary building.",

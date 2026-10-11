@@ -1,4 +1,7 @@
 export const metadata = {
+  alternates: {
+    canonical: "/5-letter-words-no-repeats",
+  },
   title: "5 Letter Words With No Repeated Letters",
   description:
     "Browse useful 5 letter words with no repeated letters for Wordle, word games, spelling practice, and puzzle solving.",

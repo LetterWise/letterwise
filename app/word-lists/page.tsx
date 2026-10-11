@@ -15,14 +15,10 @@ const lengthLinks = [
   { href: "/7-letter-words", title: "7 Letter Words" },
 ];
 
-const startingLinks = [
-  { href: "/5-letter-words-starting-with-a", title: "Starting With A" },
-  { href: "/5-letter-words-starting-with-b", title: "Starting With B" },
-  { href: "/5-letter-words-starting-with-c", title: "Starting With C" },
-  { href: "/5-letter-words-starting-with-d", title: "Starting With D" },
-  { href: "/5-letter-words-starting-with-e", title: "Starting With E" },
-  { href: "/5-letter-words-starting-with-s", title: "Starting With S" },
-];
+const startingLinks = "abcdefghijklmnopqrstuvwxyz".split("").map((letter) => ({
+  href: `/5-letter-words-starting-with-${letter}`,
+  title: `Starting With ${letter.toUpperCase()}`,
+}));
 
 const endingLinks = [
   { href: "/5-letter-words-ending-in-ed", title: "Ending In ED" },

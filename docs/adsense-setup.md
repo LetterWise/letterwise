@@ -40,8 +40,8 @@ ID or loading advertising code before consent and approval are ready.
 
 5. Set `GOOGLE_ADSENSE_ENABLED=true` and deploy to load Google's sitewide
    script.
-6. Publish the exact `ads.txt` line supplied by AdSense at `/ads.txt`. Do not
-   publish a guessed or placeholder line.
+6. Keep the AdSense-supplied authorization line in `public/ads.txt` so it is
+   available at `/ads.txt`. Update it only if AdSense supplies a replacement.
 
 ## Safety checks
 

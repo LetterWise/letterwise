@@ -8,6 +8,14 @@ export type ResourceGuide = {
 
 export const resourceGuides = [
   {
+    href: "/resources/how-to-improve-academic-vocabulary",
+    title: "Improve Academic Vocabulary Naturally",
+    description:
+      "Use a practical word-choice method, original before-and-after examples, and a quick revision checklist for essays and research writing.",
+    category: "Academic writing guide",
+    bestFor: "Choosing precise words without making your writing sound forced",
+  },
+  {
     href: "/resources/best-word-game-dictionaries",
     title: "Word Game Dictionaries Compared",
     description:

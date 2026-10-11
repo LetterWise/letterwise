@@ -18,7 +18,7 @@ export default function AffiliateLink({
       {...props}
       href={href}
       target="_blank"
-      rel="sponsored noopener noreferrer"
+      rel="sponsored nofollow noopener noreferrer"
     >
       {children}
       <span aria-hidden="true" className="ml-1 inline-block">

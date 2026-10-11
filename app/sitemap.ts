@@ -21,6 +21,7 @@ const staticPages = [
   "/word-lists",
   "/word-guides",
   "/resources",
+  "/resources/how-to-improve-academic-vocabulary",
   "/resources/best-word-game-dictionaries",
   "/resources/best-vocabulary-tools-for-adults",
   "/best-two-word-starts-by-data",

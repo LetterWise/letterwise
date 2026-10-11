@@ -29,8 +29,9 @@ export default function AffiliateDisclosurePage() {
         </p>
 
         <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
-          LetterWise may add affiliate links to resource guides and other helpful
-          content. This page explains what those links mean and how commercial
+          LetterWise uses clearly disclosed affiliate links in selected resource
+          guides and other helpful content. This page explains what those links
+          mean and how commercial
           relationships are kept separate from editorial recommendations.
         </p>
 
@@ -39,25 +40,30 @@ export default function AffiliateDisclosurePage() {
             What an affiliate link means
           </h2>
           <p className="mt-3 leading-7 text-slate-700">
-            If LetterWise establishes an affiliate relationship, a link to that
-            retailer or service may let the partner know that a visitor came from
-            LetterWise. A qualifying purchase or signup may then earn LetterWise
-            a commission. This does not add a fee to the visitor&apos;s purchase.
+            An affiliate link may let a retailer or service know that a visitor
+            came from LetterWise. A qualifying purchase or signup may then earn
+            LetterWise a commission. This does not add a fee to the
+            visitor&apos;s purchase.
           </p>
         </div>
 
         <div className="mt-10 space-y-10 text-slate-700">
           <section>
             <h2 className="text-2xl font-black text-slate-950">
-              Relationships may be added
+              Current affiliate relationships
             </h2>
             <p className="mt-3 leading-7">
-              LetterWise is building its resource program and may establish
-              affiliate relationships in the future. This policy does not claim
-              an active relationship with any particular retailer, publisher,
-              app, or service. A company should be understood to have an affiliate
-              relationship with LetterWise only when the relevant page identifies
-              that relationship clearly.
+              LetterWise participates in Paperpal&apos;s affiliate program, which is
+              administered through Trackdesk. If you follow a clearly marked
+              Paperpal affiliate link and make an eligible purchase, LetterWise
+              may earn a commission at no additional cost to you.
+            </p>
+            <p className="mt-3 leading-7">
+              A Paperpal guide may also display the reader code{" "}
+              <strong className="font-black text-slate-950">PAP20</strong>. The
+              code currently offers a discount on eligible plans, but discounts,
+              eligibility, and plan terms can change. Confirm the final price at
+              checkout before purchasing.
             </p>
           </section>
 

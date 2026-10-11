@@ -43,6 +43,7 @@ const footerSections = [
     title: "LetterWise",
     links: [
       { href: "/resources", label: "Word Game Resources" },
+      { href: "/resources/how-to-improve-academic-vocabulary", label: "Academic Vocabulary Guide" },
       { href: "/resources/best-word-game-dictionaries", label: "Word Game Dictionaries" },
       { href: "/resources/best-vocabulary-tools-for-adults", label: "Vocabulary Tools" },
       { href: "/about", label: "About" },

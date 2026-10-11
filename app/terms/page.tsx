@@ -73,14 +73,16 @@ export default function TermsPage() {
 
           <section>
             <h2 className="text-2xl font-semibold text-slate-900">
-              Advertising and external services
+              Advertising, affiliate links, and external services
             </h2>
             <p className="mt-3 leading-7">
-              LetterWise may display clearly identified advertising or link to
-              external websites. External services operate under their own terms
-              and privacy practices. Advertising relationships do not change
-              the word lists, puzzle answers, or editorial explanations shown
-              on LetterWise.
+              LetterWise may display clearly identified advertising, use
+              affiliate links, or link to external websites. If you make a
+              purchase through a disclosed affiliate link, LetterWise may earn
+              a commission at no additional cost to you. External services
+              operate under their own terms and privacy practices. Commercial
+              relationships do not determine LetterWise word lists, puzzle
+              answers, rankings, or editorial conclusions.
             </p>
           </section>
 

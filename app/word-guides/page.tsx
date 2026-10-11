@@ -11,6 +11,20 @@ export const metadata = {
 
 const guides = [
   {
+    href: "/resources/best-word-game-dictionaries",
+    title: "Word Game Dictionaries Compared",
+    description:
+      "Choose the right reference for casual games, tournaments, family play, and crosswords.",
+    icon: "guide",
+  },
+  {
+    href: "/resources/best-vocabulary-tools-for-adults",
+    title: "Vocabulary Tools for Adults Compared",
+    description:
+      "Compare practical tools for learning words, remembering them, and using them in context.",
+    icon: "guide",
+  },
+  {
     href: "/best-two-word-starts-by-data",
     title: "Best Two Word Starts by Data",
     description:

@@ -42,12 +42,16 @@ const footerSections = [
   {
     title: "LetterWise",
     links: [
+      { href: "/resources", label: "Word Game Resources" },
+      { href: "/resources/best-word-game-dictionaries", label: "Word Game Dictionaries" },
+      { href: "/resources/best-vocabulary-tools-for-adults", label: "Vocabulary Tools" },
       { href: "/about", label: "About" },
       { href: "/faq", label: "FAQ" },
       { href: "/updates", label: "Updates" },
       { href: "/contact", label: "Contact" },
       { href: "/privacy", label: "Privacy Policy" },
       { href: "/terms", label: "Terms of Use" },
+      { href: "/affiliate-disclosure", label: "Affiliate Disclosure" },
     ],
   },
 ];

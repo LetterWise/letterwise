@@ -157,6 +157,33 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="text-2xl font-black text-slate-900">
+              Affiliate links and referral tracking
+            </h2>
+            <p className="mt-3 leading-7">
+              LetterWise may use clearly disclosed affiliate links to external
+              products or services. When you follow one of these links, the
+              merchant or affiliate network may process a referral identifier
+              and use cookies or similar technology to attribute a later signup
+              or purchase. LetterWise may receive reports about attributed
+              clicks, purchases, and commissions, but does not receive or
+              process the payment-card details you provide to the merchant.
+            </p>
+            <p className="mt-3 leading-7">
+              Affiliate relationships and the way they are identified are
+              explained in the{" "}
+              <a
+                href="/affiliate-disclosure"
+                className="font-bold text-violet-700 underline decoration-violet-300 underline-offset-4 hover:text-violet-900"
+              >
+                Affiliate Disclosure
+              </a>
+              . Each merchant and network handles information under its own
+              privacy policy.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-black text-slate-900">
               Your choices
             </h2>
             <p className="mt-3 leading-7">

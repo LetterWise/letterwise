@@ -142,6 +142,14 @@ export default function AboutPage() {
             corrections are made when a problem is found.
           </p>
 
+          <p className="mt-4">
+            Resource recommendations are selected for their relevance and
+            practical usefulness. A commercial relationship never guarantees a
+            favorable mention or determines the order of a comparison. When a
+            link can earn LetterWise a commission, that relationship is
+            disclosed clearly on the page.
+          </p>
+
           <div className="mt-8 rounded-3xl border border-violet-100 bg-white p-8 shadow-sm">
             <h3 className="text-2xl font-black text-slate-900">
               Word data and methodology
